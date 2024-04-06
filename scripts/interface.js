@@ -106,14 +106,14 @@ function Escape() {
 
 let loader = document.querySelector('.loader');
 let loaderMask = document.querySelector('.loaderMask');
-window.addEventListener("load", function () {/*
+window.addEventListener("load", function () {
     setTimeout(function () {
         loaderMask.style.height = '100vh';
     }, 2000);
     setTimeout(function () {
         loader.style.opacity = '0';
         loader.style.zIndex = '-6';
-    }, 3000);*/
+    }, 3000);
     SelectActiveTab();
     DisableChildren(settingsMenu);
     DisableChildren(sheetMenu);
@@ -133,9 +133,12 @@ function NewTab() {
 }
 
 let backstoryField = document.getElementById("backstoryField");
+let classDropdown = document.getElementById("classDropdown");
 let classLevelField = document.getElementById("levelField");
 let playerNameField = document.getElementById("playerNameField");
+let raceDropdown = document.getElementById("raceDropdown");
 let backgroundField = document.getElementById("backgroundField");
+let alignmentDropdown = document.getElementById("alignmentDropdown");
 let xpField = document.getElementById("xpField");
 function UpdateSheets() {
     for (const tab of Profile.TabList) {
@@ -147,9 +150,12 @@ function UpdateSheets() {
     sheetRenamer.value = Profile.ActiveElement.name;
 
     backstoryField.value = Profile.ActiveElement.backstory;
+    DropdownSelectFromString(classDropdown, Profile.ActiveElement.class);
     classLevelField.value = Profile.ActiveElement.classLevel;
     playerNameField.value = Profile.ActiveElement.playerName;
+    DropdownSelectFromString(raceDropdown, Profile.ActiveElement.race);
     backgroundField.value = Profile.ActiveElement.background;
+    DropdownSelectFromString(alignmentDropdown, Profile.ActiveElement.alignment);
     xpField.value = Profile.ActiveElement.xp;
 }
 
@@ -425,15 +431,43 @@ function DeleteHistory() {
     };
 }
 
-function DropdownSelect(element) {
-    var activeValue = element.parentElement.children[1].querySelector(".dropdownListItemLabelText").innerHTML;
+function DropdownSelectFromString(dropdownElement, stringToSelect) {
+    var selected = false;
+    for (const listText of dropdownElement.querySelectorAll(".dropdownListItemLabelText")) {
+        if (listText.innerHTML == stringToSelect) {
+            DropdownSelect(dropdownElement, stringToSelect, listText.parentElement.parentElement.children[0]);
+            selected = true;
+        }
+    }
+    if (!selected) 
+        DropdownSelect(dropdownElement, stringToSelect, null);
+}
 
-    if (element.name == "class") Profile.ActiveElement.class = activeValue;
-    if (element.name == "alignment") Profile.ActiveElement.alignment = activeValue;
-    if (element.name == "race") Profile.ActiveElement.race = activeValue;
+function DropdownSelect(dropdownElement, stringToSelect, input) {
+    if (input == null || stringToSelect == '') {
+        dropdownElement.parentElement.parentElement.querySelector(".dropdownLabel").setAttribute("data-dropdown-content", "None");
+        ResetDropdown(dropdownElement);
+        return;
+    }
 
-    if (element.checked) element.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.setAttribute("data-dropdown-content", activeValue)
-    else if (document.querySelectorAll("input[name=" + element.name + "]:checked").length > 0) element.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.setAttribute("data-dropdown-content", "None");
+    if (!input.checked) {
+        for (const inputItem of dropdownElement.querySelectorAll("input[name=" + input.name + "]")) {
+            if (inputItem == input) 
+                inputItem.checked = true;
+            else 
+                inputItem.checked = false;
+        }
+    }
+
+    if (input.name == "class") Profile.ActiveElement.class = stringToSelect;
+    if (input.name == "alignment") Profile.ActiveElement.alignment = stringToSelect;
+    if (input.name == "race") Profile.ActiveElement.race = stringToSelect;
+
+    dropdownElement.parentElement.parentElement.querySelector(".dropdownLabel").setAttribute("data-dropdown-content", stringToSelect);
+
+
+    if (!dropdownElement.querySelectorAll("input[name=" + input.name + "]:checked").length > 0)
+        dropdownElement.parentElement.parentElement.querySelector(".dropdownLabel").setAttribute("data-dropdown-content", "None");
 }
 
 for (const container of document.querySelectorAll(".dropdownContainer")) {
@@ -483,10 +517,8 @@ numInputs.forEach(function(input) {
   })
 })
 
-function ResetDropdown(element) {
-    var listItems = element.parentElement.querySelector('ul').children;
-
-    for (const item of listItems) {
+function ResetDropdown(dropdownElement) {
+    for (const item of dropdownElement.children) {
         item.firstElementChild.checked = false;
     }
 }
