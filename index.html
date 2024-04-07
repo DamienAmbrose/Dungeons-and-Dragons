@@ -182,7 +182,7 @@
     </div>
     <div class="sheetContentArea">
       <section class="sheetContent active" id="characterSheet">
-        <div class="characterType">
+        <div class="characterType sheetContentSection">
           <div class="nameInfo">
             <input autocomplete="off" autocorrect="off" spellcheck="false"
               oninput="Profile.ActiveElement.name = this.value; UpdateSheets()" class="sheetName clickable" type="text"
@@ -1072,7 +1072,7 @@
                         </label>
                       </li>
                     </ul>
-                    <button class="largeActionButton" type="reset" onclick="ResetDropdown(this)" aria-label="Clear Selection">
+                    <button class="largeActionButton" type="reset" onclick="ResetDropdown(this.parentElement.parentElement.querySelector('ul'))" aria-label="Clear Selection">
                       <img src="icons/x.svg" alt="Save Icon">
                       Clear
                     </button>
@@ -1080,9 +1080,79 @@
                 </div>
               </div>
             </div>
-            <div class="infoFieldContainer">
-              <label for="xpField">XP</label>
+            <label class="infoFieldContainer" for="xpField">
+              <label>XP</label>
               <input type="number" class="infoField clickable inputElement" id="xpField" min="0" max="355000" value="0" onchange="Profile.ActiveElement.xp = this.value">
+            </label>
+          </div>
+        </div>
+        <div class="characterInventory sheetContentSection">
+          <div class="coinsSectionTitle">
+            <img src="icons/coin.svg" alt="Coin Icon">
+            <h1>Coins</h1>
+          </div>
+          <label for="copper" class="currencyBox">
+            <div class="currencyText">Copper</div>
+            <input type="number" class="currencyInput" id="copper" min="0" value="0">
+          </label>
+          <label for="silver" class="currencyBox">
+            <div class="currencyText">Silver</div>
+            <input type="number" class="currencyInput" id="silver" min="0" value="0">
+          </label>
+          <label for="electrum" class="currencyBox">
+            <div class="currencyText">Electrum</div>
+            <input type="number" class="currencyInput" id="electrum" min="0" value="0">
+          </label>
+          <label for="gold" class="currencyBox">
+            <div class="currencyText">Gold</div>
+            <input type="number" class="currencyInput" id="gold" min="0" value="0">
+          </label>
+          <label for="platinum" class="currencyBox">
+            <div class="currencyText">Platinum</div>
+            <input type="number" class="currencyInput" id="platinum" min="0" value="0">
+          </label>
+        </div>
+        <div class="characterAbilities sheetContentSection">
+          <div class="abilityBox">
+            <h1 class="modifierValue">+0</h1>
+            <div class="abilityInfo">
+              <label for="strScore" class="abilityName">Strength (STR)</label>
+              <input type="number" class="abilityScore" id="strScore" min="1" max="30" value="10" onchange="UpdateAbility(this.parentElement.parentElement.firstElementChild, this.value)">
+            </div>
+          </div>
+          <div class="abilityBox">
+            <h1 class="modifierValue">+0</h1>
+            <div class="abilityInfo">
+              <label for="dexScore" class="abilityName">Dexterity (DEX)</label>
+              <input type="number" class="abilityScore" id="dexScore" min="1" max="30" value="10" onchange="UpdateAbility(this.parentElement.parentElement.firstElementChild, this.value)">
+            </div>
+          </div>
+          <div class="abilityBox">
+            <h1 class="modifierValue">+0</h1>
+            <div class="abilityInfo">
+              <label for="conScore" class="abilityName">Constitution (CON)</label>
+              <input type="number" class="abilityScore" id="conScore" min="1" max="30" value="10" onchange="UpdateAbility(this.parentElement.parentElement.firstElementChild, this.value)">
+            </div>
+          </div>
+          <div class="abilityBox">
+            <h1 class="modifierValue">+0</h1>
+            <div class="abilityInfo">
+              <label for="intScore" class="abilityName">Intelligence (INT)</label>
+              <input type="number" class="abilityScore" id="intScore" min="1" max="30" value="10" onchange="UpdateAbility(this.parentElement.parentElement.firstElementChild, this.value)">
+            </div>
+          </div>
+          <div class="abilityBox">
+            <h1 class="modifierValue">+0</h1>
+            <div class="abilityInfo">
+              <label for="wisScore" class="abilityName">Wisdom (WIS)</label>
+              <input type="number" class="abilityScore" id="wisScore" min="1" max="30" value="10" onchange="UpdateAbility(this.parentElement.parentElement.firstElementChild, this.value)">
+            </div>
+          </div>
+          <div class="abilityBox">
+            <h1 class="modifierValue">+0</h1>
+            <div class="abilityInfo">
+              <label for="chaScore" class="abilityName">Charisma (CHA)</label>
+              <input type="number" class="abilityScore" id="chaScore" min="1" max="30" value="10" onchange="UpdateAbility(this.parentElement.parentElement.firstElementChild, this.value)">
             </div>
           </div>
         </div>

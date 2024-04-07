@@ -188,13 +188,6 @@ function RequestUploadActiveProfile() {
     };
 }
 
-// not working (only works with 3 or 4 tabs)
-function MiddleClickDeleteTab(event, tab) {
-    if (event.button === 1) {
-        RequestDeleteTab(tab)
-    }
-}
-
 function RequestDeleteTab(tab) {
     if (Profile.list.length == 1) return;
 
@@ -374,7 +367,7 @@ function DisableChildren(element) {
         disablePage.style.opacity = '1';
     }
 
-    element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])').forEach(item => {
+    element.querySelectorAll('button, [href], input, select, textarea, [tabindex]').forEach(item => {
         item.disabled = true;
     });
 }
@@ -498,7 +491,7 @@ function SearchDropdown(searchbar) {
 const numInputs = document.querySelectorAll('input[type=number]')
 
 numInputs.forEach(function(input) {
-  input.addEventListener('change', function(e) {
+  input.addEventListener('input', function(e) {
     var min = Number(e.target.min);
     var max = Number(e.target.max);
 
@@ -518,6 +511,15 @@ numInputs.forEach(function(input) {
 })
 
 function ResetDropdown(dropdownElement) {
+    var sampleInputName = dropdownElement.firstElementChild.firstElementChild.name;
+
+    if (sampleInputName == "class") 
+        Profile.ActiveElement.class = '';
+    if (sampleInputName == "alignment") 
+        Profile.ActiveElement.alignment = '';
+    if (sampleInputName == "race") 
+        Profile.ActiveElement.race = '';
+
     for (const item of dropdownElement.children) {
         item.firstElementChild.checked = false;
     }
@@ -532,3 +534,20 @@ function SwitchSheet(indexToSelect) {
         else sheet.classList.remove('active');
     }
 }
+
+function UpdateAbility(textElement, value) {
+    var modifierValue = Math.floor((Number(value) - 10) * 0.5);
+    var modifierText = modifierValue.toString();
+
+    if (modifierValue >= 0)
+        modifierText = '+' + modifierText;
+    
+    textElement.innerHTML = modifierText;
+}
+
+/* 
+TODO
+- relationship between xp and level
+- coin value storage
+- ability score value storage
+*/
