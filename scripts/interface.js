@@ -23,7 +23,7 @@ class Profile {
     }
 
     get Index() {
-        return Profile.list.indexOf(this);  
+        return Profile.list.indexOf(this);
     }
 
     get Tab() {
@@ -33,7 +33,7 @@ class Profile {
     constructor(name) {
         this.name = name;
     }
-    
+
     rollHistory = [];
 
     backstory = "";
@@ -44,6 +44,30 @@ class Profile {
     race = "";
     alignment = "";
     xp = 0;
+    savingThrows = {
+        "str": 0,
+        "dex": 0,
+        "con": 0,
+        "int": 0,
+        "wis": 0,
+        "cha": 0
+    };
+    unlinkSavingThrows = {
+        "str": false,
+        "dex": false,
+        "con": false,
+        "int": false,
+        "wis": false,
+        "cha": false
+    };
+    abilityScores = {
+        "str": 10,
+        "dex": 10,
+        "con": 10,
+        "int": 10,
+        "wis": 10,
+        "cha": 10
+    };
 }
 
 const hoverableElements = document.querySelectorAll('input, button, .clickable, .tab, label');
@@ -106,14 +130,14 @@ function Escape() {
 
 let loader = document.querySelector('.loader');
 let loaderMask = document.querySelector('.loaderMask');
-window.addEventListener("load", function () {
+window.addEventListener("load", function () {/*
     setTimeout(function () {
         loaderMask.style.height = '100vh';
     }, 2000);
     setTimeout(function () {
         loader.style.opacity = '0';
         loader.style.zIndex = '-6';
-    }, 3000);
+    }, 3000);*/
     SelectActiveTab();
     DisableChildren(settingsMenu);
     DisableChildren(sheetMenu);
@@ -140,6 +164,34 @@ let raceDropdown = document.getElementById("raceDropdown");
 let backgroundField = document.getElementById("backgroundField");
 let alignmentDropdown = document.getElementById("alignmentDropdown");
 let xpField = document.getElementById("xpField");
+
+let savingThrowInputs = {
+    'str': document.getElementById("strST"),
+    'dex': document.getElementById("dexST"),
+    'con': document.getElementById("conST"),
+    'int': document.getElementById("intST"),
+    'wis': document.getElementById("wisST"),
+    'cha': document.getElementById("chaST")
+};
+
+let savingThrowUnlinks = {
+    'str': document.getElementById("strSTUnlinked"),
+    'dex': document.getElementById("dexSTUnlinked"),
+    'con': document.getElementById("conSTUnlinked"),
+    'int': document.getElementById("intSTUnlinked"),
+    'wis': document.getElementById("wisSTUnlinked"),
+    'cha': document.getElementById("chaSTUnlinked")
+}
+
+let abilityScoreInputs = {
+    'str': document.getElementById("strScore"),
+    'dex': document.getElementById("dexScore"),
+    'con': document.getElementById("conScore"),
+    'int': document.getElementById("intScore"),
+    'wis': document.getElementById("wisScore"),
+    'cha': document.getElementById("chaScore")
+}
+
 function UpdateSheets() {
     for (const tab of Profile.TabList) {
         const index = Profile.TabList.indexOf(tab);
@@ -150,13 +202,24 @@ function UpdateSheets() {
     sheetRenamer.value = Profile.ActiveElement.name;
 
     backstoryField.value = Profile.ActiveElement.backstory;
-    DropdownSelectFromString(classDropdown, Profile.ActiveElement.class);
     classLevelField.value = Profile.ActiveElement.classLevel;
     playerNameField.value = Profile.ActiveElement.playerName;
-    DropdownSelectFromString(raceDropdown, Profile.ActiveElement.race);
     backgroundField.value = Profile.ActiveElement.background;
-    DropdownSelectFromString(alignmentDropdown, Profile.ActiveElement.alignment);
     xpField.value = Profile.ActiveElement.xp;
+    
+    DropdownSelectFromString(classDropdown, Profile.ActiveElement.class);
+    DropdownSelectFromString(raceDropdown, Profile.ActiveElement.race);
+    DropdownSelectFromString(alignmentDropdown, Profile.ActiveElement.alignment);
+
+    for (const savingThrowName of ABILITY_NAMES) {
+        savingThrowInputs[savingThrowName].value = FormatModifier(Profile.ActiveElement.savingThrows[savingThrowName]);
+
+        savingThrowUnlinks[savingThrowName].checked = Profile.ActiveElement.unlinkSavingThrows[savingThrowName];
+        ToggleDataDisable(savingThrowUnlinks[savingThrowName].parentElement.children[2].children[1], !savingThrowUnlinks[savingThrowName].checked);
+
+        abilityScoreInputs[savingThrowName].value = Profile.ActiveElement.abilityScores[savingThrowName];
+        UpdateAbility(abilityScoreInputs[savingThrowName], savingThrowName)
+    }
 }
 
 function SelectActiveTab() {
@@ -266,6 +329,10 @@ function HandleUpload(event) {
             Profile.ActiveElement.race = parseResult.race;
             Profile.ActiveElement.alignment = parseResult.alignment;
             Profile.ActiveElement.xp = parseResult.xp;
+            Profile.ActiveElement.savingThrows = parseResult.savingThrows;
+            Profile.ActiveElement.unlinkSavingThrows = parseResult.unlinkSavingThrows;
+            Profile.ActiveElement.abilityScores = parseResult.abilityScores;
+
             UpdateHistory();
         } catch {
             ShowPopUp('Upload Error', 'The file you uploaded was either not a compatible JSON file or was corrupted', 'Close', 'Okay');
@@ -377,7 +444,7 @@ function EnableChildren(element) {
         disablePage.style.opacity = '0';
     }
 
-    element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])').forEach(item => {
+    element.querySelectorAll('button:not([data-disabled="true"]), [href]:not([data-disabled="true"]), input:not([data-disabled="true"]), select:not([data-disabled="true"]), textarea:not([data-disabled="true"]), [tabindex]:not([data-disabled="true"])').forEach(item => {
         item.disabled = false;
     });
 }
@@ -388,10 +455,10 @@ historyList.innerHTML = "";
 
 function Roll(max, formula) {
     var roll = Math.ceil((1 - Math.random()) * max) + 1;
-    Profile.ActiveElement.rollHistory.unshift({"roll": roll, "max": max, "formula": formula});
+    Profile.ActiveElement.rollHistory.unshift({ "roll": roll, "max": max, "formula": formula });
     if (Profile.ActiveElement.rollHistory.length > 50) Profile.ActiveElement.rollHistory.pop();
     UpdateHistory();
-    
+
     return roll;
 }
 
@@ -432,7 +499,7 @@ function DropdownSelectFromString(dropdownElement, stringToSelect) {
             selected = true;
         }
     }
-    if (!selected) 
+    if (!selected)
         DropdownSelect(dropdownElement, stringToSelect, null);
 }
 
@@ -445,9 +512,9 @@ function DropdownSelect(dropdownElement, stringToSelect, input) {
 
     if (!input.checked) {
         for (const inputItem of dropdownElement.querySelectorAll("input[name=" + input.name + "]")) {
-            if (inputItem == input) 
+            if (inputItem == input)
                 inputItem.checked = true;
-            else 
+            else
                 inputItem.checked = false;
         }
     }
@@ -466,8 +533,8 @@ function DropdownSelect(dropdownElement, stringToSelect, input) {
 for (const container of document.querySelectorAll(".dropdownContainer")) {
     container.addEventListener("focusout", () => {
         element = container.querySelector("input[type='radio']")
-        if (!document.querySelectorAll("input[name=" + element.name + "]:checked").length > 0) { 
-            element.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.setAttribute("data-dropdown-content", "None"); 
+        if (!document.querySelectorAll("input[name=" + element.name + "]:checked").length > 0) {
+            element.parentElement.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.setAttribute("data-dropdown-content", "None");
         }
     });
 }
@@ -489,35 +556,67 @@ function SearchDropdown(searchbar) {
 }
 
 const numInputs = document.querySelectorAll('input[type=number]')
+numInputs.forEach(function (input) {
+    input.addEventListener('change', function(e) {
+        NormalizeInput(e.target);
+    });
+});
 
-numInputs.forEach(function(input) {
-  input.addEventListener('input', function(e) {
-    var min = Number(e.target.min);
-    var max = Number(e.target.max);
+function NormalizeInput(inputElement) {
+    var min = Number(inputElement.min);
+    var max = Number(inputElement.max);
 
-    if (e.target.value == '') {
-        if (e.target.min != '') 
-            e.target.value = min;
-        else if (e.target.max != '')
-            e.target.value = max;
+    if (inputElement.value == '') {
+        if (inputElement.min != '')
+            inputElement.value = min;
+        else if (inputElement.max != '')
+            inputElement.value = max;
         else
-            e.target.value = 0;
-    } else if ((e.target.value < min) && (e.target.min != '')) {
-        e.target.value = e.target.min;
-    } else if ((e.target.value > max) && (e.target.max != '')) {
-        e.target.value = e.target.max;
+            inputElement.value = 0;
+    } else if ((inputElement.value < min) && (inputElement.min != '')) {
+        inputElement.value = inputElement.min;
+    } else if ((inputElement.value > max) && (inputElement.max != '')) {
+        inputElement.value = inputElement.max;
     }
-  })
-})
+
+    inputElement.value = Number(inputElement.value);
+}
+
+const allModifierInputs = document.querySelectorAll('.modifierInput');
+allModifierInputs.forEach(function (modInput) {
+    modInput.addEventListener('change', function (e) {
+        NormalizeModifier(e.target)
+    });
+    modInput.addEventListener('input', function (e) {
+        e.target.value = e.target.value.replace(/[^0-9+-]/g, '');
+    });
+});
+
+function NormalizeModifier(inputElement) {
+    var min = Number(inputElement.min);
+    var max = Number(inputElement.max);
+    var value = Number(inputElement.value);
+
+    if (!Number.isInteger(value))
+        value = 0;
+
+    if ((value < min) && (min != '')) {
+        value = min;
+    } else if ((value > max) && (max != '')) {
+        value = max;
+    }
+
+    inputElement.value = FormatModifier(Number(value));
+}
 
 function ResetDropdown(dropdownElement) {
     var sampleInputName = dropdownElement.firstElementChild.firstElementChild.name;
 
-    if (sampleInputName == "class") 
+    if (sampleInputName == "class")
         Profile.ActiveElement.class = '';
-    if (sampleInputName == "alignment") 
+    if (sampleInputName == "alignment")
         Profile.ActiveElement.alignment = '';
-    if (sampleInputName == "race") 
+    if (sampleInputName == "race")
         Profile.ActiveElement.race = '';
 
     for (const item of dropdownElement.children) {
@@ -535,19 +634,56 @@ function SwitchSheet(indexToSelect) {
     }
 }
 
-function UpdateAbility(textElement, value) {
-    var modifierValue = Math.floor((Number(value) - 10) * 0.5);
-    var modifierText = modifierValue.toString();
+function UpdateAbility(inputElement, modifier) {
+    var textElement = inputElement.parentElement.parentElement.firstElementChild;
 
-    if (modifierValue >= 0)
-        modifierText = '+' + modifierText;
-    
-    textElement.innerHTML = modifierText;
+    NormalizeInput(inputElement);
+    Profile.ActiveElement.abilityScores[modifier] = Number(inputElement.value);
+    textElement.innerHTML = ScoreToModifier(inputElement.value);
+
+    if (!Profile.ActiveElement.unlinkSavingThrows[modifier]) {
+        Profile.ActiveElement.savingThrows[modifier] = Number(ScoreToModifier(inputElement.value));
+        savingThrowInputs[modifier].value = Profile.ActiveElement.savingThrows[modifier];
+        UpdateSavingThrow(savingThrowInputs[modifier], modifier)
+    }
 }
+
+function UpdateSavingThrow(inputElement, modifier) {
+    NormalizeModifier(inputElement);
+    Profile.ActiveElement.savingThrows[modifier] = Number(inputElement.value);
+}
+
+function FormatModifier(input) {
+    var output = Clamp(Number(input), -5, 10);
+
+    if (output >= 0)
+        output = '+' + output;
+
+    return output;
+}
+
+function ToggleDataDisable(element, value) {
+    element.setAttribute('data-disabled', value);
+    element.disabled = value;
+}
+
+function ToggleSavingThrowLink(inputElement, modifier) {
+    var modifierInput = inputElement.parentElement.children[2].children[1];
+    Profile.ActiveElement.unlinkSavingThrows[modifier] = inputElement.checked;
+
+    ToggleDataDisable(modifierInput, !inputElement.checked);
+    if (!inputElement.checked) {
+        modifierInput.value = ScoreToModifier(Profile.ActiveElement.abilityScores[modifier]);
+        UpdateSavingThrow(modifierInput, modifier);
+    }
+}
+
+const Clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
+const ScoreToModifier = (score) => FormatModifier(Math.floor((Number(score) - 10) * 0.5));
+const ABILITY_NAMES = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 
 /* 
 TODO
 - relationship between xp and level
-- coin value storage
-- ability score value storage
 */

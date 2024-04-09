@@ -505,7 +505,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
 }
 
 .settingOptionLabel:active {
-    transform: scale(0.95);
+    transform: scale(1.05);
 }
 
 .settingOptionLabel .labelText {
@@ -539,7 +539,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
 }
 
 .switchBox:checked ~ .switch  {
-    background: rgb(69, 69, 69);
+    background: #2c2c2c;
 }
 
 .disablePage {
@@ -942,7 +942,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
     display: grid;
     grid-template-areas: 
         "type type"
-        "inventory abilities";
+        "savingThrows abilities";
     grid-template-columns: 0.6fr 1.4fr;
     gap: 1em;
 }
@@ -958,8 +958,8 @@ section.settingsPanel .sectionTitle:focus .arrow {
     grid-area: type;
 }
 
-#characterSheet .characterInventory {
-    grid-area: inventory;
+#characterSheet .characterSavingThrows {
+    grid-area: savingThrows;
 }
 
 #characterSheet .characterAbilities {
@@ -1297,57 +1297,82 @@ section.settingsPanel .sectionTitle:focus .arrow {
     transform: scale(0.9);
 }
 
-#characterSheet .characterInventory {
+#characterSheet .characterSavingThrows {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-#characterSheet .characterInventory .coinsSectionTitle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5em;
-    padding-top: 0.5em;
-    padding-bottom: 0.3em;
-}
-
-#characterSheet .characterInventory .coinsSectionTitle h1 {
-    font-family: 'Poppins Bold', sans-serif;
-    font-size: 1.5em;
-    margin: 0;
-}
-
-#characterSheet .characterInventory label.currencyBox {
+#characterSheet .characterSavingThrows .savingThrowBox {
     background: rgb(230, 230, 230);
     display: flex;
     justify-content: space-between;
     align-items: stretch;
     gap: 0.5em;
+    position: relative;
 }
 
-#characterSheet .characterInventory label.currencyBox .currencyText {
+#characterSheet .characterSavingThrows .savingThrowBox .unlinkDisplayST {
+    background: rgb(210, 210, 210);
+    align-self: stretch;
+    margin: 0.5em;
+    width: 2em;
+    cursor: pointer;
+}
+
+#characterSheet .characterSavingThrows .savingThrowBox .unlinkDisplayST:hover {
+    background: rgb(200, 200, 200);
+}
+
+#characterSheet .characterSavingThrows .savingThrowBox .unlinkDisplayST:hover, #characterSheet .characterSavingThrows .savingThrowBox input[type="checkbox"]:focus + .unlinkDisplayST {
+    transform: scale(1.2);
+}
+
+#characterSheet .characterSavingThrows .savingThrowBox .unlinkDisplayST:active {
+    transform: scale(0.9) !important;
+}
+
+#characterSheet .characterSavingThrows .savingThrowBox input[type="checkbox"]:checked + .unlinkDisplayST {
+    background: #2c2c2c;
+}
+
+#characterSheet .characterSavingThrows .savingThrowBox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+#characterSheet .characterSavingThrows .savingThrowBox .savingThrowLabel {
     color: #757575;
     font-size: 0.85em;
     padding: 1em;
 }
 
-#characterSheet .characterInventory label.currencyBox .currencyInput {
+#characterSheet .characterSavingThrows .savingThrowBox .savingThrowInput {
     font-family: 'Poppins Bold', sans-serif;
     text-align: center;
     border: none;
     outline: none;
     padding: 1.25em 0.5em;
-    background: rgb(240, 240, 240);
+    background: rgb(230, 230, 230);
     width: 35%;
 }
 
-#characterSheet .characterInventory label.currencyBox:hover .currencyInput, #characterSheet .characterInventory label.currencyBox .currencyInput:focus {
+#characterSheet .characterSavingThrows label.savingThrowInputLabel .savingThrowInput:not([data-disabled="true"]) {
+    background: rgb(240, 240, 240);
+}
+
+#characterSheet .characterSavingThrows label.savingThrowInputLabel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#characterSheet .characterSavingThrows label.savingThrowInputLabel:hover .savingThrowInput:not([data-disabled="true"]), #characterSheet .characterSavingThrows label.savingThrowBox .savingThrowInput:not([data-disabled="true"]):focus {
     background: rgb(250, 250, 250);
     transform: scale(1.05);
 }
 
-#characterSheet .characterInventory label.currencyBox .currencyInput:active {
+#characterSheet .characterSavingThrows label.savingThrowBox .savingThrowInput:active {
     transform: scale(0.95);
 }
 
@@ -1385,6 +1410,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
 #characterSheet .characterAbilities .abilityBox .abilityInfo .abilityName {
     color: #757575;
     font-size: 0.85em;
+    text-align: center;
 }
 
 #characterSheet .characterAbilities .abilityBox .abilityInfo .abilityScore {
