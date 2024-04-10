@@ -3,16 +3,14 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dice Roller</title>
   <link rel="icon" type="image/png" href="images/favicon.png" />
-  <link rel="stylesheet" href="stylesheets/style.css">
-  <link rel="stylesheet" href="stylesheets/fonts.css">
+  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="stylesheets/fonts.css" />
 </head>
 
 <body>
-  <!--
   <div class="loader">
     <div class="loaderMask"></div>
     <div class="anchor">
@@ -21,7 +19,7 @@
       <div class="circle"></div>
     </div>
     <h1></h1>
-  </div>-->
+  </div>
 
   <div class="disablePage" onclick="Escape()"></div>
 
@@ -204,7 +202,8 @@
                     <div class="dropdownContent">
                       <div class="dropdownSearchbar">
                         <input type="text" class="searchbox" aria-label="Search Classes" placeholder="Search"
-                          oninput="SearchDropdown(this)" autocomplete="off" autocorrect="off" spellcheck="false">
+                          oninput="SearchDropdown(this)" autocomplete="off" autocorrect="off" spellcheck="false"
+                          id="classSearchbar">
                         <button class="resetButton" type="reset" aria-label="Clear Selection"
                           onclick="ResetDropdown(this.parentElement.parentElement.querySelector('ul'))">
                           <img src="icons/x.svg" alt="Close Icon">
@@ -359,7 +358,8 @@
                   <div class="dropdownContent">
                     <div class="dropdownSearchbar">
                       <input type="text" class="searchbox" aria-label="Search Races" placeholder="Search"
-                        oninput="SearchDropdown(this)" autocomplete="off" autocorrect="off" spellcheck="false">
+                        oninput="SearchDropdown(this)" autocomplete="off" autocorrect="off" spellcheck="false"
+                        id="raceSearchbar">
                       <button class="resetButton" type="reset" aria-label="Clear Selection"
                         onclick="ResetDropdown(this.parentElement.parentElement.querySelector('ul'))">
                         <img src="icons/x.svg" alt="Close Icon">
@@ -1200,67 +1200,92 @@
               </div>
             </div>
             <label class="infoFieldContainer" for="xpField">
-              <label>XP</label>
+              <div class="infoFieldLabel">XP</div>
               <input type="number" class="infoField clickable inputElement" id="xpField" min="0" max="355000" value="0"
                 onchange="Profile.ActiveElement.xp = this.value">
             </label>
           </div>
         </div>
         <div class="characterSavingThrows sheetContentSection">
-          <div for="strST" class="savingThrowBox">
-            <input type="checkbox" id="strSTUnlinked" aria-label="Unlink Strength" onchange="ToggleSavingThrowLink(this, 'str')">
-            <label class="unlinkDisplayST" for="strSTUnlinked"></label>
-            <label class="savingThrowInputLabel" for="strST">
-              <div class="savingThrowLabel">Strength</div>
-              <input type="text" class="savingThrowInput modifierInput" id="strST" min="-5" max="10" value="+0"
-                onchange="UpdateSavingThrow(this, 'str')" data-disabled="true">
-            </label>
+
+          <div class="savingThrowBox modifierSelectionBox" id="str_savingThrowBox">
+            <button type="button" class="savingThrowProficiencyDisplay"
+              onclick="NextModifierProficiency(this, 'str', 'savingThrow')" data-modifier-proficiency="0"
+              aria-label="Change Proficiency Type">
+              <div class="STP_pill">
+                <div class="STP_circle"></div>
+              </div>
+              <div class="STP_pill"></div>
+            </button>
+            <div class="modifierLabel">Strength</div>
+            <div class="savingThrowOutput modifierOutput">+0</div>
           </div>
-          <div for="dexST" class="savingThrowBox">
-            <input type="checkbox" id="dexSTUnlinked" aria-label="Unlink Dexterity" onchange="ToggleSavingThrowLink(this, 'dex')">
-            <label class="unlinkDisplayST" for="dexSTUnlinked"></label>
-            <label class="savingThrowInputLabel" for="dexST">
-              <div class="savingThrowLabel">Dexterity</div>
-              <input type="text" class="savingThrowInput modifierInput" id="dexST" min="-5" max="10" value="+0"
-                onchange="UpdateSavingThrow(this, 'dex')" data-disabled="true">
-            </label>
+
+          <div class="savingThrowBox modifierSelectionBox" id="dex_savingThrowBox">
+            <button type="button" class="savingThrowProficiencyDisplay"
+              onclick="NextModifierProficiency(this, 'dex', 'savingThrow')" data-modifier-proficiency="0"
+              aria-label="Change Proficiency Type">
+              <div class="STP_pill">
+                <div class="STP_circle"></div>
+              </div>
+              <div class="STP_pill"></div>
+            </button>
+            <div class="modifierLabel">Dexterity</div>
+            <div class="savingThrowOutput modifierOutput">+0</div>
           </div>
-          <div for="conST" class="savingThrowBox">
-            <input type="checkbox" id="conSTUnlinked" aria-label="Unlink Constitution" onchange="ToggleSavingThrowLink(this, 'con')">
-            <label class="unlinkDisplayST" for="conSTUnlinked"></label>
-            <label class="savingThrowInputLabel" for="conST">
-              <div class="savingThrowLabel">Constitution</div>
-              <input type="text" class="savingThrowInput modifierInput" id="conST" min="-5" max="10" value="+0"
-                onchange="UpdateSavingThrow(this, 'con')" data-disabled="true">
-            </label>
+
+          <div class="savingThrowBox modifierSelectionBox" id="con_savingThrowBox">
+            <button type="button" class="savingThrowProficiencyDisplay"
+              onclick="NextModifierProficiency(this, 'con', 'savingThrow')" data-modifier-proficiency="0"
+              aria-label="Change Proficiency Type">
+              <div class="STP_pill">
+                <div class="STP_circle"></div>
+              </div>
+              <div class="STP_pill"></div>
+            </button>
+            <div class="modifierLabel">Constitution</div>
+            <div class="savingThrowOutput modifierOutput">+0</div>
           </div>
-          <div for="intST" class="savingThrowBox">
-            <input type="checkbox" id="intSTUnlinked" aria-label="Unlink Intelligence" onchange="ToggleSavingThrowLink(this, 'int')">
-            <label class="unlinkDisplayST" for="intSTUnlinked"></label>
-            <label class="savingThrowInputLabel" for="intST">
-              <div class="savingThrowLabel">Intelligence</div>
-              <input type="text" class="savingThrowInput modifierInput" id="intST" min="-5" max="10" value="+0"
-                onchange="UpdateSavingThrow(this, 'int')" data-disabled="true">
-            </label>
+
+          <div class="savingThrowBox modifierSelectionBox" id="int_savingThrowBox">
+            <button type="button" class="savingThrowProficiencyDisplay"
+              onclick="NextModifierProficiency(this, 'int', 'savingThrow')" data-modifier-proficiency="0"
+              aria-label="Change Proficiency Type">
+              <div class="STP_pill">
+                <div class="STP_circle"></div>
+              </div>
+              <div class="STP_pill"></div>
+            </button>
+            <div class="modifierLabel">Intelligence</div>
+            <div class="savingThrowOutput modifierOutput">+0</div>
           </div>
-          <div for="wisST" class="savingThrowBox">
-            <input type="checkbox" id="wisSTUnlinked" aria-label="Unlink Wisdom" onchange="ToggleSavingThrowLink(this, 'wis')">
-            <label class="unlinkDisplayST" for="wisSTUnlinked"></label>
-            <label class="savingThrowInputLabel" for="wisST">
-              <div class="savingThrowLabel">Wisdom</div>
-              <input type="text" class="savingThrowInput modifierInput" id="wisST" min="-5" max="10" value="+0"
-                onchange="UpdateSavingThrow(this, 'wis')" data-disabled="true">
-            </label>
+
+          <div class="savingThrowBox modifierSelectionBox" id="wis_savingThrowBox">
+            <button type="button" class="savingThrowProficiencyDisplay"
+              onclick="NextModifierProficiency(this, 'wis', 'savingThrow')" data-modifier-proficiency="0"
+              aria-label="Change Proficiency Type">
+              <div class="STP_pill">
+                <div class="STP_circle"></div>
+              </div>
+              <div class="STP_pill"></div>
+            </button>
+            <div class="modifierLabel">Wisdom</div>
+            <div class="savingThrowOutput modifierOutput">+0</div>
           </div>
-          <div for="chaST" class="savingThrowBox">
-            <input type="checkbox" id="chaSTUnlinked" aria-label="Unlink Charisma" onchange="ToggleSavingThrowLink(this, 'cha')">
-            <label class="unlinkDisplayST" for="chaSTUnlinked"></label>
-            <label class="savingThrowInputLabel" for="chaST">
-              <div class="savingThrowLabel">Charisma</div>
-              <input type="text" class="savingThrowInput modifierInput" id="chaST" min="-5" max="10" value="+0"
-                onchange="UpdateSavingThrow(this, 'cha')" data-disabled="true">
-            </label>
+
+          <div class="savingThrowBox modifierSelectionBox" id="cha_savingThrowBox">
+            <button type="button" class="savingThrowProficiencyDisplay"
+              onclick="NextModifierProficiency(this, 'cha', 'savingThrow')" data-modifier-proficiency="0"
+              aria-label="Change Proficiency Type">
+              <div class="STP_pill">
+                <div class="STP_circle"></div>
+              </div>
+              <div class="STP_pill"></div>
+            </button>
+            <div class="modifierLabel">Charisma</div>
+            <div class="savingThrowOutput modifierOutput">+0</div>
           </div>
+
         </div>
         <div class="characterAbilities sheetContentSection">
           <div class="abilityBox">
@@ -1312,6 +1337,29 @@
             </div>
           </div>
         </div>
+        <div class="characterSkills sheetContentSection">
+          <div class="skillBox linkedModifierInputBox">
+            <input type="checkbox" id="acrobaticsUnlinked" aria-label="Unlink Acrobatics">
+            <label class="unlinkModifierInput" for="acrobaticsUnlinked"></label>
+            <label class="modifierInputLabel" for="acrobatics">
+              <div class="modifierLabel">Acrobatics</div>
+              <input type="text" class="skillInput modifierInput" id="acrobatics" min="-5" max="10" value="+0"
+                data-disabled="true">
+            </label>
+          </div>
+          <div class="skillBox linkedModifierInputBox">
+            <input type="checkbox" id="animalsUnlinked" aria-label="Unlink Acrobatics">
+            <label class="unlinkModifierInput" for="animalsUnlinked"></label>
+            <label class="modifierInputLabel" for="animals">
+              <div class="modifierLabel">Animal Handling</div>
+              <input type="text" class="skillInput modifierInput" id="animals" min="-5" max="10" value="+0"
+                data-disabled="true">
+            </label>
+          </div>
+        </div>
+        <div class="characterWeapons sheetContentSection">
+          Weapons
+        </div>
       </section>
 
       <section class="sheetContent" id="combatSheet">
@@ -1340,7 +1388,7 @@
             <div class="tab clickable" onclick="SelectTab(this)">
               <input tabindex="0" type="text" aria-label="Player Name" class="tabName clickable" value="Dungeon Master"
                 placeholder="Name Here" autocomplete="off" autocorrect="off" spellcheck="false"
-                oninput="Profile.ActiveElement.name = this.value; UpdateSheets()">
+                oninput="Profile.ActiveElement.name = this.value; UpdateSheets()" name="tabNameInput">
               <button class="closeTab circleIconButton" type="button" aria-label="Close Tab"
                 onmousedown="RequestDeleteTab(this.parentElement)" onclick="RequestDeleteTab(this.parentElement)">
                 <img src="icons/x.svg" alt="Close Icon">

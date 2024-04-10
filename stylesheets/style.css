@@ -941,9 +941,10 @@ section.settingsPanel .sectionTitle:focus .arrow {
     height: fit-content;
     display: grid;
     grid-template-areas: 
-        "type type"
-        "savingThrows abilities";
-    grid-template-columns: 0.6fr 1.4fr;
+        "type type type"
+        "savingThrows abilities abilities"
+        "skills skills weapons";
+    grid-template-columns: 0.3fr 0.3fr 0.4fr;
     gap: 1em;
 }
 
@@ -964,6 +965,14 @@ section.settingsPanel .sectionTitle:focus .arrow {
 
 #characterSheet .characterAbilities {
     grid-area: abilities;
+}
+
+#characterSheet .characterSkills {
+    grid-area: skills;
+}
+
+#characterSheet .characterWeapons {
+    grid-area: weapons;
 }
 
 #characterSheet .characterType .nameInfo {
@@ -1057,6 +1066,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
 
 #characterSheet .characterType .characterDetails .infoFieldContainer input[type="number"] {
     max-width: 25%;
+    width: -moz-fit-content;
     width: fit-content;
     margin-left: auto;
     text-align: center;
@@ -1065,10 +1075,11 @@ section.settingsPanel .sectionTitle:focus .arrow {
     padding: 1.25em 0.5em;
 }
 
-#characterSheet .characterType .characterDetails .infoFieldContainer label {
+#characterSheet .characterType .characterDetails .infoFieldContainer .infoFieldLabel {
     padding-left: 1em;
     color: #757575;
     font-size: 0.85em;
+    width: -moz-fit-content;
     width: fit-content;
 }
 
@@ -1303,7 +1314,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
     gap: 1em;
 }
 
-#characterSheet .characterSavingThrows .savingThrowBox {
+.modifierSelectionBox {
     background: rgb(230, 230, 230);
     display: flex;
     justify-content: space-between;
@@ -1312,68 +1323,108 @@ section.settingsPanel .sectionTitle:focus .arrow {
     position: relative;
 }
 
-#characterSheet .characterSavingThrows .savingThrowBox .unlinkDisplayST {
-    background: rgb(210, 210, 210);
-    align-self: stretch;
-    margin: 0.5em;
-    width: 2em;
+.modifierSelectionBox .savingThrowProficiencyDisplay {
+    display: flex;
+    align-items: stretch;
+    padding: 0.5em;
+    gap: 0.25em;
+}
+
+.modifierSelectionBox .savingThrowProficiencyDisplay .STP_pill {
+    width: 1.25em;
+    flex-shrink: 0;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    background-color: rgb(200, 200, 200)
 }
 
-#characterSheet .characterSavingThrows .savingThrowBox .unlinkDisplayST:hover {
-    background: rgb(200, 200, 200);
+.modifierSelectionBox .savingThrowProficiencyDisplay .STP_pill .STP_circle {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background: transparent;
 }
 
-#characterSheet .characterSavingThrows .savingThrowBox .unlinkDisplayST:hover, #characterSheet .characterSavingThrows .savingThrowBox input[type="checkbox"]:focus + .unlinkDisplayST {
-    transform: scale(1.2);
+.modifierSelectionBox .savingThrowProficiencyDisplay .STP_pill:last-child {
+    transform: translateX(calc(-100% - 0.25em));
+    opacity: 0;
 }
 
-#characterSheet .characterSavingThrows .savingThrowBox .unlinkDisplayST:active {
-    transform: scale(0.9) !important;
+.modifierSelectionBox .savingThrowProficiencyDisplay .STP_pill .STP_circle {
+    height: 20%;
 }
 
-#characterSheet .characterSavingThrows .savingThrowBox input[type="checkbox"]:checked + .unlinkDisplayST {
-    background: #2c2c2c;
-}
-
-#characterSheet .characterSavingThrows .savingThrowBox input[type="checkbox"] {
+.modifierSelectionBox input[type="radio"] {
     position: absolute;
     opacity: 0;
 }
 
-#characterSheet .characterSavingThrows .savingThrowBox .savingThrowLabel {
+.savingThrowProficiencyDisplay, .savingThrowProficiencyDisplay:hover, .savingThrowProficiencyDisplay:active {
+    background: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    width: 3em;
+}
+
+.savingThrowProficiencyDisplay:hover, .savingThrowProficiencyDisplay:focus {
+    transform: scale(1.1);
+    filter: brightness(0.8);
+}
+
+.savingThrowProficiencyDisplay:active {
+    transform: scale(0.9);
+}
+
+.savingThrowProficiencyDisplay[data-modifier-proficiency="0"] .STP_pill {
+    background-color: rgb(200, 200, 200) !important;
+}
+
+.savingThrowProficiencyDisplay[data-modifier-proficiency="1"] .STP_pill .STP_circle {
+    height: 50%;
+    background-color: #2c2c2c !important;
+}
+
+.savingThrowProficiencyDisplay[data-modifier-proficiency="2"] .STP_pill {
+    background-color: #2c2c2c !important;
+}
+
+.savingThrowProficiencyDisplay[data-modifier-proficiency="2"] .STP_pill .STP_circle {
+    height: 100%;
+    background-color: #2c2c2c !important;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.savingThrowProficiencyDisplay[data-modifier-proficiency="3"] .STP_pill:last-child {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.savingThrowProficiencyDisplay[data-modifier-proficiency="3"] .STP_pill {
+    background-color: #2c2c2c !important;
+}
+
+#characterSheet .modifierSelectionBox .modifierLabel {
     color: #757575;
     font-size: 0.85em;
     padding: 1em;
+    line-height: 1.2em;
+    align-self: center;
 }
 
-#characterSheet .characterSavingThrows .savingThrowBox .savingThrowInput {
+#characterSheet .modifierSelectionBox .modifierOutput {
     font-family: 'Poppins Bold', sans-serif;
     text-align: center;
     border: none;
     outline: none;
-    padding: 1.25em 0.5em;
-    background: rgb(230, 230, 230);
-    width: 35%;
-}
-
-#characterSheet .characterSavingThrows label.savingThrowInputLabel .savingThrowInput:not([data-disabled="true"]) {
-    background: rgb(240, 240, 240);
-}
-
-#characterSheet .characterSavingThrows label.savingThrowInputLabel {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#characterSheet .characterSavingThrows label.savingThrowInputLabel:hover .savingThrowInput:not([data-disabled="true"]), #characterSheet .characterSavingThrows label.savingThrowBox .savingThrowInput:not([data-disabled="true"]):focus {
-    background: rgb(250, 250, 250);
-    transform: scale(1.05);
-}
-
-#characterSheet .characterSavingThrows label.savingThrowBox .savingThrowInput:active {
-    transform: scale(0.95);
+    padding: 1em 0.75em;
+    align-self: stretch;
+    color: #4c4c4c;
+    font-size: 0.85em;
+    width: 3em;
+    flex-shrink: 0;
 }
 
 #characterSheet .characterAbilities {
@@ -1391,8 +1442,8 @@ section.settingsPanel .sectionTitle:focus .arrow {
 }
 
 #characterSheet .characterAbilities .abilityBox .modifierValue {
-    padding: 1em;
-    padding-top: 1.5em;
+    padding: 0.75em;
+    padding-top: 1em;
     margin: 0;
     font-family: 'Poppins Bold', sans-serif;
 }
@@ -1430,6 +1481,11 @@ section.settingsPanel .sectionTitle:focus .arrow {
 
 #characterSheet .characterAbilities .abilityBox .abilityInfo .abilityScore:active {
     transform: scale(0.95);
+}
+
+#characterSheet .characterSkills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .TEST_ROLL {

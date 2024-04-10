@@ -44,21 +44,15 @@ class Profile {
     race = "";
     alignment = "";
     xp = 0;
-    savingThrows = {
+
+    proficiencyBonus = 2;
+    savingThrowMultipliers = {
         "str": 0,
         "dex": 0,
         "con": 0,
         "int": 0,
         "wis": 0,
         "cha": 0
-    };
-    unlinkSavingThrows = {
-        "str": false,
-        "dex": false,
-        "con": false,
-        "int": false,
-        "wis": false,
-        "cha": false
     };
     abilityScores = {
         "str": 10,
@@ -130,14 +124,14 @@ function Escape() {
 
 let loader = document.querySelector('.loader');
 let loaderMask = document.querySelector('.loaderMask');
-window.addEventListener("load", function () {/*
+window.addEventListener("load", function () {
     setTimeout(function () {
         loaderMask.style.height = '100vh';
     }, 2000);
     setTimeout(function () {
         loader.style.opacity = '0';
         loader.style.zIndex = '-6';
-    }, 3000);*/
+    }, 3000);
     SelectActiveTab();
     DisableChildren(settingsMenu);
     DisableChildren(sheetMenu);
@@ -165,23 +159,14 @@ let backgroundField = document.getElementById("backgroundField");
 let alignmentDropdown = document.getElementById("alignmentDropdown");
 let xpField = document.getElementById("xpField");
 
-let savingThrowInputs = {
-    'str': document.getElementById("strST"),
-    'dex': document.getElementById("dexST"),
-    'con': document.getElementById("conST"),
-    'int': document.getElementById("intST"),
-    'wis': document.getElementById("wisST"),
-    'cha': document.getElementById("chaST")
+let savingThrowProficiencies = {
+    'str': document.querySelector("#str_savingThrowBox .savingThrowProficiencyDisplay"),
+    'dex': document.querySelector("#dex_savingThrowBox .savingThrowProficiencyDisplay"),
+    'con': document.querySelector("#con_savingThrowBox .savingThrowProficiencyDisplay"),
+    'int': document.querySelector("#int_savingThrowBox .savingThrowProficiencyDisplay"),
+    'wis': document.querySelector("#wis_savingThrowBox .savingThrowProficiencyDisplay"),
+    'cha': document.querySelector("#cha_savingThrowBox .savingThrowProficiencyDisplay")
 };
-
-let savingThrowUnlinks = {
-    'str': document.getElementById("strSTUnlinked"),
-    'dex': document.getElementById("dexSTUnlinked"),
-    'con': document.getElementById("conSTUnlinked"),
-    'int': document.getElementById("intSTUnlinked"),
-    'wis': document.getElementById("wisSTUnlinked"),
-    'cha': document.getElementById("chaSTUnlinked")
-}
 
 let abilityScoreInputs = {
     'str': document.getElementById("strScore"),
@@ -206,19 +191,16 @@ function UpdateSheets() {
     playerNameField.value = Profile.ActiveElement.playerName;
     backgroundField.value = Profile.ActiveElement.background;
     xpField.value = Profile.ActiveElement.xp;
-    
+
     DropdownSelectFromString(classDropdown, Profile.ActiveElement.class);
     DropdownSelectFromString(raceDropdown, Profile.ActiveElement.race);
     DropdownSelectFromString(alignmentDropdown, Profile.ActiveElement.alignment);
 
-    for (const savingThrowName of ABILITY_NAMES) {
-        savingThrowInputs[savingThrowName].value = FormatModifier(Profile.ActiveElement.savingThrows[savingThrowName]);
-
-        savingThrowUnlinks[savingThrowName].checked = Profile.ActiveElement.unlinkSavingThrows[savingThrowName];
-        ToggleDataDisable(savingThrowUnlinks[savingThrowName].parentElement.children[2].children[1], !savingThrowUnlinks[savingThrowName].checked);
-
-        abilityScoreInputs[savingThrowName].value = Profile.ActiveElement.abilityScores[savingThrowName];
-        UpdateAbility(abilityScoreInputs[savingThrowName], savingThrowName)
+    for (const modifierName of ABILITY_NAMES) {
+        abilityScoreInputs[modifierName].value = Profile.ActiveElement.abilityScores[modifierName];
+        
+        UpdateSavingThrowProficiency(savingThrowProficiencies[modifierName], modifierName, PROFICIENCY_MULTIPLIER_TO_INDEX[Profile.ActiveElement.savingThrowMultipliers[modifierName]]);
+        UpdateAbility(abilityScoreInputs[modifierName], modifierName)
     }
 }
 
@@ -329,8 +311,7 @@ function HandleUpload(event) {
             Profile.ActiveElement.race = parseResult.race;
             Profile.ActiveElement.alignment = parseResult.alignment;
             Profile.ActiveElement.xp = parseResult.xp;
-            Profile.ActiveElement.savingThrows = parseResult.savingThrows;
-            Profile.ActiveElement.unlinkSavingThrows = parseResult.unlinkSavingThrows;
+            Profile.ActiveElement.savingThrows = parseResult.savingThrowMultipliers;
             Profile.ActiveElement.abilityScores = parseResult.abilityScores;
 
             UpdateHistory();
@@ -582,33 +563,6 @@ function NormalizeInput(inputElement) {
     inputElement.value = Number(inputElement.value);
 }
 
-const allModifierInputs = document.querySelectorAll('.modifierInput');
-allModifierInputs.forEach(function (modInput) {
-    modInput.addEventListener('change', function (e) {
-        NormalizeModifier(e.target)
-    });
-    modInput.addEventListener('input', function (e) {
-        e.target.value = e.target.value.replace(/[^0-9+-]/g, '');
-    });
-});
-
-function NormalizeModifier(inputElement) {
-    var min = Number(inputElement.min);
-    var max = Number(inputElement.max);
-    var value = Number(inputElement.value);
-
-    if (!Number.isInteger(value))
-        value = 0;
-
-    if ((value < min) && (min != '')) {
-        value = min;
-    } else if ((value > max) && (max != '')) {
-        value = max;
-    }
-
-    inputElement.value = FormatModifier(Number(value));
-}
-
 function ResetDropdown(dropdownElement) {
     var sampleInputName = dropdownElement.firstElementChild.firstElementChild.name;
 
@@ -641,20 +595,11 @@ function UpdateAbility(inputElement, modifier) {
     Profile.ActiveElement.abilityScores[modifier] = Number(inputElement.value);
     textElement.innerHTML = ScoreToModifier(inputElement.value);
 
-    if (!Profile.ActiveElement.unlinkSavingThrows[modifier]) {
-        Profile.ActiveElement.savingThrows[modifier] = Number(ScoreToModifier(inputElement.value));
-        savingThrowInputs[modifier].value = Profile.ActiveElement.savingThrows[modifier];
-        UpdateSavingThrow(savingThrowInputs[modifier], modifier)
-    }
-}
-
-function UpdateSavingThrow(inputElement, modifier) {
-    NormalizeModifier(inputElement);
-    Profile.ActiveElement.savingThrows[modifier] = Number(inputElement.value);
+    UpdateSavingThrowProficiency(savingThrowProficiencies[modifier], modifier, savingThrowProficiencies[modifier].getAttribute("data-modifier-proficiency"));
 }
 
 function FormatModifier(input) {
-    var output = Clamp(Number(input), -5, 10);
+    var output = Number(input);
 
     if (output >= 0)
         output = '+' + output;
@@ -662,26 +607,28 @@ function FormatModifier(input) {
     return output;
 }
 
-function ToggleDataDisable(element, value) {
-    element.setAttribute('data-disabled', value);
-    element.disabled = value;
+function NextModifierProficiency(buttonElement, modifier, modifierType) {
+    var targetValue = Number(buttonElement.getAttribute("data-modifier-proficiency")) + 1;
+
+    if (targetValue >= 4)
+        targetValue = 0;
+
+    if (modifierType == 'savingThrow')
+        UpdateSavingThrowProficiency(buttonElement, modifier, targetValue);
 }
 
-function ToggleSavingThrowLink(inputElement, modifier) {
-    var modifierInput = inputElement.parentElement.children[2].children[1];
-    Profile.ActiveElement.unlinkSavingThrows[modifier] = inputElement.checked;
+function UpdateSavingThrowProficiency(buttonElement, modifier, targetValue) {
+    var targetOutput = buttonElement.parentElement.querySelector('.modifierOutput');
 
-    ToggleDataDisable(modifierInput, !inputElement.checked);
-    if (!inputElement.checked) {
-        modifierInput.value = ScoreToModifier(Profile.ActiveElement.abilityScores[modifier]);
-        UpdateSavingThrow(modifierInput, modifier);
-    }
+    Profile.ActiveElement.savingThrowMultipliers[modifier] = PROFICIENCY_INDEX_TO_MULTIPLIER[targetValue];
+    buttonElement.setAttribute("data-modifier-proficiency", targetValue);
+    targetOutput.innerHTML = FormatModifier(Math.floor(Number(Number(ScoreToModifier(Number(Profile.ActiveElement.abilityScores[modifier]))) + (Profile.ActiveElement.proficiencyBonus * Profile.ActiveElement.savingThrowMultipliers[modifier]))));
 }
-
-const Clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
 const ScoreToModifier = (score) => FormatModifier(Math.floor((Number(score) - 10) * 0.5));
 const ABILITY_NAMES = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+const PROFICIENCY_INDEX_TO_MULTIPLIER = {0:0, 1:0.5, 2:1, 3:2};
+const PROFICIENCY_MULTIPLIER_TO_INDEX = {0:0, 0.5:1, 1:2, 2:3};
 
 /* 
 TODO
