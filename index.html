@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <!--<div class="loader">
+  <div class="loader">
     <div class="loaderMask"></div>
     <div class="anchor">
       <div class="circle"></div>
@@ -19,7 +19,7 @@
       <div class="circle"></div>
     </div>
     <h1></h1>
-  </div>-->
+  </div>
 
   <div class="disablePage" onclick="Escape()"></div>
 
@@ -339,9 +339,8 @@
                 id="levelField" onchange="Profile.ActiveElement.classLevel = this.value">
             </div>
             <div class="infoFieldContainer">
-              <input type="text" class="infoField clickable inputElement" id="backgroundField" autocomplete="off"
-                autocorrect="off" spellcheck="false" placeholder="Background" aria-label="Background"
-                onchange="Profile.ActiveElement.background = this.value">
+              <input type="text" class="infoField clickable inputElement" id="backgroundField" placeholder="Background"
+                aria-label="Background" onchange="Profile.ActiveElement.background = this.value">
             </div>
             <div class="infoFieldContainer">
               <input type="text" class="infoField clickable inputElement" id="playerNameField" autocomplete="off"
@@ -1670,8 +1669,47 @@
           </div>
 
         </div>
-        <div class="characterWeapons sheetContentSection">
-          Weapons & Inventory
+        <div class="characterInventory sheetContentSection">
+          <div class="coinsWrapper">
+
+            <label class="infoFieldContainer" for="copper">
+              <div class="infoFieldLabel">Copper</div>
+              <input type="number" class="infoField clickable inputElement" id="copper" min="0" value="0" onchange="UpdateCoin(this)">
+            </label>
+
+            <label class="infoFieldContainer" for="silver">
+              <div class="infoFieldLabel">Silver</div>
+              <input type="number" class="infoField clickable inputElement" id="silver" min="0" value="0" onchange="UpdateCoin(this)">
+            </label>
+
+            <label class="infoFieldContainer" for="electrum">
+              <div class="infoFieldLabel">Electrum</div>
+              <input type="number" class="infoField clickable inputElement" id="electrum" min="0" value="0" onchange="UpdateCoin(this)">
+            </label>
+
+            <label class="infoFieldContainer" for="gold">
+              <div class="infoFieldLabel">Gold</div>
+              <input type="number" class="infoField clickable inputElement" id="gold" min="0" value="0" onchange="UpdateCoin(this)">
+            </label>
+
+            <label class="infoFieldContainer" for="platinum">
+              <div class="infoFieldLabel">Platinum</div>
+              <input type="number" class="infoField clickable inputElement" id="platinum" min="0" value="0" onchange="UpdateCoin(this)">
+            </label>
+          </div>
+
+          <div class="equipment">
+            <div class="equipmentTitle">
+              <div class="equipmentTitleText">Equipment</div>
+              <button type="button" aria-label="Settings">
+                <img src="icons/plus.svg" alt="Gear Icon">
+                <div class="buttonText">Add</div>
+              </button>
+            </div>
+            <ul>
+
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -1699,8 +1737,8 @@
           <div class="tabCounter">1</div>
           <div class="tabs">
             <div class="tab clickable" onclick="SelectTab(this)">
-              <input tabindex="0" type="text" aria-label="Player Name" class="tabName clickable" value="Dungeon Master"
-                placeholder="Name Here" autocomplete="off" autocorrect="off" spellcheck="false"
+              <input tabindex="0" type="text" aria-label="Character Name" class="tabName clickable"
+                value="Dungeon Master" placeholder="Name Here" autocomplete="off" autocorrect="off" spellcheck="false"
                 oninput="Profile.ActiveElement.name = this.value; UpdateSheets()" name="tabNameInput">
               <button class="closeTab circleIconButton" type="button" aria-label="Close Tab"
                 onmousedown="RequestDeleteTab(this.parentElement)" onclick="RequestDeleteTab(this.parentElement)">
@@ -1716,7 +1754,7 @@
       <section class="characterInfo">
         <input autocomplete="off" autocorrect="off" spellcheck="false"
           oninput="Profile.ActiveElement.name = this.value; UpdateSheets()" class="characterName clickable" type="text"
-          aria-label="Player Name" value="Dungeon Master" placeholder="Name Here" id="characterNameGlobal">
+          aria-label="Character Name" value="Dungeon Master" placeholder="Name Here" id="characterNameGlobal">
         <div class="characterActions">
           <button class="circleIconButton" type="button" aria-label="Download JSON" onclick="DownloadActiveProfile()">
             <img src="icons/download.svg" alt="Download Icon">

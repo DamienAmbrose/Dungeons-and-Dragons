@@ -55,15 +55,13 @@ button,
 
 button:hover,
 .clickable:hover {
-    transform: scale(1.3);
-    box-shadow: rgb(0, 0, 0, 0.5) 0px 0px 5px;
+    transform: scale(1.1);
 }
 
 button:active,
 .clickable:active {
     transition-duration: 0.1s;
-    transform: scale(0.8);
-    box-shadow: none;
+    transform: scale(0.9);
 }
 
 button:focus,
@@ -153,7 +151,6 @@ nav.profileSection .tab.active input {
 
 nav.profileSection .tab:hover {
     transform: scale(0.975);
-    box-shadow: none;
     opacity: 1;
 }
 
@@ -173,7 +170,6 @@ nav.profileSection .tabName:active,
 nav.profileSection .tabName:focus {
     transform: scale(1);
     outline: none;
-    box-shadow: none;
 }
 
 .tabCounter {
@@ -254,7 +250,6 @@ nav.profileSection .tabName:focus {
 .characterName:hover {
     transform: scale(1.025);
     background: rgb(210, 210, 210);
-    box-shadow: none;
 }
 
 .characterName:active {
@@ -375,7 +370,6 @@ section.settingsPanel .settingsArea::-webkit-scrollbar {
 .largeActionButton {
     background: lightgrey;
     padding: 1em;
-    box-shadow: none;
     font-family: 'Poppins Bold', sans-serif;
     display: flex;
     justify-content: center;
@@ -387,7 +381,6 @@ section.settingsPanel .settingsArea::-webkit-scrollbar {
 .largeActionButton:hover,
 .largeActionButton:focus {
     transform: scale(1.05);
-    box-shadow: none;
     outline: 4px solid rgb(69, 69, 69);
 }
 
@@ -417,7 +410,6 @@ section.settingsPanel .sectionTitle {
 
 section.settingsPanel .sectionTitle:hover {
     transform: scale(1.05);
-    box-shadow: none;
 }
 
 section.settingsPanel .sectionTitle:active {
@@ -830,7 +822,6 @@ section.settingsPanel .sectionTitle:focus .arrow {
 .workspace .history ul li:hover {
     transform: scale(1.05);
     background: rgb(210, 210, 210);
-    box-shadow: none;
 }
 
 .workspace .history ul li:active {
@@ -903,7 +894,6 @@ section.settingsPanel .sectionTitle:focus .arrow {
 
 .sheetPanel .sheetTabs .sheetTab:hover, .sheetPanel .sheetTabs input:focus + .sheetTab {
     transform: scale(1.1);
-    box-shadow: none;
 }
 
 .sheetPanel .sheetTabs .sheetTab:active {
@@ -943,8 +933,8 @@ section.settingsPanel .sectionTitle:focus .arrow {
     grid-template-areas: 
         "type type type"
         "savingThrows abilities abilities"
-        "skills skills weapons";
-    grid-template-columns: 0.3fr 0.3fr 0.4fr;
+        "skills skills inventory";
+    grid-template-columns: 1.6fr 1.6fr auto;
     gap: 1em;
 }
 
@@ -971,8 +961,11 @@ section.settingsPanel .sectionTitle:focus .arrow {
     grid-area: skills;
 }
 
-#characterSheet .characterWeapons {
-    grid-area: weapons;
+#characterSheet .characterInventory {
+    grid-area: inventory;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 }
 
 #characterSheet .characterType .nameInfo {
@@ -995,7 +988,6 @@ section.settingsPanel .sectionTitle:focus .arrow {
 #characterSheet .characterType .nameInfo #backstoryField:hover {
     transform: scale(1);
     background: white;
-    box-shadow: none;
 }
 
 #characterSheet .characterType .nameInfo #backstoryField:active, #characterSheet .characterType .nameInfo #backstoryField:focus {
@@ -1014,7 +1006,6 @@ section.settingsPanel .sectionTitle:focus .arrow {
 
 #characterSheet .characterType .sheetName:hover {
     transform: scale(1.1);
-    box-shadow: none;
 }
 
 #characterSheet .characterType .sheetName:active {
@@ -1031,7 +1022,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
     width: 100%;
 }
 
-#characterSheet .characterType .characterDetails .infoFieldContainer {
+#characterSheet .infoFieldContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1040,7 +1031,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
     position: relative;
 }
 
-#characterSheet .characterType .characterDetails .infoFieldContainer .inputElement {
+.inputElement {
     padding: 1.25em;
     width: 100%;
     background: rgb(230, 230, 230);
@@ -1049,22 +1040,21 @@ section.settingsPanel .sectionTitle:focus .arrow {
     font-family: 'Poppins Bold', sans-serif;
 }
 
-#characterSheet .characterType .characterDetails .infoFieldContainer .inputElement:placeholder-shown {
+.inputElement:placeholder-shown {
     font-family: 'Poppins Medium', sans-serif;
 }
 
-#characterSheet .characterType .characterDetails .infoFieldContainer .inputElement:hover, #characterSheet .characterType .characterDetails .infoFieldContainer .inputElement:focus {
+.inputElement:hover, .inputElement:focus {
     transform: scale(1.05);
     background: rgb(250, 250, 250);
-    box-shadow: none;
     outline: none;
 }
 
-#characterSheet .characterType .characterDetails .infoFieldContainer  .inputElement:active {
+.inputElement:active {
     transform: scale(0.95);
 }
 
-#characterSheet .characterType .characterDetails .infoFieldContainer input[type="number"] {
+#characterSheet .infoFieldContainer input[type="number"] {
     max-width: 25%;
     width: -moz-fit-content;
     width: fit-content;
@@ -1075,7 +1065,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
     padding: 1.25em 0.5em;
 }
 
-#characterSheet .characterType .characterDetails .infoFieldContainer .infoFieldLabel {
+#characterSheet .infoFieldContainer .infoFieldLabel {
     padding-left: 1em;
     color: #757575;
     font-size: 0.85em;
@@ -1117,10 +1107,9 @@ section.settingsPanel .sectionTitle:focus .arrow {
     font-size: 0.85em;
 }
 
-#characterSheet .characterType .characterDetails .infoFieldContainer .dropdownContainer:focus-within {
+#characterSheet .infoFieldContainer .dropdownContainer:focus-within {
     transform: scale(1.025);
     background: rgb(250, 250, 250) ;
-    box-shadow: none;
     outline: none;
     transform: scale(1.05);
     z-index: 10;
@@ -1195,7 +1184,6 @@ section.settingsPanel .sectionTitle:focus .arrow {
 }
 
 .dropdownContent .dropdownSearchbar .resetButton {
-    box-shadow: none;
     border-radius: 100%;
     aspect-ratio: 1 / 1;
     display: flex;
@@ -1374,7 +1362,6 @@ section.settingsPanel .sectionTitle:focus .arrow {
 .modifierSelectionProficiencyDisplay, .modifierSelectionProficiencyDisplay:hover, .modifierSelectionProficiencyDisplay:active {
     background: none !important;
     outline: none !important;
-    box-shadow: none !important;
     width: 3em;
 }
 
@@ -1502,6 +1489,63 @@ section.settingsPanel .sectionTitle:focus .arrow {
 #characterSheet .characterSkills {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#characterSheet .characterInventory {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#characterSheet .characterInventory .coinsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#characterSheet .characterInventory .equipment {
+    padding: 1em;
+    background: rgb(210, 210, 210);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+}
+
+#characterSheet .characterInventory .equipmentTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 0.5em;
+}
+
+#characterSheet .characterInventory .equipmentTitle .equipmentTitleText {
+    font-family: 'Poppins Bold', sans-serif;
+}
+
+#characterSheet .characterInventory .equipmentTitle button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1.5em;
+    border-radius: 75px;
+    background: rgb(230, 230, 230);
+}
+
+#characterSheet .characterInventory .equipmentTitle button:hover, #characterSheet .characterInventory .equipmentTitle button:focus {
+    background: rgb(250, 250, 250);
+}
+
+#characterSheet .characterInventory .equipmentTitle button:focus .buttonText {
+    font-family: 'Poppins Bold', sans-serif;
+}
+
+#characterSheet .characterInventory ul {
+    background: rgb(200, 200, 200);
+    padding: 1em;
+    height: 100%;
+    margin: 0;
 }
 
 .TEST_ROLL {

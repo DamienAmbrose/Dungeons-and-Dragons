@@ -82,6 +82,13 @@ class Profile {
         "stealth": 0,
         "survival": 0
     };
+    coins = {
+        "copper": 0,
+        "silver": 0,
+        "electrum": 0,
+        "gold": 0,
+        "platinum": 0
+    };
 }
 
 const hoverableElements = document.querySelectorAll('input, button, .clickable, .tab, label');
@@ -145,14 +152,13 @@ function Escape() {
 let loader = document.querySelector('.loader');
 let loaderMask = document.querySelector('.loaderMask');
 window.addEventListener("load", function () {
-    /*
     setTimeout(function () {
         loaderMask.style.height = '100vh';
     }, 2000);
     setTimeout(function () {
         loader.style.opacity = '0';
         loader.style.zIndex = '-6';
-    }, 3000);*/
+    }, 3000);
     SelectActiveTab();
     DisableChildren(settingsMenu);
     DisableChildren(sheetMenu);
@@ -219,6 +225,14 @@ let abilityScoreInputs = {
     'cha': document.getElementById("chaScore")
 }
 
+let coinInputs = {
+    "copper": document.getElementById("copper"),
+    "silver": document.getElementById("silver"),
+    "electrum": document.getElementById("electrum"),
+    "gold": document.getElementById("gold"),
+    "platinum": document.getElementById("platinum")
+}
+
 function UpdateSheets() {
     for (const tab of Profile.TabList) {
         const index = Profile.TabList.indexOf(tab);
@@ -241,10 +255,15 @@ function UpdateSheets() {
     for (const modifierName of ABILITY_NAMES) {
         abilityScoreInputs[modifierName].value = Profile.ActiveElement.abilityScores[modifierName];
 
-        UpdateAllSkills();
         UpdateSavingThrowProficiency(savingThrowProficiencies[modifierName], modifierName, PROFICIENCY_MULTIPLIER_TO_INDEX[Profile.ActiveElement.savingThrowMultipliers[modifierName]]);
         UpdateAbility(abilityScoreInputs[modifierName], modifierName)
     }
+
+    for (const coinType of Array.from(Object.keys(coinInputs))) {
+        coinInputs[coinType].value = Profile.ActiveElement.coins[coinType];
+    }
+    
+    UpdateAllSkills();
 }
 
 function SelectActiveTab() {
@@ -683,6 +702,10 @@ function UpdateSkillProficiency(buttonElement, modifier, targetValue) {
 function UpdateAllSkills() {
     for (const skillName of Array.from(Object.keys(SKILL_TO_ABILITY)))
         UpdateSkillProficiency(skillProficiencies[skillName], skillName, PROFICIENCY_MULTIPLIER_TO_INDEX[Profile.ActiveElement.skillMultipliers[skillName]]);
+}
+
+function UpdateCoin(inputElement) {
+    Profile.ActiveElement.coins[inputElement.id] = inputElement.value;
 }
 
 const ScoreToModifier = (score) => FormatModifier(Math.floor((Number(score) - 10) * 0.5));
