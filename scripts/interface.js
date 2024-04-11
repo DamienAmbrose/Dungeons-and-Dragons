@@ -62,6 +62,26 @@ class Profile {
         "wis": 10,
         "cha": 10
     };
+    skillMultipliers = {
+        "acrobatics": 0,
+        "animals": 0,
+        "arcana": 0,
+        "athletics": 0,
+        "deception": 0,
+        "history": 0,
+        "insight": 0,
+        "intimidation": 0,
+        "investigation": 0,
+        "medicine": 0,
+        "nature": 0,
+        "perception": 0,
+        "performance": 0,
+        "persuasion": 0,
+        "religion": 0,
+        "soh": 0,
+        "stealth": 0,
+        "survival": 0
+    };
 }
 
 const hoverableElements = document.querySelectorAll('input, button, .clickable, .tab, label');
@@ -125,13 +145,14 @@ function Escape() {
 let loader = document.querySelector('.loader');
 let loaderMask = document.querySelector('.loaderMask');
 window.addEventListener("load", function () {
+    /*
     setTimeout(function () {
         loaderMask.style.height = '100vh';
     }, 2000);
     setTimeout(function () {
         loader.style.opacity = '0';
         loader.style.zIndex = '-6';
-    }, 3000);
+    }, 3000);*/
     SelectActiveTab();
     DisableChildren(settingsMenu);
     DisableChildren(sheetMenu);
@@ -160,13 +181,34 @@ let alignmentDropdown = document.getElementById("alignmentDropdown");
 let xpField = document.getElementById("xpField");
 
 let savingThrowProficiencies = {
-    'str': document.querySelector("#str_savingThrowBox .savingThrowProficiencyDisplay"),
-    'dex': document.querySelector("#dex_savingThrowBox .savingThrowProficiencyDisplay"),
-    'con': document.querySelector("#con_savingThrowBox .savingThrowProficiencyDisplay"),
-    'int': document.querySelector("#int_savingThrowBox .savingThrowProficiencyDisplay"),
-    'wis': document.querySelector("#wis_savingThrowBox .savingThrowProficiencyDisplay"),
-    'cha': document.querySelector("#cha_savingThrowBox .savingThrowProficiencyDisplay")
+    'str': document.querySelector("#str_savingThrowBox .modifierSelectionProficiencyDisplay"),
+    'dex': document.querySelector("#dex_savingThrowBox .modifierSelectionProficiencyDisplay"),
+    'con': document.querySelector("#con_savingThrowBox .modifierSelectionProficiencyDisplay"),
+    'int': document.querySelector("#int_savingThrowBox .modifierSelectionProficiencyDisplay"),
+    'wis': document.querySelector("#wis_savingThrowBox .modifierSelectionProficiencyDisplay"),
+    'cha': document.querySelector("#cha_savingThrowBox .modifierSelectionProficiencyDisplay")
 };
+
+let skillProficiencies = {
+    "acrobatics": document.querySelector("#acrobatics_skillBox .modifierSelectionProficiencyDisplay"),
+    "animals": document.querySelector("#animals_skillBox .modifierSelectionProficiencyDisplay"),
+    "arcana": document.querySelector("#arcana_skillBox .modifierSelectionProficiencyDisplay"),
+    "athletics": document.querySelector("#athletics_skillBox .modifierSelectionProficiencyDisplay"),
+    "deception": document.querySelector("#deception_skillBox .modifierSelectionProficiencyDisplay"),
+    "history": document.querySelector("#history_skillBox .modifierSelectionProficiencyDisplay"),
+    "insight": document.querySelector("#insight_skillBox .modifierSelectionProficiencyDisplay"),
+    "intimidation": document.querySelector("#intimidation_skillBox .modifierSelectionProficiencyDisplay"),
+    "investigation": document.querySelector("#investigation_skillBox .modifierSelectionProficiencyDisplay"),
+    "medicine": document.querySelector("#medicine_skillBox .modifierSelectionProficiencyDisplay"),
+    "nature": document.querySelector("#nature_skillBox .modifierSelectionProficiencyDisplay"),
+    "perception": document.querySelector("#perception_skillBox .modifierSelectionProficiencyDisplay"),
+    "performance": document.querySelector("#performance_skillBox .modifierSelectionProficiencyDisplay"),
+    "persuasion": document.querySelector("#persuasion_skillBox .modifierSelectionProficiencyDisplay"),
+    "religion": document.querySelector("#religion_skillBox .modifierSelectionProficiencyDisplay"),
+    "soh": document.querySelector("#soh_skillBox .modifierSelectionProficiencyDisplay"),
+    "stealth": document.querySelector("#stealth_skillBox .modifierSelectionProficiencyDisplay"),
+    "survival": document.querySelector("#survival_skillBox .modifierSelectionProficiencyDisplay")
+}
 
 let abilityScoreInputs = {
     'str': document.getElementById("strScore"),
@@ -198,7 +240,8 @@ function UpdateSheets() {
 
     for (const modifierName of ABILITY_NAMES) {
         abilityScoreInputs[modifierName].value = Profile.ActiveElement.abilityScores[modifierName];
-        
+
+        UpdateAllSkills();
         UpdateSavingThrowProficiency(savingThrowProficiencies[modifierName], modifierName, PROFICIENCY_MULTIPLIER_TO_INDEX[Profile.ActiveElement.savingThrowMultipliers[modifierName]]);
         UpdateAbility(abilityScoreInputs[modifierName], modifierName)
     }
@@ -311,7 +354,8 @@ function HandleUpload(event) {
             Profile.ActiveElement.race = parseResult.race;
             Profile.ActiveElement.alignment = parseResult.alignment;
             Profile.ActiveElement.xp = parseResult.xp;
-            Profile.ActiveElement.savingThrows = parseResult.savingThrowMultipliers;
+            Profile.ActiveElement.savingThrowMultipliers = parseResult.savingThrowMultipliers;
+            Profile.ActiveElement.skillMultipliers = parseResult.skillMultipliers;
             Profile.ActiveElement.abilityScores = parseResult.abilityScores;
 
             UpdateHistory();
@@ -595,6 +639,7 @@ function UpdateAbility(inputElement, modifier) {
     Profile.ActiveElement.abilityScores[modifier] = Number(inputElement.value);
     textElement.innerHTML = ScoreToModifier(inputElement.value);
 
+    UpdateAllSkills();
     UpdateSavingThrowProficiency(savingThrowProficiencies[modifier], modifier, savingThrowProficiencies[modifier].getAttribute("data-modifier-proficiency"));
 }
 
@@ -615,20 +660,55 @@ function NextModifierProficiency(buttonElement, modifier, modifierType) {
 
     if (modifierType == 'savingThrow')
         UpdateSavingThrowProficiency(buttonElement, modifier, targetValue);
+    else if (modifierType == 'skill')
+        UpdateSkillProficiency(buttonElement, modifier, targetValue);
 }
 
 function UpdateSavingThrowProficiency(buttonElement, modifier, targetValue) {
-    var targetOutput = buttonElement.parentElement.querySelector('.modifierOutput');
+    var targetOutput = buttonElement.parentElement.parentElement.querySelector('.modifierOutput');
 
     Profile.ActiveElement.savingThrowMultipliers[modifier] = PROFICIENCY_INDEX_TO_MULTIPLIER[targetValue];
     buttonElement.setAttribute("data-modifier-proficiency", targetValue);
     targetOutput.innerHTML = FormatModifier(Math.floor(Number(Number(ScoreToModifier(Number(Profile.ActiveElement.abilityScores[modifier]))) + (Profile.ActiveElement.proficiencyBonus * Profile.ActiveElement.savingThrowMultipliers[modifier]))));
 }
 
+function UpdateSkillProficiency(buttonElement, modifier, targetValue) {
+    var targetOutput = buttonElement.parentElement.parentElement.querySelector('.modifierOutput');
+
+    Profile.ActiveElement.skillMultipliers[modifier] = PROFICIENCY_INDEX_TO_MULTIPLIER[targetValue];
+    buttonElement.setAttribute("data-modifier-proficiency", targetValue);
+    targetOutput.innerHTML = FormatModifier(Math.floor(Number(Number(ScoreToModifier(Number(Profile.ActiveElement.abilityScores[SKILL_TO_ABILITY[modifier]]))) + (Profile.ActiveElement.proficiencyBonus * Profile.ActiveElement.skillMultipliers[modifier]))));
+}
+
+function UpdateAllSkills() {
+    for (const skillName of Array.from(Object.keys(SKILL_TO_ABILITY)))
+        UpdateSkillProficiency(skillProficiencies[skillName], skillName, PROFICIENCY_MULTIPLIER_TO_INDEX[Profile.ActiveElement.skillMultipliers[skillName]]);
+}
+
 const ScoreToModifier = (score) => FormatModifier(Math.floor((Number(score) - 10) * 0.5));
 const ABILITY_NAMES = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
 const PROFICIENCY_INDEX_TO_MULTIPLIER = {0:0, 1:0.5, 2:1, 3:2};
 const PROFICIENCY_MULTIPLIER_TO_INDEX = {0:0, 0.5:1, 1:2, 2:3};
+const SKILL_TO_ABILITY = {
+    "acrobatics": "dex",
+    "animals": "wis",
+    "arcana": "int",
+    "athletics": "str",
+    "deception": "cha",
+    "history": "int",
+    "insight": "wis",
+    "intimidation": "cha",
+    "investigation": "int",
+    "medicine": "wis",
+    "nature": "int",
+    "perception": "wis",
+    "performance": "cha",
+    "persuasion": "cha",
+    "religion": "int", 
+    "soh": "dex",
+    "stealth": "dex",
+    "survival": "wis"
+}
 
 /* 
 TODO

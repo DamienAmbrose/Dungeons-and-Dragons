@@ -1323,14 +1323,24 @@ section.settingsPanel .sectionTitle:focus .arrow {
     position: relative;
 }
 
-.modifierSelectionBox .savingThrowProficiencyDisplay {
+.skillBox {
+    height: 3.5em;
+}
+
+.modifierSelectionBox .modifierSelectionLeft {
+    display: flex;
+    align-items: stretch;
+    gap: 0.75em;
+}
+
+.modifierSelectionBox .modifierSelectionProficiencyDisplay {
     display: flex;
     align-items: stretch;
     padding: 0.5em;
     gap: 0.25em;
 }
 
-.modifierSelectionBox .savingThrowProficiencyDisplay .STP_pill {
+.modifierSelectionBox .modifierSelectionProficiencyDisplay .STP_pill {
     width: 1.25em;
     flex-shrink: 0;
     cursor: pointer;
@@ -1341,18 +1351,18 @@ section.settingsPanel .sectionTitle:focus .arrow {
     background-color: rgb(200, 200, 200)
 }
 
-.modifierSelectionBox .savingThrowProficiencyDisplay .STP_pill .STP_circle {
+.modifierSelectionBox .modifierSelectionProficiencyDisplay .STP_pill .STP_circle {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     background: transparent;
 }
 
-.modifierSelectionBox .savingThrowProficiencyDisplay .STP_pill:last-child {
+.modifierSelectionBox .modifierSelectionProficiencyDisplay .STP_pill:last-child {
     transform: translateX(calc(-100% - 0.25em));
     opacity: 0;
 }
 
-.modifierSelectionBox .savingThrowProficiencyDisplay .STP_pill .STP_circle {
+.modifierSelectionBox .modifierSelectionProficiencyDisplay .STP_pill .STP_circle {
     height: 20%;
 }
 
@@ -1361,48 +1371,48 @@ section.settingsPanel .sectionTitle:focus .arrow {
     opacity: 0;
 }
 
-.savingThrowProficiencyDisplay, .savingThrowProficiencyDisplay:hover, .savingThrowProficiencyDisplay:active {
+.modifierSelectionProficiencyDisplay, .modifierSelectionProficiencyDisplay:hover, .modifierSelectionProficiencyDisplay:active {
     background: none !important;
     outline: none !important;
     box-shadow: none !important;
     width: 3em;
 }
 
-.savingThrowProficiencyDisplay:hover, .savingThrowProficiencyDisplay:focus {
+.modifierSelectionProficiencyDisplay:hover, .modifierSelectionProficiencyDisplay:focus {
     transform: scale(1.1);
     filter: brightness(0.8);
 }
 
-.savingThrowProficiencyDisplay:active {
+.modifierSelectionProficiencyDisplay:active {
     transform: scale(0.9);
 }
 
-.savingThrowProficiencyDisplay[data-modifier-proficiency="0"] .STP_pill {
+.modifierSelectionProficiencyDisplay[data-modifier-proficiency="0"] .STP_pill {
     background-color: rgb(200, 200, 200) !important;
 }
 
-.savingThrowProficiencyDisplay[data-modifier-proficiency="1"] .STP_pill .STP_circle {
+.modifierSelectionProficiencyDisplay[data-modifier-proficiency="1"] .STP_pill .STP_circle {
     height: 50%;
     background-color: #2c2c2c !important;
 }
 
-.savingThrowProficiencyDisplay[data-modifier-proficiency="2"] .STP_pill {
+.modifierSelectionProficiencyDisplay[data-modifier-proficiency="2"] .STP_pill {
     background-color: #2c2c2c !important;
 }
 
-.savingThrowProficiencyDisplay[data-modifier-proficiency="2"] .STP_pill .STP_circle {
+.modifierSelectionProficiencyDisplay[data-modifier-proficiency="2"] .STP_pill .STP_circle {
     height: 100%;
     background-color: #2c2c2c !important;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
-.savingThrowProficiencyDisplay[data-modifier-proficiency="3"] .STP_pill:last-child {
+.modifierSelectionProficiencyDisplay[data-modifier-proficiency="3"] .STP_pill:last-child {
     transform: translateX(0);
     opacity: 1;
 }
 
-.savingThrowProficiencyDisplay[data-modifier-proficiency="3"] .STP_pill {
+.modifierSelectionProficiencyDisplay[data-modifier-proficiency="3"] .STP_pill {
     background-color: #2c2c2c !important;
 }
 
@@ -1414,17 +1424,23 @@ section.settingsPanel .sectionTitle:focus .arrow {
     align-self: center;
 }
 
+#characterSheet .modifierSelectionBox .modifierOutputWrapper {
+    padding: 1em 0.75em;
+    align-self: stretch;
+    width: 2.5em;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #characterSheet .modifierSelectionBox .modifierOutput {
     font-family: 'Poppins Bold', sans-serif;
     text-align: center;
     border: none;
     outline: none;
-    padding: 1em 0.75em;
-    align-self: stretch;
     color: #4c4c4c;
     font-size: 0.85em;
-    width: 3em;
-    flex-shrink: 0;
 }
 
 #characterSheet .characterAbilities {
@@ -1443,7 +1459,7 @@ section.settingsPanel .sectionTitle:focus .arrow {
 
 #characterSheet .characterAbilities .abilityBox .modifierValue {
     padding: 0.75em;
-    padding-top: 1em;
+    padding-top: 1.5em;
     margin: 0;
     font-family: 'Poppins Bold', sans-serif;
 }
