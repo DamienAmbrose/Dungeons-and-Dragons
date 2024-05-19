@@ -11,1201 +11,1243 @@
 </head>
 
 <body>
-  <div class="loader">
-    <div class="loaderMask"></div>
-    <div class="anchor">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
+  <div id="loader">
+    <div id="loader__mask"></div>
+    <div id="loader__anchor">
+      <div class="loader__circle"></div>
+      <div class="loader__circle"></div>
+      <div class="loader__circle"></div>
     </div>
     <h1></h1>
   </div>
 
-  <div class="disablePage" onclick="Escape()"></div>
+  <div id="disable-page" onclick="Escape()"></div>
 
-  <div class="popUpContainer">
-    <div class="popUp">
-      <h1 class="popUpTitle">Title Here</h1>
-      <p class="popUpContent">Explain the reason for this pop up here</p>
-      <div class="popUpButtons">
-        <button type="submit" class="popUpButton popUpButtonFalse" onclick="HidePopUp()" disabled>No</button>
-        <button type="submit" class="popUpButton popUpButtonTrue" onclick="HidePopUp()" disabled>Yes</button>
-      </div>
+  <pop-up>
+    <h1 id="pop-up__title">Title Here</h1>
+    <p id="pop-up__content">Explain the reason for this pop up here</p>
+    <div class="horizontal-buttons">
+      <button type="submit" id="pop-up__button-false" class="popUpButton secondary-button" onclick="HidePopUp()"
+        disabled>No</button>
+      <button type="submit" id="pop-up__button-true" class="popUpButton primary-button" onclick="HidePopUp()"
+        disabled>Yes</button>
     </div>
-  </div>
+  </pop-up>
 
-  <section class="settingsPanel panel">
-    <div class="settingsTitleContainer panelTitleContainer">
+  <panel id="settings-panel">
+    <panel-title>
       <img src="icons/gear.svg" alt="Gear Icon">
-      <h1 class="settingsTitle panelTitle">Settings</h1>
-    </div>
-    <div class="settingsArea">
+      <h1>Settings</h1>
+    </panel-title>
+    <panel-content>
 
-      <section class="settingsGroup">
-        <button class="sectionTitle" type="button" aria-label="Toggle Profiles Section"
+      <settings-group>
+        <button class="settings-group__title--wrapper" type="button" aria-label="Toggle Profiles Section"
           onclick="ToggleSettingGroup(this.parentElement.children[1], this.children[0])" disabled>
           <img src="icons/chevron-right.svg" alt="Arrow Icon" class="arrow active">
-          <div class="title">
+          <div class="settings-group__title">
             <img src="icons/people.svg" alt="Profiles Icon">
-            <h2 class="sectionTitleText">Profiles</h2>
+            <h2 class="settings-group__title__text">Profiles</h2>
           </div>
         </button>
-        <div class="settingsGroupContent active">
+        <div class="settings-group__content active">
           <div>section content</div>
         </div>
-      </section>
+      </settings-group>
 
-      <section class="settingsGroup">
-        <button class="sectionTitle" type="button" aria-label="Toggle Audio Section"
+      <settings-group>
+        <button class="settings-group__title--wrapper" type="button" aria-label="Toggle Audio Section"
           onclick="ToggleSettingGroup(this.parentElement.children[1], this.children[0])" disabled>
           <img src="icons/chevron-right.svg" alt="Arrow Icon" class="arrow active">
-          <div class="title">
+          <div class="settings-group__title">
             <img src="icons/volume-up.svg" alt="Audio Icon">
-            <h2 class="sectionTitleText">Audio</h2>
+            <h2 class="settings-group__title__text">Audio</h2>
           </div>
         </button>
-        <div class="settingsGroupContent active">
+        <div class="settings-group__content active">
 
-          <div class="settingOption">
-            <label class="settingOptionLabel" for="sfx">
-              <div class="labelText">SFX</div>
+          <div class="setting-option--wrapper">
+            <label class="setting-option" for="sfx">
+              <div class="setting-option__text">SFX</div>
               <input type="checkbox" class="switchBox" id="sfx" checked>
-              <div class="switch"></div>
+              <div class="switch">
+                <div></div>
+              </div>
             </label>
           </div>
 
-          <div class="settingOption">
-            <label class="settingOptionLabel" for="music">
-              <div class="labelText">Music</div>
+          <div class="setting-option--wrapper">
+            <label class="setting-option" for="music">
+              <div class="setting-option__text">Music</div>
               <input type="checkbox" class="switchBox" id="music">
-              <div class="switch"></div>
+              <div class="switch">
+                <div></div>
+              </div>
             </label>
           </div>
 
         </div>
-      </section>
+      </settings-group>
 
-      <section class="settingsGroup">
-        <button class="sectionTitle" type="button" aria-label="Toggle Appearence Section"
+      <settings-group>
+        <button class="settings-group__title--wrapper" type="button" aria-label="Toggle Appearence Section"
           onclick="ToggleSettingGroup(this.parentElement.children[1], this.children[0])" disabled>
           <img src="icons/chevron-right.svg" alt="Arrow Icon" class="arrow active">
-          <div class="title">
+          <div class="settings-group__title">
             <img src="icons/palette.svg" alt="Palette Icon">
-            <h2 class="sectionTitleText">Appearence</h2>
+            <h2 class="settings-group__title__text">Appearence</h2>
           </div>
         </button>
-        <div class="settingsGroupContent active">
+        <div class="settings-group__content active">
 
-          <div class="settingOption">
-            <label class="settingOptionLabel" for="animations">
-              <div class="labelText">Animations</div>
+          <div class="setting-option--wrapper">
+            <label class="setting-option" for="animations">
+              <div class="setting-option__text">Animations</div>
               <input type="checkbox" class="switchBox" id="animations" checked>
-              <div class="switch"></div>
+              <div class="switch">
+                <div></div>
+              </div>
             </label>
           </div>
 
-          <div class="settingOption">
-            <label class="settingOptionLabel" for="infoBar">
-              <div class="labelText">Blurring</div>
+          <div class="setting-option--wrapper">
+            <label class="setting-option" for="infoBar">
+              <div class="setting-option__text">Blurring</div>
               <input type="checkbox" class="switchBox" id="infoBar" checked>
-              <div class="switch"></div>
+              <div class="switch">
+                <div></div>
+              </div>
             </label>
           </div>
 
-          <div class="settingOption">
-            <label class="settingOptionLabel" for="history">
-              <div class="labelText">History</div>
+          <div class="setting-option--wrapper">
+            <label class="setting-option" for="history">
+              <div class="setting-option__text">History</div>
               <input type="checkbox" class="switchBox" id="history" checked>
-              <div class="switch"></div>
+              <div class="switch">
+                <div></div>
+              </div>
             </label>
           </div>
 
         </div>
-      </section>
+      </settings-group>
 
-      <section class="settingsGroup">
-        <button class="sectionTitle" type="button" aria-label="Toggle Backups Section"
+      <settings-group>
+        <button class="settings-group__title--wrapper" type="button" aria-label="Toggle Backups Section"
           onclick="ToggleSettingGroup(this.parentElement.children[1], this.children[0])" disabled>
           <img src="icons/chevron-right.svg" alt="Arrow Icon" class="arrow active">
-          <div class="title">
+          <div class="settings-group__title">
             <img src="icons/hdd.svg" alt="Backup Icon">
-            <h2 class="sectionTitleText">Backups</h2>
+            <h2 class="settings-group__title__text">Backups</h2>
           </div>
         </button>
-        <div class="settingsGroupContent active">
+        <div class="settings-group__content active">
 
-          <div class="settingOption">
-            <label class="settingOptionLabel" for="useCookies">
-              <div class="labelText">Cookies</div>
+          <div class="setting-option--wrapper">
+            <label class="setting-option" for="useCookies">
+              <div class="setting-option__text">Cookies</div>
               <input type="checkbox" class="switchBox" id="useCookies" checked>
-              <div class="switch"></div>
+              <div class="switch">
+                <div></div>
+              </div>
             </label>
           </div>
 
         </div>
-      </section>
+      </settings-group>
 
+    </panel-content>
+    <div class="horizontal-buttons">
+      <button class="secondary-button" type="reset" onclick="NotImplemented()" disabled>
+        <img src="icons/arrow-counterclockwise.svg" alt="Reset Icon" class="resetIcon">
+        Reset
+      </button>
+      <button class="primary-button" type="submit" onclick="CloseSettings()" disabled>
+        <img src="icons/floppy.svg" alt="Save Icon" class="saveIcon">
+        Save
+      </button>
     </div>
-    <button class="largeActionButton" type="submit" onclick="CloseSettings()" disabled>
-      <img src="icons/floppy.svg" alt="Save Icon" class="saveIcon">
-      Save
-    </button>
-  </section>
+  </panel>
 
-  <section class="sheetPanel panel">
-    <div class="sheetTitleContainer panelTitleContainer">
-      <img src="icons/clipboard.svg" alt="Gear Icon">
-      <h1 class="sheetTitle panelTitle">Sheets</h1>
-    </div>
-    <div class="sheetTabs">
-      <input type="radio" id="characterTabRadio" name="sheetTab" onchange="SwitchSheet(0)" checked>
-      <label class="sheetTab active clickable" for="characterTabRadio">
+  <panel id="sheets-panel">
+    <panel-title>
+      <img src="icons/clipboard.svg" alt="Clipboard Icon">
+      <h1>Sheets</h1>
+    </panel-title>
+
+    <div id="sheet-tabs">
+      <input type="radio" id="characterTabRadio" name="sheet-tab" onchange="SwitchSheet(0)" checked
+        class="sheet-tab__input">
+      <label class="sheet-tab active clickable" for="characterTabRadio">
         <img src="icons/person-gear.svg" alt="Person Gear Icon">
-        <div>Character</div>
+        <div class="sheet-tab__text">Character</div>
       </label>
-      <input type="radio" id="combatTabRadio" name="sheetTab" onchange="SwitchSheet(1)">
-      <label class="sheetTab clickable" for="combatTabRadio">
+      <input type="radio" id="combatTabRadio" name="sheet-tab" onchange="SwitchSheet(1)" class="sheet-tab__input">
+      <label class="sheet-tab clickable" for="combatTabRadio">
         <img src="icons/bullseye.svg" alt="Bullseye Icon">
-        <div>Combat</div>
+        <div class="sheet-tab__text">Combat</div>
       </label>
-      <input type="radio" id="lookTabRadio" name="sheetTab" onchange="SwitchSheet(2)">
-      <label class="sheetTab clickable" for="lookTabRadio">
+      <input type="radio" id="lookTabRadio" name="sheet-tab" onchange="SwitchSheet(2)" class="sheet-tab__input">
+      <label class="sheet-tab clickable" for="lookTabRadio">
         <img src="icons/palette.svg" alt="Palette Icon">
-        <div>Look</div>
+        <div class="sheet-tab__text">Look</div>
       </label>
-      <input type="radio" id="spellsTabRadio" name="sheetTab" onchange="SwitchSheet(3)">
-      <label class="sheetTab clickable" for="spellsTabRadio">
+      <input type="radio" id="spellsTabRadio" name="sheet-tab" onchange="SwitchSheet(3)" class="sheet-tab__input">
+      <label class="sheet-tab clickable" for="spellsTabRadio">
         <img src="icons/magic.svg" alt="Wand Icon">
-        <div>Spells</div>
+        <div class="sheet-tab__text">Spells</div>
       </label>
     </div>
-    <div class="sheetContentArea">
-      <section class="sheetContent active" id="characterSheet">
-        <div class="characterType sheetContentSection">
-          <div class="nameInfo">
+
+    <panel-content>
+      <sheet class="active" id="character-sheet">
+        <sheet-section id="character-type">
+          <div id="character-type__name-info">
             <input autocomplete="off" autocorrect="off" spellcheck="false"
-              oninput="Profile.ActiveElement.name = this.value; UpdateSheets()" class="sheetName clickable" type="text"
-              aria-label="Player Name" value="Dungeon Master" placeholder="Name Here" id="characterNameSheet">
-            <textarea type="text" id="backstoryField" placeholder="Backstory" aria-label="Backstory" class="clickable"
-              onchange="Profile.ActiveElement.backstory = this.value"></textarea>
+              oninput="Profile.ActiveProfile.name = this.value" class="clickable" type="text" aria-label="Player Name"
+              value="Dungeon Master" placeholder="Name Here" id="character-type__name-info__name-input">
+
+            <textarea type="text" id="character-type__name-info__backstory-input" placeholder="Backstory"
+              aria-label="Backstory" class="clickable"
+              onchange="Profile.ActiveProfile.backstory = this.value"></textarea>
           </div>
-          <div class="characterDetails">
-            <div class="infoFieldContainer">
-              <div class="dropdownWrapperNormalizer">
-                <div class="dropdownWrapper">
-                  <div class="infoField clickable inputElement dropdownContainer" tabindex="0"
-                    aria-label="Class Dropdown">
-                    <div class="dropdownOpenLabel">
-                      <div class="dropdownLabel" data-dropdown-title="Select Class" data-dropdown-content="None"></div>
-                      <img class="dropdownArrow" src="icons/chevron-down.svg" alt="Down Arrow">
-                    </div>
-                    <div class="dropdownContent">
-                      <div class="dropdownSearchbar">
-                        <input type="text" class="searchbox" aria-label="Search Classes" placeholder="Search"
+          <div id="character-type__details">
+
+            <label class="input-field--container">
+              <dropdown--wrapper--anchor>
+                <dropdown--wrapper>
+                  <dropdown tabindex="0" aria-label="Class Dropdown">
+
+                    <dropdown-label>
+                      <dropdown-label__text data-dropdown-title="Select Class" data-dropdown-content="None"></dropdown-label__text>
+                      <img src="icons/chevron-down.svg" alt="Down Arrow">
+                    </dropdown-label>
+
+                    <dropdown-content>
+                      <dropdown__searchbar>
+                        <input type="text" class="dropdown__searchbar-input" aria-label="Search Classes" placeholder="Search"
                           oninput="SearchDropdown(this)" autocomplete="off" autocorrect="off" spellcheck="false"
-                          id="classSearchbar">
-                        <button class="resetButton" type="reset" aria-label="Clear Selection"
+                          name="dropdownSearchbar">
+
+                        <button class="dropdown__searchbar-reset" type="reset" aria-label="Clear Selection"
                           onclick="ResetDropdown(this.parentElement.parentElement.querySelector('ul'))">
                           <img src="icons/x.svg" alt="Close Icon">
                         </button>
-                      </div>
-                      <ul class="dropdownList" id="classDropdown">
-                        <li>
+                      </dropdown__searchbar>
+
+                      <ul class="dropdown-list scrollable" id="classDropdown">
+                        <li class="dropdown-list__item">
                           <input type="radio" id="multiclassClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="multiclassClass">
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="multiclassClass">
                             <img src="icons/person-add.svg" alt="Person Add Icon">
-                            <div class="dropdownListItemLabelText">Multiclass</div>
+                            <div class="dropdown-list__item__label__text">Multiclass</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="barbarianClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="barbarianClass">
-                            <div class="dropdownListItemLabelText">Barbarian</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="barbarianClass">
+                            <div class="dropdown-list__item__label__text">Barbarian</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="bardClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="bardClass">
-                            <div class="dropdownListItemLabelText">Bard</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="bardClass">
+                            <div class="dropdown-list__item__label__text">Bard</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="clericClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="clericClass">
-                            <div class="dropdownListItemLabelText">Cleric</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="clericClass">
+                            <div class="dropdown-list__item__label__text">Cleric</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="druidClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="druidClass">
-                            <div class="dropdownListItemLabelText">Druid</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="druidClass">
+                            <div class="dropdown-list__item__label__text">Druid</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="fighterClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="fighterClass">
-                            <div class="dropdownListItemLabelText">Fighter</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="fighterClass">
+                            <div class="dropdown-list__item__label__text">Fighter</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="monkClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="monkClass">
-                            <div class="dropdownListItemLabelText">Monk</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="monkClass">
+                            <div class="dropdown-list__item__label__text">Monk</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="paladinClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="paladinClass">
-                            <div class="dropdownListItemLabelText">Paladin</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="paladinClass">
+                            <div class="dropdown-list__item__label__text">Paladin</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="rangerClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="rangerClass">
-                            <div class="dropdownListItemLabelText">Ranger</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="rangerClass">
+                            <div class="dropdown-list__item__label__text">Ranger</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="rougeClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="rougeClass">
-                            <div class="dropdownListItemLabelText">Rouge</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="rougeClass">
+                            <div class="dropdown-list__item__label__text">Rouge</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="sorcererClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="sorcererClass">
-                            <div class="dropdownListItemLabelText">Sorcerer</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="sorcererClass">
+                            <div class="dropdown-list__item__label__text">Sorcerer</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="warlockClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="warlockClass">
-                            <div class="dropdownListItemLabelText">Warlock</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="warlockClass">
+                            <div class="dropdown-list__item__label__text">Warlock</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="wizardClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="wizardClass">
-                            <div class="dropdownListItemLabelText">Wizard</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="wizardClass">
+                            <div class="dropdown-list__item__label__text">Wizard</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="artifacterClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="artifacterClass">
-                            <div class="dropdownListItemLabelText">Artifacter</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="artifacterClass">
+                            <div class="dropdown-list__item__label__text">Artifacter</div>
                           </label>
                         </li>
 
-                        <li>
+                        <li class="dropdown-list__item">
                           <input type="radio" id="bloodhunterClass" name="class"
-                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                          <label class="dropdownListItemLabel" for="bloodhunterClass">
-                            <div class="dropdownListItemLabelText">Blood Hunter</div>
+                            onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                          <label class="dropdown-list__item__label" for="bloodhunterClass">
+                            <div class="dropdown-list__item__label__text">Blood Hunter</div>
                           </label>
                         </li>
                       </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <input type="number" class="clickable inputElement" min="1" max="20" value="1" aria-label="Level"
-                id="levelField" onchange="Profile.ActiveElement.classLevel = this.value">
-            </div>
-            <div class="infoFieldContainer">
-              <input type="text" class="infoField clickable inputElement" id="backgroundField" placeholder="Background"
-                aria-label="Background" onchange="Profile.ActiveElement.background = this.value">
-            </div>
-            <div class="infoFieldContainer">
-              <input type="text" class="infoField clickable inputElement" id="playerNameField" autocomplete="off"
-                autocorrect="off" spellcheck="false" placeholder="Player Name" aria-label="Player Name"
-                onchange="Profile.ActiveElement.playerName = this.value">
-            </div>
-            <div class="infoFieldContainer">
-              <div class="dropdownWrapper">
-                <div class="infoField clickable inputElement dropdownContainer" tabindex="0" aria-label="Race Dropdown">
-                  <div class="dropdownOpenLabel">
-                    <div class="dropdownLabel" data-dropdown-title="Select Race" data-dropdown-content="None"></div>
-                    <img class="dropdownArrow" src="icons/chevron-down.svg" alt="Down Arrow">
-                  </div>
-                  <div class="dropdownContent">
-                    <div class="dropdownSearchbar">
-                      <input type="text" class="searchbox" aria-label="Search Races" placeholder="Search"
+                    </dropdown-content>
+
+                  </dropdown>
+                </dropdown--wrapper>
+              </dropdown--wrapper--anchor>
+              <input type="number" class="input-field" min="1" max="20" value="1" aria-label="Level"
+                id="levelField" onchange="NormalizeInput(this); Profile.ActiveProfile.classLevel = this.value">
+            </label>
+
+            <input type="text" class="input-field" id="backgroundField" placeholder="Background"
+              aria-label="Background" onchange="Profile.ActiveProfile.background = this.value">
+
+            <input type="text" class="input-field" id="playerNameField" autocomplete="off" autocorrect="off"
+              spellcheck="false" placeholder="Player Name" aria-label="Player Name"
+              onchange="Profile.ActiveProfile.playerName = this.value">
+
+            <dropdown--wrapper--anchor>
+              <dropdown--wrapper>
+                <dropdown tabindex="0" aria-label="Race Dropdown">
+
+                  <dropdown-label>
+                    <dropdown-label__text data-dropdown-title="Select Race" data-dropdown-content="None"></dropdown-label__text>
+                    <img src="icons/chevron-down.svg" alt="Down Arrow">
+                  </dropdown-label>
+
+                  <dropdown-content>
+
+                    <dropdown__searchbar>
+                      <input type="text" class="dropdown__searchbar-input" aria-label="Search Races" placeholder="Search"
                         oninput="SearchDropdown(this)" autocomplete="off" autocorrect="off" spellcheck="false"
-                        id="raceSearchbar">
-                      <button class="resetButton" type="reset" aria-label="Clear Selection"
+                        name="dropdownSearchbar">
+
+                      <button class="dropdown__searchbar-reset" type="reset" aria-label="Clear Selection"
                         onclick="ResetDropdown(this.parentElement.parentElement.querySelector('ul'))">
                         <img src="icons/x.svg" alt="Close Icon">
                       </button>
-                    </div>
-                    <ul class="dropdownList" id="raceDropdown">
-                      <li>
+                    </dropdown__searchbar>
+
+                    <ul class="dropdown-list scrollable" id="raceDropdown">
+                      <li class="dropdown-list__item">
                         <input type="radio" id="dragonbornRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="dragonbornRace">
-                          <div class="dropdownListItemLabelText">Dragonborn</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="dragonbornRace">
+                          <div class="dropdown-list__item__label__text">Dragonborn</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="dwarfRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="dwarfRace">
-                          <div class="dropdownListItemLabelText">Dwarf</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="dwarfRace">
+                          <div class="dropdown-list__item__label__text">Dwarf</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="elfRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="elfRace">
-                          <div class="dropdownListItemLabelText">Elf</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="elfRace">
+                          <div class="dropdown-list__item__label__text">Elf</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="gnomeRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="gnomeRace">
-                          <div class="dropdownListItemLabelText">Gnome</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="gnomeRace">
+                          <div class="dropdown-list__item__label__text">Gnome</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="halfElfRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="halfElfRace">
-                          <div class="dropdownListItemLabelText">Half-Elf</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="halfElfRace">
+                          <div class="dropdown-list__item__label__text">Half-Elf</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="halflingRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="halflingRace">
-                          <div class="dropdownListItemLabelText">Halfling</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="halflingRace">
+                          <div class="dropdown-list__item__label__text">Halfling</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="halfOrcRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="halfOrcRace">
-                          <div class="dropdownListItemLabelText">Half-Orc</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="halfOrcRace">
+                          <div class="dropdown-list__item__label__text">Half-Orc</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="humanRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="humanRace">
-                          <div class="dropdownListItemLabelText">Human</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="humanRace">
+                          <div class="dropdown-list__item__label__text">Human</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="teiflingRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="teiflingRace">
-                          <div class="dropdownListItemLabelText">Teifling</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="teiflingRace">
+                          <div class="dropdown-list__item__label__text">Teifling</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="aarakocraRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="aarakocraRace">
-                          <div class="dropdownListItemLabelText">Aarakocra</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="aarakocraRace">
+                          <div class="dropdown-list__item__label__text">Aarakocra</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="aasimarRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="aasimarRace">
-                          <div class="dropdownListItemLabelText">Aasimar</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="aasimarRace">
+                          <div class="dropdown-list__item__label__text">Aasimar</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="airGenasiRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="airGenasiRace">
-                          <div class="dropdownListItemLabelText">Air Genasi</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="airGenasiRace">
+                          <div class="dropdown-list__item__label__text">Air Genasi</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="bugbearRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="bugbearRace">
-                          <div class="dropdownListItemLabelText">Bugbear</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="bugbearRace">
+                          <div class="dropdown-list__item__label__text">Bugbear</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="centaurRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="centaurRace">
-                          <div class="dropdownListItemLabelText">Centaur</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="centaurRace">
+                          <div class="dropdown-list__item__label__text">Centaur</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="changelingRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="changelingRace">
-                          <div class="dropdownListItemLabelText">Changeling</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="changelingRace">
+                          <div class="dropdown-list__item__label__text">Changeling</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="deepGnomeRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="deepGnomeRace">
-                          <div class="dropdownListItemLabelText">Deep Gnome</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="deepGnomeRace">
+                          <div class="dropdown-list__item__label__text">Deep Gnome</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="duergarRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="duergarRace">
-                          <div class="dropdownListItemLabelText">Duergar</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="duergarRace">
+                          <div class="dropdown-list__item__label__text">Duergar</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="earthGenasiRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="earthGenasiRace">
-                          <div class="dropdownListItemLabelText">Earth Genasi</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="earthGenasiRace">
+                          <div class="dropdown-list__item__label__text">Earth Genasi</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="eladrinRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="eladrinRace">
-                          <div class="dropdownListItemLabelText">Eladrin</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="eladrinRace">
+                          <div class="dropdown-list__item__label__text">Eladrin</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="fairyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="fairyRace">
-                          <div class="dropdownListItemLabelText">Fairy</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="fairyRace">
+                          <div class="dropdown-list__item__label__text">Fairy</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="firbolgRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="firbolgRace">
-                          <div class="dropdownListItemLabelText">Firbolg</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="firbolgRace">
+                          <div class="dropdown-list__item__label__text">Firbolg</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="fireGenasiRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="fireGenasiRace">
-                          <div class="dropdownListItemLabelText">Fire Genasi</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="fireGenasiRace">
+                          <div class="dropdown-list__item__label__text">Fire Genasi</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="githyankiRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="githyankiRace">
-                          <div class="dropdownListItemLabelText">Githyanki</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="githyankiRace">
+                          <div class="dropdown-list__item__label__text">Githyanki</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="githzeraiRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="githzeraiRace">
-                          <div class="dropdownListItemLabelText">Githzerai</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="githzeraiRace">
+                          <div class="dropdown-list__item__label__text">Githzerai</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="goblinRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="goblinRace">
-                          <div class="dropdownListItemLabelText">Goblin</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="goblinRace">
+                          <div class="dropdown-list__item__label__text">Goblin</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="goliathRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="goliathRace">
-                          <div class="dropdownListItemLabelText">Goliath</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="goliathRace">
+                          <div class="dropdown-list__item__label__text">Goliath</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="harengonRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="harengonRace">
-                          <div class="dropdownListItemLabelText">Harengon</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="harengonRace">
+                          <div class="dropdown-list__item__label__text">Harengon</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="hobgoblinRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="hobgoblinRace">
-                          <div class="dropdownListItemLabelText">Hobgoblin</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="hobgoblinRace">
+                          <div class="dropdown-list__item__label__text">Hobgoblin</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="kenkuRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="kenkuRace">
-                          <div class="dropdownListItemLabelText">Kenku</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="kenkuRace">
+                          <div class="dropdown-list__item__label__text">Kenku</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="koboldRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="koboldRace">
-                          <div class="dropdownListItemLabelText">Kobold</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="koboldRace">
+                          <div class="dropdown-list__item__label__text">Kobold</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="lizardfolkRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="lizardfolkRace">
-                          <div class="dropdownListItemLabelText">Lizardfolk</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="lizardfolkRace">
+                          <div class="dropdown-list__item__label__text">Lizardfolk</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="minotaurRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="minotaurRace">
-                          <div class="dropdownListItemLabelText">Minotaur</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="minotaurRace">
+                          <div class="dropdown-list__item__label__text">Minotaur</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="orcRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="orcRace">
-                          <div class="dropdownListItemLabelText">Orc</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="orcRace">
+                          <div class="dropdown-list__item__label__text">Orc</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="satyrRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="satyrRace">
-                          <div class="dropdownListItemLabelText">Satyr</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="satyrRace">
+                          <div class="dropdown-list__item__label__text">Satyr</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="seaElfRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="seaElfRace">
-                          <div class="dropdownListItemLabelText">Sea Elf</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="seaElfRace">
+                          <div class="dropdown-list__item__label__text">Sea Elf</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="shadarkaiRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="shadarkaiRace">
-                          <div class="dropdownListItemLabelText">Shadar-kai</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="shadarkaiRace">
+                          <div class="dropdown-list__item__label__text">Shadar-kai</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="shifterRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="shifterRace">
-                          <div class="dropdownListItemLabelText">Shifter</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="shifterRace">
+                          <div class="dropdown-list__item__label__text">Shifter</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="tabaxiRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="tabaxiRace">
-                          <div class="dropdownListItemLabelText">Tabaxi</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="tabaxiRace">
+                          <div class="dropdown-list__item__label__text">Tabaxi</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="tortleRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="tortleRace">
-                          <div class="dropdownListItemLabelText">Tortle</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="tortleRace">
+                          <div class="dropdown-list__item__label__text">Tortle</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="tritonRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="tritonRace">
-                          <div class="dropdownListItemLabelText">Triton</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="tritonRace">
+                          <div class="dropdown-list__item__label__text">Triton</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="waterGenasiRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="waterGenasiRace">
-                          <div class="dropdownListItemLabelText">Water Genasi</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="waterGenasiRace">
+                          <div class="dropdown-list__item__label__text">Water Genasi</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="yuantiRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="yuantiRace">
-                          <div class="dropdownListItemLabelText">Yuan-ti</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="yuantiRace">
+                          <div class="dropdown-list__item__label__text">Yuan-ti</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="kenderRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="kenderRace">
-                          <div class="dropdownListItemLabelText">Kender</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="kenderRace">
+                          <div class="dropdown-list__item__label__text">Kender</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="astralElfRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="astralElfRace">
-                          <div class="dropdownListItemLabelText">Astral Elf</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="astralElfRace">
+                          <div class="dropdown-list__item__label__text">Astral Elf</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="autognomeRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="autognomeRace">
-                          <div class="dropdownListItemLabelText">Autognome</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="autognomeRace">
+                          <div class="dropdown-list__item__label__text">Autognome</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="giffRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="giffRace">
-                          <div class="dropdownListItemLabelText">Giff</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="giffRace">
+                          <div class="dropdown-list__item__label__text">Giff</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="hadozeeRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="hadozeeRace">
-                          <div class="dropdownListItemLabelText">Hadozee</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="hadozeeRace">
+                          <div class="dropdown-list__item__label__text">Hadozee</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="plasmoidRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="plasmoidRace">
-                          <div class="dropdownListItemLabelText">Plasmoid</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="plasmoidRace">
+                          <div class="dropdown-list__item__label__text">Plasmoid</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="thrikreenRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="thrikreenRace">
-                          <div class="dropdownListItemLabelText">Thri-kreen</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="thrikreenRace">
+                          <div class="dropdown-list__item__label__text">Thri-kreen</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="ownlinRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="ownlinRace">
-                          <div class="dropdownListItemLabelText">Owlin</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="ownlinRace">
+                          <div class="dropdown-list__item__label__text">Owlin</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="leoninRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="leoninRace">
-                          <div class="dropdownListItemLabelText">Leonin</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="leoninRace">
+                          <div class="dropdown-list__item__label__text">Leonin</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="satyrLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="satyrLegacyRace">
-                          <div class="dropdownListItemLabelText">Satyr (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="satyrLegacyRace">
+                          <div class="dropdown-list__item__label__text">Satyr (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="changelingLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="changelingLegacyRace">
-                          <div class="dropdownListItemLabelText">Changeling (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="changelingLegacyRace">
+                          <div class="dropdown-list__item__label__text">Changeling (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="kalashtarRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="kalashtarRace">
-                          <div class="dropdownListItemLabelText">Kalashtar</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="kalashtarRace">
+                          <div class="dropdown-list__item__label__text">Kalashtar</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="shifterLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="shifterLegacyRace">
-                          <div class="dropdownListItemLabelText">Shifter (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="shifterLegacyRace">
+                          <div class="dropdown-list__item__label__text">Shifter (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="warforgedRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="warforgedRace">
-                          <div class="dropdownListItemLabelText">Warforged</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="warforgedRace">
+                          <div class="dropdown-list__item__label__text">Warforged</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="verdanRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="verdanRace">
-                          <div class="dropdownListItemLabelText">Verdan</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="verdanRace">
+                          <div class="dropdown-list__item__label__text">Verdan</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="centaurLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="centaurLegacyRace">
-                          <div class="dropdownListItemLabelText">Centaur (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="centaurLegacyRace">
+                          <div class="dropdown-list__item__label__text">Centaur (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="loxodonRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="loxodonRace">
-                          <div class="dropdownListItemLabelText">Loxodon</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="loxodonRace">
+                          <div class="dropdown-list__item__label__text">Loxodon</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="minotaurLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="minotaurLegacyRace">
-                          <div class="dropdownListItemLabelText">Minotaur (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="minotaurLegacyRace">
+                          <div class="dropdown-list__item__label__text">Minotaur (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="simicHybridRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="simicHybridRace">
-                          <div class="dropdownListItemLabelText">Simic Hybrid</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="simicHybridRace">
+                          <div class="dropdown-list__item__label__text">Simic Hybrid</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="vedalkenRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="vedalkenRace">
-                          <div class="dropdownListItemLabelText">Vedalken</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="vedalkenRace">
+                          <div class="dropdown-list__item__label__text">Vedalken</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="feralTieflingRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="feralTieflingRace">
-                          <div class="dropdownListItemLabelText">Feral Tiefling</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="feralTieflingRace">
+                          <div class="dropdown-list__item__label__text">Feral Tiefling</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="tortleLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="tortleLegacyRace">
-                          <div class="dropdownListItemLabelText">Tortle (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="tortleLegacyRace">
+                          <div class="dropdown-list__item__label__text">Tortle (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="locathahRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="locathahRace">
-                          <div class="dropdownListItemLabelText">Locathah</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="locathahRace">
+                          <div class="dropdown-list__item__label__text">Locathah</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="grungRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="grungRace">
-                          <div class="dropdownListItemLabelText">Grung</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="grungRace">
+                          <div class="dropdown-list__item__label__text">Grung</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="githLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="githLegacyRace">
-                          <div class="dropdownListItemLabelText">Gith (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="githLegacyRace">
+                          <div class="dropdown-list__item__label__text">Gith (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="aasimarLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="aasimarLegacyRace">
-                          <div class="dropdownListItemLabelText">Aasimar (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="aasimarLegacyRace">
+                          <div class="dropdown-list__item__label__text">Aasimar (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="bugbearLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="bugbearLegacyRace">
-                          <div class="dropdownListItemLabelText">Bugbear (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="bugbearLegacyRace">
+                          <div class="dropdown-list__item__label__text">Bugbear (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="firbolgLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="firbolgLegacyRace">
-                          <div class="dropdownListItemLabelText">Firbolg (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="firbolgLegacyRace">
+                          <div class="dropdown-list__item__label__text">Firbolg (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="goblinLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="goblinLegacyRace">
-                          <div class="dropdownListItemLabelText">Goblin (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="goblinLegacyRace">
+                          <div class="dropdown-list__item__label__text">Goblin (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="hobgoblinLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="hobgoblinLegacyRace">
-                          <div class="dropdownListItemLabelText">Hobgoblin (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="hobgoblinLegacyRace">
+                          <div class="dropdown-list__item__label__text">Hobgoblin (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="kenkuLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="kenkuLegacyRace">
-                          <div class="dropdownListItemLabelText">Kenku (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="kenkuLegacyRace">
+                          <div class="dropdown-list__item__label__text">Kenku (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="koboldLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="koboldLegacyRace">
-                          <div class="dropdownListItemLabelText">Kobold (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="koboldLegacyRace">
+                          <div class="dropdown-list__item__label__text">Kobold (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="lizardfolkLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="lizardfolkLegacyRace">
-                          <div class="dropdownListItemLabelText">Lizardfolk (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="lizardfolkLegacyRace">
+                          <div class="dropdown-list__item__label__text">Lizardfolk (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="orcLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="orcLegacyRace">
-                          <div class="dropdownListItemLabelText">Orc (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="orcLegacyRace">
+                          <div class="dropdown-list__item__label__text">Orc (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="tabaxiLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="tabaxiLegacyRace">
-                          <div class="dropdownListItemLabelText">Tabaxi (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="tabaxiLegacyRace">
+                          <div class="dropdown-list__item__label__text">Tabaxi (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="tritonLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="tritonLegacyRace">
-                          <div class="dropdownListItemLabelText">Triton (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="tritonLegacyRace">
+                          <div class="dropdown-list__item__label__text">Triton (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="yuanTiPurebloodLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="yuanTiPurebloodLegacyRace">
-                          <div class="dropdownListItemLabelText">Yuan-ti Pureblood (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="yuanTiPurebloodLegacyRace">
+                          <div class="dropdown-list__item__label__text">Yuan-ti Pureblood (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="aarakocraLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="aarakocraLegacyRace">
-                          <div class="dropdownListItemLabelText">Aarakocra (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="aarakocraLegacyRace">
+                          <div class="dropdown-list__item__label__text">Aarakocra (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="genasiLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="genasiLegacyRace">
-                          <div class="dropdownListItemLabelText">Genasi (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="genasiLegacyRace">
+                          <div class="dropdown-list__item__label__text">Genasi (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="goliathLegacyRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="goliathLegacyRace">
-                          <div class="dropdownListItemLabelText">Goliath (Legacy)</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="goliathLegacyRace">
+                          <div class="dropdown-list__item__label__text">Goliath (Legacy)</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="cervanRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="cervanRace">
-                          <div class="dropdownListItemLabelText">Cervan</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="cervanRace">
+                          <div class="dropdown-list__item__label__text">Cervan</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="corvumRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="corvumRace">
-                          <div class="dropdownListItemLabelText">Corvum</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="corvumRace">
+                          <div class="dropdown-list__item__label__text">Corvum</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="gallusRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="gallusRace">
-                          <div class="dropdownListItemLabelText">Gallus</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="gallusRace">
+                          <div class="dropdown-list__item__label__text">Gallus</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="hedgeRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="hedgeRace">
-                          <div class="dropdownListItemLabelText">Hedge</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="hedgeRace">
+                          <div class="dropdown-list__item__label__text">Hedge</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="jerbeenRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="jerbeenRace">
-                          <div class="dropdownListItemLabelText">Jerbeen</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="jerbeenRace">
+                          <div class="dropdown-list__item__label__text">Jerbeen</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="lumaRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="lumaRace">
-                          <div class="dropdownListItemLabelText">Luma</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="lumaRace">
+                          <div class="dropdown-list__item__label__text">Luma</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="mapachRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="mapachRace">
-                          <div class="dropdownListItemLabelText">Mapach</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="mapachRace">
+                          <div class="dropdown-list__item__label__text">Mapach</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="raptorRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="raptorRace">
-                          <div class="dropdownListItemLabelText">Raptor</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="raptorRace">
+                          <div class="dropdown-list__item__label__text">Raptor</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="strigRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="strigRace">
-                          <div class="dropdownListItemLabelText">Strig</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="strigRace">
+                          <div class="dropdown-list__item__label__text">Strig</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="vulpinRace" name="race"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="vulpinRace">
-                          <div class="dropdownListItemLabelText">Vulpin</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="vulpinRace">
+                          <div class="dropdown-list__item__label__text">Vulpin</div>
                         </label>
                       </li>
                     </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="infoFieldContainer">
-              <div class="dropdownWrapper">
-                <div class="infoField clickable inputElement dropdownContainer" tabindex="0"
-                  aria-label="Alignment Dropdown">
-                  <div class="dropdownOpenLabel">
-                    <div class="dropdownLabel" data-dropdown-title="Select Alignment" data-dropdown-content="None">
-                    </div>
-                    <img class="dropdownArrow" src="icons/chevron-down.svg" alt="Down Arrow">
-                  </div>
-                  <div class="dropdownContent">
-                    <ul class="dropdownList" id="alignmentDropdown">
-                      <li>
+                  </dropdown-content>
+
+                </dropdown>
+              </dropdown--wrapper>
+            </dropdown--wrapper--anchor>
+
+            <dropdown--wrapper--anchor>
+              <dropdown--wrapper>
+                <dropdown tabindex="0" aria-label="Alignment Dropdown">
+                  
+                  <dropdown-label>
+                    <dropdown-label__text data-dropdown-title="Select Alignment" data-dropdown-content="None">
+                    </dropdown-label__text>
+
+                    <img src="icons/chevron-down.svg" alt="Down Arrow">
+                  </dropdown-label>
+
+                  <dropdown-content>
+                    <ul class="dropdown-list scrollable" id="alignmentDropdown">
+                      <li class="dropdown-list__item">
+                        <input type="radio" id="unaligned" name="alignment"
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)"
+                          checked>
+                        <label class="dropdown-list__item__label" for="unaligned">
+                          <img src="icons/patch-question.svg" alt="Question Mark Icon">
+                          <div class="dropdown-list__item__label__text">Unaligned</div>
+                        </label>
+                      </li>
+
+                      <li class="dropdown-list__item">
                         <input type="radio" id="lawfulGoodAlignment" name="alignment"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="lawfulGoodAlignment">
-                          <div class="dropdownListItemLabelText">Lawful Good</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="lawfulGoodAlignment">
+                          <div class="dropdown-list__item__label__text">Lawful Good</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="neutralGoodAlignment" name="alignment"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="neutralGoodAlignment">
-                          <div class="dropdownListItemLabelText">Neutral Good</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="neutralGoodAlignment">
+                          <div class="dropdown-list__item__label__text">Neutral Good</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="chaoticGoodAlignment" name="alignment"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="chaoticGoodAlignment">
-                          <div class="dropdownListItemLabelText">Chaotic Good</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="chaoticGoodAlignment">
+                          <div class="dropdown-list__item__label__text">Chaotic Good</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="lawfulNeutralAlignment" name="alignment"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="lawfulNeutralAlignment">
-                          <div class="dropdownListItemLabelText">Lawful Neutral</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="lawfulNeutralAlignment">
+                          <div class="dropdown-list__item__label__text">Lawful Neutral</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="trueNeutralAlignment" name="alignment"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="trueNeutralAlignment">
-                          <div class="dropdownListItemLabelText">True Neutral</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="trueNeutralAlignment">
+                          <div class="dropdown-list__item__label__text">True Neutral</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="chaoticNeutralAlignment" name="alignment"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="chaoticNeutralAlignment">
-                          <div class="dropdownListItemLabelText">Chaotic Neutral</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="chaoticNeutralAlignment">
+                          <div class="dropdown-list__item__label__text">Chaotic Neutral</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="lawfulEvilAlignment" name="alignment"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="lawfulEvilAlignment">
-                          <div class="dropdownListItemLabelText">Lawful Evil</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="lawfulEvilAlignment">
+                          <div class="dropdown-list__item__label__text">Lawful Evil</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="neutralEvilAlignment" name="alignment"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="neutralEvilAlignment">
-                          <div class="dropdownListItemLabelText">Neutral Evil</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="neutralEvilAlignment">
+                          <div class="dropdown-list__item__label__text">Neutral Evil</div>
                         </label>
                       </li>
 
-                      <li>
+                      <li class="dropdown-list__item">
                         <input type="radio" id="chaoticEvilAlignment" name="alignment"
-                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdownListItemLabelText').innerHTML, this)">
-                        <label class="dropdownListItemLabel" for="chaoticEvilAlignment">
-                          <div class="dropdownListItemLabelText">Chaotic Evil</div>
+                          onchange="DropdownSelect(this.parentElement.parentElement, this.parentElement.querySelector('.dropdown-list__item__label__text').innerHTML, this)">
+                        <label class="dropdown-list__item__label" for="chaoticEvilAlignment">
+                          <div class="dropdown-list__item__label__text">Chaotic Evil</div>
                         </label>
                       </li>
                     </ul>
-                    <button class="largeActionButton" type="reset"
-                      onclick="ResetDropdown(this.parentElement.parentElement.querySelector('ul'))"
-                      aria-label="Clear Selection">
-                      <img src="icons/x.svg" alt="Save Icon">
-                      Clear
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <label class="infoFieldContainer" for="xpField">
-              <div class="infoFieldLabel">XP</div>
-              <input type="number" class="infoField clickable inputElement" id="xpField" min="0" max="355000" value="0"
-                onchange="Profile.ActiveElement.xp = this.value">
+                  </dropdown-content>
+                </dropdown>
+              </dropdown--wrapper>
+            </dropdown--wrapper--anchor>
+
+            <label class="input-field--container">
+              <div class="input-field__label">XP</div>
+              <input type="number" class="input-field" id="xpField" min="0" max="355000" value="0"
+                onchange="NormalizeInput(this); Profile.ActiveProfile.xp = this.value">
             </label>
+
           </div>
-        </div>
-        <div class="characterSavingThrows sheetContentSection">
+        </sheet-section>
+        <sheet-section id="character-saving-throws">
 
           <div class="savingThrowBox modifierSelectionBox" id="str_savingThrowBox">
             <div class="modifierSelectionLeft">
@@ -1309,8 +1351,8 @@
             </div>
           </div>
 
-        </div>
-        <div class="characterAbilities sheetContentSection">
+        </sheet-section>
+        <sheet-section id="character-abilities">
           <div class="abilityBox">
             <h1 class="modifierValue">+0</h1>
             <div class="abilityInfo">
@@ -1359,8 +1401,8 @@
                 onchange="UpdateAbility(this, 'cha')">
             </div>
           </div>
-        </div>
-        <div class="characterSkills sheetContentSection">
+        </sheet-section>
+        <sheet-section id="character-skills">
 
           <div class="skillBox modifierSelectionBox" id="acrobatics_skillBox">
             <div class="modifierSelectionLeft">
@@ -1668,134 +1710,197 @@
             </div>
           </div>
 
-        </div>
-        <div class="characterInventory sheetContentSection">
-          <div class="coinsWrapper">
-
-            <label class="infoFieldContainer" for="copper">
-              <div class="infoFieldLabel">Copper</div>
-              <input type="number" class="infoField clickable inputElement" id="copper" min="0" value="0" onchange="UpdateCoin(this)">
-            </label>
-
-            <label class="infoFieldContainer" for="silver">
-              <div class="infoFieldLabel">Silver</div>
-              <input type="number" class="infoField clickable inputElement" id="silver" min="0" value="0" onchange="UpdateCoin(this)">
-            </label>
-
-            <label class="infoFieldContainer" for="electrum">
-              <div class="infoFieldLabel">Electrum</div>
-              <input type="number" class="infoField clickable inputElement" id="electrum" min="0" value="0" onchange="UpdateCoin(this)">
-            </label>
-
-            <label class="infoFieldContainer" for="gold">
-              <div class="infoFieldLabel">Gold</div>
-              <input type="number" class="infoField clickable inputElement" id="gold" min="0" value="0" onchange="UpdateCoin(this)">
-            </label>
-
-            <label class="infoFieldContainer" for="platinum">
-              <div class="infoFieldLabel">Platinum</div>
-              <input type="number" class="infoField clickable inputElement" id="platinum" min="0" value="0" onchange="UpdateCoin(this)">
-            </label>
-          </div>
+        </sheet-section>
+        <sheet-section id="character-inventory">
 
           <div class="equipment">
             <div class="equipmentTitle">
-              <div class="equipmentTitleText">Equipment</div>
-              <button type="button" aria-label="Settings">
-                <img src="icons/plus.svg" alt="Gear Icon">
-                <div class="buttonText">Add</div>
-              </button>
+              <div class="equipmentTitleText" id="equipmentTitle" data-after-content="(0)">Equipment</div>
+              <div class="buttonWrapper">
+                <input type="checkbox" id="showNotes" onchange="ToggleEquipmentNotes(this.checked)">
+                <label type="button" for="showNotes">
+                  <img src="icons/journal.svg" alt="Journal Icon">
+                  <div class="buttonText">Notes</div>
+                </label>
+                <button type="button" aria-label="Settings" onclick="AddEquipment()">
+                  <img src="icons/plus.svg" alt="Plus Icon">
+                </button>
+              </div>
             </div>
-            <ul>
+            <ul id="equipmentList">
+
+              <li>
+                <div class="horizontalRegion">
+                  <input type="number" class="input-field" name="equipmentCount" min="0" value="1"
+                    aria-label="Equipment Count" onchange="UpdateEquipment(this.parentElement.parentElement)">
+                  <input type="text" class="input-field" name="equipmentName" placeholder="Equipment Name"
+                    aria-label="Equipment Name" onchange="UpdateEquipment(this.parentElement.parentElement)">
+                </div>
+
+                <textarea type="text" name="equipmentNotes" placeholder="Notes" aria-label="Equpment Notes"
+                  onchange="UpdateEquipment(this.parentElement)" data-disabled="true" disabled></textarea>
+              </li>
 
             </ul>
           </div>
-        </div>
-      </section>
 
-      <section class="sheetContent" id="combatSheet">
+          <div class="coinsWrapper">
+
+            <label class="input-field--container" for="copper">
+              <div class="input-field__label">Copper</div>
+              <input type="number" class="input-field" id="copper" min="0" value="0"
+                onchange="UpdateCoin(this)">
+            </label>
+
+            <label class="input-field--container" for="silver">
+              <div class="input-field__label">Silver</div>
+              <input type="number" class="input-field" id="silver" min="0" value="0"
+                onchange="UpdateCoin(this)">
+            </label>
+
+            <label class="input-field--container" for="electrum">
+              <div class="input-field__label">Electrum</div>
+              <input type="number" class="input-field" id="electrum" min="0" value="0"
+                onchange="UpdateCoin(this)">
+            </label>
+
+            <label class="input-field--container" for="gold">
+              <div class="input-field__label">Gold</div>
+              <input type="number" class="input-field" id="gold" min="0" value="0"
+                onchange="UpdateCoin(this)">
+            </label>
+
+            <label class="input-field--container" for="platinum">
+              <div class="input-field__label">Platinum</div>
+              <input type="number" class="input-field" id="platinum" min="0" value="0"
+                onchange="UpdateCoin(this)">
+            </label>
+          </div>
+        </sheet-section>
+        <sheet-section id="character-proficiencies">
+          <label class="input-field--container" for="proficiencyBonus">
+            <div class="input-field__label">Proficiency Bonus</div>
+            <input type="text" class="clickable modifier-input input-field" id="proficiencyBonus" min="2" max="6"
+              value="+2" onchange="UpdateProficiencyBonus()">
+          </label>
+
+          <div class="proficiencyListWrapper">
+
+            <button role="button" type="button" class="addButton" onclick="AddProficiency()">
+              <img src="icons/plus.svg" alt="Plus">
+              <div>Add Proficiency</div>
+            </button>
+
+            <ul class="proficiencyList" id="proficiencyList">
+              <li>
+                <input type="text" class="input-field" name="proficiencyName" placeholder="Name"
+                  aria-label="Proficiency Name" onchange="UpdateProficiency(this.parentElement)">
+                <button type="button" class="circle-icon-button" onclick="RemoveProficiency(this.parentElement)">
+                  <img src="icons/x.svg" alt="Close Icon">
+                </button>
+              </li>
+            </ul>
+          </div>
+        </sheet-section>
+      </sheet>
+
+      <sheet id="combatSheet">
         Combat Sheet
-      </section>
+      </sheet>
 
-      <section class="sheetContent" id="lookSheet">
+      <sheet id="lookSheet">
         Look Sheet
-      </section>
+      </sheet>
 
-      <section class="sheetContent" id="spellsSheet">
+      <sheet id="spellsSheet">
         Spells Sheet
-      </section>
-    </div>
-  </section>
+      </sheet>
+    </panel-content>
+  </panel>
 
   <main>
     <header>
-      <section class="navArea">
-        <button class="settingsButton circleIconButton" type="button" aria-label="Settings" onclick="OpenSettings()">
+      <section id="navigation-area">
+
+        <button id="settings-button" class="circle-icon-button" type="button" aria-label="Settings"
+          onclick="OpenSettings()">
           <img src="icons/gear.svg" alt="Gear Icon">
         </button>
-        <nav class="profileSection">
-          <div class="tabCounter">1</div>
-          <div class="tabs">
+
+        <nav id="tabs--container">
+          <div id="tab-counter">1</div>
+          <div id="tabs">
+
             <div class="tab clickable" onclick="SelectTab(this)">
-              <input tabindex="0" type="text" aria-label="Character Name" class="tabName clickable"
+              <input tabindex="0" type="text" aria-label="Character Name" class="tab-name clickable"
                 value="Dungeon Master" placeholder="Name Here" autocomplete="off" autocorrect="off" spellcheck="false"
-                oninput="Profile.ActiveElement.name = this.value; UpdateSheets()" name="tabNameInput">
-              <button class="closeTab circleIconButton" type="button" aria-label="Close Tab"
+                oninput="Profile.ActiveProfile.name = this.value; UpdateSheets()" name="tabNameInput">
+
+              <button class="close-tab circle-icon-button" type="button" aria-label="Close Tab"
                 onmousedown="RequestDeleteTab(this.parentElement)" onclick="RequestDeleteTab(this.parentElement)">
                 <img src="icons/x.svg" alt="Close Icon">
               </button>
             </div>
+
           </div>
-          <button class="newTab circleIconButton" type="button" aria-label="New Tab" onclick="NewTab()">
+
+          <button id="new-tab" class="circle-icon-button" type="button" aria-label="New Tab" onclick="NewTab()">
             <img src="icons/plus.svg" alt="Plus Icon">
           </button>
         </nav>
+
       </section>
-      <section class="characterInfo">
+      <section id="character-info">
+
         <input autocomplete="off" autocorrect="off" spellcheck="false"
-          oninput="Profile.ActiveElement.name = this.value; UpdateSheets()" class="characterName clickable" type="text"
-          aria-label="Character Name" value="Dungeon Master" placeholder="Name Here" id="characterNameGlobal">
-        <div class="characterActions">
-          <button class="circleIconButton" type="button" aria-label="Download JSON" onclick="DownloadActiveProfile()">
+          oninput="Profile.ActiveProfile.name = this.value; UpdateSheets()" class="clickable" type="text"
+          aria-label="Character Name" value="Dungeon Master" placeholder="Name Here" id="character-name">
+
+        <div id="character-actions">
+          <button class="circle-icon-button" type="button" aria-label="Download JSON" onclick="DownloadActiveProfile()">
             <img src="icons/download.svg" alt="Download Icon">
           </button>
-          <button class="circleIconButton" type="button" aria-label="Upload JSON"
+          <button class="circle-icon-button" type="button" aria-label="Upload JSON"
             onclick="RequestUploadActiveProfile()">
             <img src="icons/upload.svg" alt="Upload Icon">
           </button>
-          <button class="circleIconButton" type="button" aria-label="Open Sheet" onclick="OpenSheet()">
+          <button class="circle-icon-button" type="button" aria-label="Open Sheet" onclick="OpenSheet()">
             <img src="icons/layout-sidebar-inset-reverse.svg" alt="Open Icon">
           </button>
         </div>
+
       </section>
     </header>
-    <section class="workspace">
-      <section class="history">
-        <div class="historySectionTitle">
+
+    <section id="workspace">
+      <section id="history-area">
+        <div id="history__title">
           <img src="icons/bank.svg" alt="Archive Icon">
           <h1>History</h1>
         </div>
-        <ul class="historyList">
+
+        <ul id="history__list">
           <li class="clickable">
-            <button class="deleteContainer" type="button" aria-label="Delete Item"
-              onclick="DeleteHistoryAt(this.parentElement)">
+            <button type="button" aria-label="Delete Item" onclick="DeleteHistoryAt(this.parentElement)">
               <img src="icons/trash.svg" alt="Trash Icon">
             </button>
-            <div class="rollDataContainer">
-              <div class="rollValue"></div>
-              <div class="rollInfo"></div>
+            <div class="history__list-item__data--container">
+              <div class="history__list-item__data-main"></div>
+              <div class="history__list-item__data-formula"></div>
             </div>
           </li>
         </ul>
 
-        <button class="largeActionButton" type="button" onclick="DeleteHistory()">
-          <img src="icons/x.svg" alt="Save Icon">
-          Clear
-        </button>
-        <button class="largeActionButton TEST_ROLL" type="button" onclick="Roll(21, 'd20 + CHA(+1)')">
-          <img src="icons/bug.svg" alt="Debug Icon">
-          Test
-        </button>
+        <div class="horizontal-buttons">
+          <button class="primary-button" type="button" onclick="DeleteHistory()">
+            <img src="icons/x.svg" alt="Close Icon">
+            Clear
+          </button>
+          <button class="primary-button" type="button" onclick="Roll(21, 'd20 + CHA(+1)')">
+            <img src="icons/bug.svg" alt="Debug Icon">
+            Test
+          </button>
+        </div>
       </section>
       <section class="game">
 
