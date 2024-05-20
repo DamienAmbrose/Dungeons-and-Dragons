@@ -203,8 +203,8 @@ function Escape() {
 //#endregion
 
 //#region Loader
-let loader = document.querySelector('#loader');
-let loaderMask = document.querySelector('#loader__mask');
+let loader = document.querySelector('loader');
+let loaderMask = document.querySelector('loader__mask');
 window.addEventListener("load", function () {
     setTimeout(function () {
         loaderMask.style.height = '100vh';
@@ -369,8 +369,8 @@ function HandleUpload(event) {
 
 //#region Popups
 var popUp = document.querySelector('pop-up');
-var popUpTitle = popUp.querySelector('#pop-up__title');
-var popUpContent = popUp.querySelector('#pop-up__content');
+var popUpTitle = popUp.querySelector('pop-up__title');
+var popUpContent = popUp.querySelector('pop-up__content');
 var popUpPositive = popUp.querySelector('#pop-up__button-true');
 var popUpNegative = popUp.querySelector('#pop-up__button-false');
 
@@ -468,7 +468,7 @@ function ToggleEquipmentNotes(state) {
 
 //#region Accessibility
 var main = document.querySelector('main');
-var disablePage = document.querySelector('#disable-page');
+var disablePage = document.querySelector('disable-page');
 
 function DisableChildren(element) {
     if (element == document.querySelector('main')) {
@@ -640,33 +640,33 @@ let proficiencyBox = proficienciesList.firstElementChild;
 equipmentList.innerHTML = "";
 
 let savingThrowProficiencies = {
-    'str': document.querySelector("#str_savingThrowBox .modifierSelectionProficiencyDisplay"),
-    'dex': document.querySelector("#dex_savingThrowBox .modifierSelectionProficiencyDisplay"),
-    'con': document.querySelector("#con_savingThrowBox .modifierSelectionProficiencyDisplay"),
-    'int': document.querySelector("#int_savingThrowBox .modifierSelectionProficiencyDisplay"),
-    'wis': document.querySelector("#wis_savingThrowBox .modifierSelectionProficiencyDisplay"),
-    'cha': document.querySelector("#cha_savingThrowBox .modifierSelectionProficiencyDisplay")
+    'str': document.querySelector("#str-savingThrowBox"),
+    'dex': document.querySelector("#dex-savingThrowBox"),
+    'con': document.querySelector("#con-savingThrowBox"),
+    'int': document.querySelector("#int-savingThrowBox"),
+    'wis': document.querySelector("#wis-savingThrowBox"),
+    'cha': document.querySelector("#cha-savingThrowBox")
 };
 
 let skillProficiencies = {
-    "acrobatics": document.querySelector("#acrobatics_skillBox .modifierSelectionProficiencyDisplay"),
-    "animals": document.querySelector("#animals_skillBox .modifierSelectionProficiencyDisplay"),
-    "arcana": document.querySelector("#arcana_skillBox .modifierSelectionProficiencyDisplay"),
-    "athletics": document.querySelector("#athletics_skillBox .modifierSelectionProficiencyDisplay"),
-    "deception": document.querySelector("#deception_skillBox .modifierSelectionProficiencyDisplay"),
-    "history": document.querySelector("#history_skillBox .modifierSelectionProficiencyDisplay"),
-    "insight": document.querySelector("#insight_skillBox .modifierSelectionProficiencyDisplay"),
-    "intimidation": document.querySelector("#intimidation_skillBox .modifierSelectionProficiencyDisplay"),
-    "investigation": document.querySelector("#investigation_skillBox .modifierSelectionProficiencyDisplay"),
-    "medicine": document.querySelector("#medicine_skillBox .modifierSelectionProficiencyDisplay"),
-    "nature": document.querySelector("#nature_skillBox .modifierSelectionProficiencyDisplay"),
-    "perception": document.querySelector("#perception_skillBox .modifierSelectionProficiencyDisplay"),
-    "performance": document.querySelector("#performance_skillBox .modifierSelectionProficiencyDisplay"),
-    "persuasion": document.querySelector("#persuasion_skillBox .modifierSelectionProficiencyDisplay"),
-    "religion": document.querySelector("#religion_skillBox .modifierSelectionProficiencyDisplay"),
-    "soh": document.querySelector("#soh_skillBox .modifierSelectionProficiencyDisplay"),
-    "stealth": document.querySelector("#stealth_skillBox .modifierSelectionProficiencyDisplay"),
-    "survival": document.querySelector("#survival_skillBox .modifierSelectionProficiencyDisplay")
+    "acrobatics": document.querySelector("#acrobatics-skillBox"),
+    "animals": document.querySelector("#animals-skillBox"),
+    "arcana": document.querySelector("#arcana-skillBox"),
+    "athletics": document.querySelector("#athletics-skillBox"),
+    "deception": document.querySelector("#deception-skillBox"),
+    "history": document.querySelector("#history-skillBox"),
+    "insight": document.querySelector("#insight-skillBox"),
+    "intimidation": document.querySelector("#intimidation-skillBox"),
+    "investigation": document.querySelector("#investigation-skillBox"),
+    "medicine": document.querySelector("#medicine-skillBox"),
+    "nature": document.querySelector("#nature-skillBox"),
+    "perception": document.querySelector("#perception-skillBox"),
+    "performance": document.querySelector("#performance-skillBox"),
+    "persuasion": document.querySelector("#persuasion-skillBox"),
+    "religion": document.querySelector("#religion-skillBox"),
+    "soh": document.querySelector("#soh-skillBox"),
+    "stealth": document.querySelector("#stealth-skillBox"),
+    "survival": document.querySelector("#survival-skillBox")
 }
 
 let abilityScoreInputs = {
@@ -739,7 +739,7 @@ function NextModifierProficiency(buttonElement, modifier, modifierType) {
 }
 
 function UpdateSavingThrowProficiency(buttonElement, modifier, targetValue) {
-    var targetOutput = buttonElement.parentElement.parentElement.querySelector('.modifierOutput');
+    var targetOutput = buttonElement.querySelector('modifier-proficiency__output');
 
     Profile.ActiveProfile.savingThrowMultipliers[modifier] = PROFICIENCY_INDEX_TO_MULTIPLIER[targetValue];
     buttonElement.setAttribute("data-modifier-proficiency", targetValue);
@@ -747,7 +747,7 @@ function UpdateSavingThrowProficiency(buttonElement, modifier, targetValue) {
 }
 
 function UpdateSkillProficiency(buttonElement, modifier, targetValue) {
-    var targetOutput = buttonElement.parentElement.parentElement.querySelector('.modifierOutput');
+    var targetOutput = buttonElement.querySelector('modifier-proficiency__output');
 
     Profile.ActiveProfile.skillMultipliers[modifier] = PROFICIENCY_INDEX_TO_MULTIPLIER[targetValue];
     buttonElement.setAttribute("data-modifier-proficiency", targetValue);

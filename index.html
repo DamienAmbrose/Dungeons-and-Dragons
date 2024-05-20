@@ -11,21 +11,21 @@
 </head>
 
 <body>
-  <div id="loader">
-    <div id="loader__mask"></div>
-    <div id="loader__anchor">
-      <div class="loader__circle"></div>
-      <div class="loader__circle"></div>
-      <div class="loader__circle"></div>
-    </div>
+  <loader>
+    <loader__mask></loader__mask>
+    <loader__anchor>
+      <loader__circle></loader__circle>
+      <loader__circle></loader__circle>
+      <loader__circle></loader__circle>
+    </loader__anchor>
     <h1></h1>
-  </div>
+  </loader>
 
-  <div id="disable-page" onclick="Escape()"></div>
+  <disable-page onclick="Escape()"></disable-page>
 
   <pop-up>
-    <h1 id="pop-up__title">Title Here</h1>
-    <p id="pop-up__content">Explain the reason for this pop up here</p>
+    <pop-up__title>Title Here</pop-up__title>
+    <pop-up__content>Explain the reason for this pop up here</pop-up__content>
     <div class="horizontal-buttons">
       <button type="submit" id="pop-up__button-false" class="popUpButton secondary-button" onclick="HidePopUp()"
         disabled>No</button>
@@ -45,116 +45,116 @@
         <button class="settings-group__title--wrapper" type="button" aria-label="Toggle Profiles Section"
           onclick="ToggleSettingGroup(this.parentElement.children[1], this.children[0])" disabled>
           <img src="icons/chevron-right.svg" alt="Arrow Icon" class="arrow active">
-          <div class="settings-group__title">
+          <settings-group__title>
             <img src="icons/people.svg" alt="Profiles Icon">
             <h2 class="settings-group__title__text">Profiles</h2>
-          </div>
+          </settings-group__title>
         </button>
-        <div class="settings-group__content active">
+        <settings-group__content class="active">
           <div>section content</div>
-        </div>
+        </settings-group__content>
       </settings-group>
 
       <settings-group>
         <button class="settings-group__title--wrapper" type="button" aria-label="Toggle Audio Section"
           onclick="ToggleSettingGroup(this.parentElement.children[1], this.children[0])" disabled>
           <img src="icons/chevron-right.svg" alt="Arrow Icon" class="arrow active">
-          <div class="settings-group__title">
+          <settings-group__title>
             <img src="icons/volume-up.svg" alt="Audio Icon">
             <h2 class="settings-group__title__text">Audio</h2>
-          </div>
+          </settings-group__title>
         </button>
-        <div class="settings-group__content active">
+        <settings-group__content class="active">
 
-          <div class="setting-option--wrapper">
+          <setting-option--wrapper>
             <label class="setting-option" for="sfx">
               <div class="setting-option__text">SFX</div>
-              <input type="checkbox" class="switchBox" id="sfx" checked>
-              <div class="switch">
-                <div></div>
-              </div>
+              <input type="checkbox" class="switch-input" id="sfx" checked>
+              <switch>
+                <switch__bubble></switch__bubble>
+              </switch>
             </label>
-          </div>
+          </setting-option--wrapper>
 
-          <div class="setting-option--wrapper">
+          <setting-option--wrapper>
             <label class="setting-option" for="music">
               <div class="setting-option__text">Music</div>
-              <input type="checkbox" class="switchBox" id="music">
-              <div class="switch">
-                <div></div>
-              </div>
+              <input type="checkbox" class="switch-input" id="music">
+              <switch>
+                <switch__bubble></switch__bubble>
+              </switch>
             </label>
-          </div>
+          </setting-option--wrapper>
 
-        </div>
+        </settings-group__content>
       </settings-group>
 
       <settings-group>
         <button class="settings-group__title--wrapper" type="button" aria-label="Toggle Appearence Section"
           onclick="ToggleSettingGroup(this.parentElement.children[1], this.children[0])" disabled>
           <img src="icons/chevron-right.svg" alt="Arrow Icon" class="arrow active">
-          <div class="settings-group__title">
+          <settings-group__title>
             <img src="icons/palette.svg" alt="Palette Icon">
             <h2 class="settings-group__title__text">Appearence</h2>
-          </div>
+          </settings-group__title>
         </button>
-        <div class="settings-group__content active">
+        <settings-group__content class="active">
 
-          <div class="setting-option--wrapper">
+          <setting-option--wrapper>
             <label class="setting-option" for="animations">
               <div class="setting-option__text">Animations</div>
-              <input type="checkbox" class="switchBox" id="animations" checked>
-              <div class="switch">
-                <div></div>
-              </div>
+              <input type="checkbox" class="switch-input" id="animations" checked>
+              <switch>
+                <switch__bubble></switch__bubble>
+              </switch>
             </label>
-          </div>
+          </setting-option--wrapper>
 
-          <div class="setting-option--wrapper">
+          <setting-option--wrapper>
             <label class="setting-option" for="infoBar">
               <div class="setting-option__text">Blurring</div>
-              <input type="checkbox" class="switchBox" id="infoBar" checked>
-              <div class="switch">
-                <div></div>
-              </div>
+              <input type="checkbox" class="switch-input" id="infoBar" checked>
+              <switch>
+                <switch__bubble></switch__bubble>
+              </switch>
             </label>
-          </div>
+          </setting-option--wrapper>
 
-          <div class="setting-option--wrapper">
+          <setting-option--wrapper>
             <label class="setting-option" for="history">
               <div class="setting-option__text">History</div>
-              <input type="checkbox" class="switchBox" id="history" checked>
-              <div class="switch">
-                <div></div>
-              </div>
+              <input type="checkbox" class="switch-input" id="history" checked>
+              <switch>
+                <switch__bubble></switch__bubble>
+              </switch>
             </label>
-          </div>
+          </setting-option--wrapper>
 
-        </div>
+        </settings-group__content>
       </settings-group>
 
       <settings-group>
         <button class="settings-group__title--wrapper" type="button" aria-label="Toggle Backups Section"
           onclick="ToggleSettingGroup(this.parentElement.children[1], this.children[0])" disabled>
           <img src="icons/chevron-right.svg" alt="Arrow Icon" class="arrow active">
-          <div class="settings-group__title">
+          <settings-group__title>
             <img src="icons/hdd.svg" alt="Backup Icon">
             <h2 class="settings-group__title__text">Backups</h2>
-          </div>
+          </settings-group__title>
         </button>
-        <div class="settings-group__content active">
+        <settings-group__content class="active">
 
-          <div class="setting-option--wrapper">
+          <setting-option--wrapper>
             <label class="setting-option" for="useCookies">
               <div class="setting-option__text">Cookies</div>
-              <input type="checkbox" class="switchBox" id="useCookies" checked>
-              <div class="switch">
-                <div></div>
-              </div>
+              <input type="checkbox" class="switch-input" id="useCookies" checked>
+              <switch>
+                <switch__bubble></switch__bubble>
+              </switch>
             </label>
-          </div>
+          </setting-option--wrapper>
 
-        </div>
+        </settings-group__content>
       </settings-group>
 
     </panel-content>
@@ -214,7 +214,7 @@
           </div>
           <div id="character-type__details">
 
-            <label class="input-field--container">
+            <label class="input-field--container" for="">
               <dropdown--wrapper--anchor>
                 <dropdown--wrapper>
                   <dropdown tabindex="0" aria-label="Class Dropdown">
@@ -1249,110 +1249,129 @@
         </sheet-section>
         <sheet-section id="character-saving-throws">
 
-          <div class="savingThrowBox modifierSelectionBox" id="str_savingThrowBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'str', 'savingThrow')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Strength</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+          <button type="button" class="modifier-proficiency-box" id="str-savingThrowBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'str', 'savingThrow')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
 
-          <div class="savingThrowBox modifierSelectionBox" id="dex_savingThrowBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'dex', 'savingThrow')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Dexterity</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="savingThrowBox modifierSelectionBox" id="con_savingThrowBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'con', 'savingThrow')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Constitution</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="savingThrowBox modifierSelectionBox" id="int_savingThrowBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'int', 'savingThrow')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Intelligence</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            </modifier-proficiency__indicator>
 
-          <div class="savingThrowBox modifierSelectionBox" id="wis_savingThrowBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'wis', 'savingThrow')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Wisdom</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            <modifier-proficiency__label>Dexterity</modifier-proficiency__label>
 
-          <div class="savingThrowBox modifierSelectionBox" id="cha_savingThrowBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'cha', 'savingThrow')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Charisma</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+
+          <button type="button" class="modifier-proficiency-box" id="dex-savingThrowBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'dex', 'savingThrow')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Strength</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+
+          <button type="button" class="modifier-proficiency-box" id="con-savingThrowBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'con', 'savingThrow')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Constitution</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+
+          <button type="button" class="modifier-proficiency-box" id="int-savingThrowBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'int', 'savingThrow')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Intelligence</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+
+          <button type="button" class="modifier-proficiency-box" id="wis-savingThrowBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'wis', 'savingThrow')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Wisdom</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+
+          <button type="button" class="modifier-proficiency-box" id="cha-savingThrowBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'cha', 'savingThrow')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Charisma</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
 
         </sheet-section>
         <sheet-section id="character-abilities">
+          
           <div class="abilityBox">
             <h1 class="modifierValue">+0</h1>
             <div class="abilityInfo">
@@ -1403,312 +1422,366 @@
           </div>
         </sheet-section>
         <sheet-section id="character-skills">
+          
+          <button type="button" class="modifier-proficiency-box" id="acrobatics-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'acrobatics', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
 
-          <div class="skillBox modifierSelectionBox" id="acrobatics_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'acrobatics', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Acrobatics</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="skillBox modifierSelectionBox" id="animals_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'animals', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Animal Handling</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="skillBox modifierSelectionBox" id="arcana_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'arcana', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Arcana</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            </modifier-proficiency__indicator>
 
-          <div class="skillBox modifierSelectionBox" id="athletics_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'athletics', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Athletics</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            <modifier-proficiency__label>Acrobatics</modifier-proficiency__label>
 
-          <div class="skillBox modifierSelectionBox" id="deception_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'deception', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Deception</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="animals-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'animals', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
 
-          <div class="skillBox modifierSelectionBox" id="history_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'history', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">History</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="skillBox modifierSelectionBox" id="insight_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'insight', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Insight</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="skillBox modifierSelectionBox" id="intimidation_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'intimidation', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Intimidation</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            </modifier-proficiency__indicator>
 
-          <div class="skillBox modifierSelectionBox" id="investigation_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'investigation', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Investigation</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            <modifier-proficiency__label>Animals</modifier-proficiency__label>
 
-          <div class="skillBox modifierSelectionBox" id="medicine_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'medicine', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Medicine</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="arcana-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'arcana', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
 
-          <div class="skillBox modifierSelectionBox" id="nature_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'nature', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Nature</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="skillBox modifierSelectionBox" id="perception_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'perception', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Perception</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="skillBox modifierSelectionBox" id="performance_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'performance', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Performance</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            </modifier-proficiency__indicator>
 
-          <div class="skillBox modifierSelectionBox" id="persuasion_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'persuasion', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Persuasion</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            <modifier-proficiency__label>Arcana</modifier-proficiency__label>
 
-          <div class="skillBox modifierSelectionBox" id="religion_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'religion', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Religion</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="athletics-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'athletics', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
 
-          <div class="skillBox modifierSelectionBox" id="soh_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'soh', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Sleight of Hand</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="skillBox modifierSelectionBox" id="stealth_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'stealth', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Stealth</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
 
-          <div class="skillBox modifierSelectionBox" id="survival_skillBox">
-            <div class="modifierSelectionLeft">
-              <button type="button" class="modifierSelectionProficiencyDisplay"
-                onclick="NextModifierProficiency(this, 'survival', 'skill')" data-modifier-proficiency="0"
-                aria-label="Change Proficiency Type">
-                <div class="STP_pill">
-                  <div class="STP_circle"></div>
-                </div>
-                <div class="STP_pill"></div>
-              </button>
-              <div class="modifierLabel">Survival</div>
-            </div>
-            <div class="modifierOutputWrapper">
-              <div class="modifierOutput">+0</div>
-            </div>
-          </div>
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Athletics</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="deception-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'deception', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Deception</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="history-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'history', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>History</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="insight-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'insight', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Insight</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="intimidation-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'intimidation', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Intimidation</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="investigation-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'investigation', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Investigation</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="medicine-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'medicine', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Medicine</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="nature-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'nature', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Nature</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="perception-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'perception', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Perception</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="performance-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'performance', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Performance</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="persuasion-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'persuasion', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Persuasion</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="religion-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'religion', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Religion</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="soh-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'soh', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Sleight of Hand</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="stealth-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'stealth', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Stealth</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
+          
+          <button type="button" class="modifier-proficiency-box" id="survival-skillBox" aria-label="Change Proficiency Type" onclick="NextModifierProficiency(this, 'survival', 'skill')" data-modifier-proficiency="0">
+            <modifier-proficiency__indicator>
+
+              <modifier-proficiency__indicator__pill>
+                <modifier-proficiency__indicator__pill-inner>
+                </modifier-proficiency__indicator__pill-inner>
+              </modifier-proficiency__indicator__pill>
+
+              <modifier-proficiency__indicator__pill>
+              </modifier-proficiency__indicator__pill>
+
+            </modifier-proficiency__indicator>
+
+            <modifier-proficiency__label>Survival</modifier-proficiency__label>
+
+            <modifier-proficiency__output--wrapper>
+              <modifier-proficiency__output>+0</modifier-proficiency__output>
+            </modifier-proficiency__output--wrapper>
+          </button>
 
         </sheet-section>
         <sheet-section id="character-inventory">
