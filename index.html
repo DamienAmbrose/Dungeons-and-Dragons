@@ -36,7 +36,6 @@
 
   <panel id="settings-panel">
     <panel-title>
-      <img src="icons/gear.svg" alt="Gear Icon">
       <h1>Settings</h1>
     </panel-title>
     <panel-content>
@@ -172,7 +171,6 @@
 
   <panel id="sheets-panel">
     <panel-title>
-      <img src="icons/clipboard.svg" alt="Clipboard Icon">
       <h1>Sheets</h1>
     </panel-title>
 
@@ -1240,7 +1238,7 @@
             </dropdown--wrapper--anchor>
 
             <label class="input-field--container">
-              <div class="input-field__label">XP</div>
+              <input-field__label>XP</input-field__label>
               <input type="number" class="input-field" id="xpField" min="0" max="355000" value="0"
                 onchange="NormalizeInput(this); Profile.ActiveProfile.xp = this.value">
             </label>
@@ -1262,7 +1260,7 @@
 
             </modifier-proficiency__indicator>
 
-            <modifier-proficiency__label>Dexterity</modifier-proficiency__label>
+            <modifier-proficiency__label>Strength</modifier-proficiency__label>
 
             <modifier-proficiency__output--wrapper>
               <modifier-proficiency__output>+0</modifier-proficiency__output>
@@ -1282,7 +1280,7 @@
 
             </modifier-proficiency__indicator>
 
-            <modifier-proficiency__label>Strength</modifier-proficiency__label>
+            <modifier-proficiency__label>Dexterity</modifier-proficiency__label>
 
             <modifier-proficiency__output--wrapper>
               <modifier-proficiency__output>+0</modifier-proficiency__output>
@@ -1371,55 +1369,79 @@
 
         </sheet-section>
         <sheet-section id="character-abilities">
-          
-          <div class="abilityBox">
-            <h1 class="modifierValue">+0</h1>
-            <div class="abilityInfo">
-              <label for="strScore" class="abilityName">Strength (STR)</label>
-              <input type="number" class="abilityScore" id="strScore" min="1" max="30" value="10"
+
+          <label class="ability-box" for="strScore">
+            <ability-box__modifier--wrapper>
+              <ability-box__modifier>+0</ability-box__modifier>
+            </ability-box__modifier--wrapper>
+            
+            <ability-box__content>
+              <ability-box__content__name>Strength</ability-box__content__name>
+              <input type="number" class="ability-box__content__input" id="strScore" min="1" max="30" value="10"
                 onchange="UpdateAbility(this, 'str')">
-            </div>
-          </div>
-          <div class="abilityBox">
-            <h1 class="modifierValue">+0</h1>
-            <div class="abilityInfo">
-              <label for="dexScore" class="abilityName">Dexterity (DEX)</label>
-              <input type="number" class="abilityScore" id="dexScore" min="1" max="30" value="10"
+            </ability-box__content>
+          </label>
+
+          <label class="ability-box" for="dexScore">
+            <ability-box__modifier--wrapper>
+              <ability-box__modifier>+0</ability-box__modifier>
+            </ability-box__modifier--wrapper>
+            
+            <ability-box__content>
+              <ability-box__content__name>Dexterity</ability-box__content__name>
+              <input type="number" class="ability-box__content__input" id="dexScore" min="1" max="30" value="10"
                 onchange="UpdateAbility(this, 'dex')">
-            </div>
-          </div>
-          <div class="abilityBox">
-            <h1 class="modifierValue">+0</h1>
-            <div class="abilityInfo">
-              <label for="conScore" class="abilityName">Constitution (CON)</label>
-              <input type="number" class="abilityScore" id="conScore" min="1" max="30" value="10"
+            </ability-box__content>
+          </label>
+
+          <label class="ability-box" for="conScore">
+            <ability-box__modifier--wrapper>
+              <ability-box__modifier>+0</ability-box__modifier>
+            </ability-box__modifier--wrapper>
+            
+            <ability-box__content>
+              <ability-box__content__name>Constitution</ability-box__content__name>
+              <input type="number" class="ability-box__content__input" id="conScore" min="1" max="30" value="10"
                 onchange="UpdateAbility(this, 'con')">
-            </div>
-          </div>
-          <div class="abilityBox">
-            <h1 class="modifierValue">+0</h1>
-            <div class="abilityInfo">
-              <label for="intScore" class="abilityName">Intelligence (INT)</label>
-              <input type="number" class="abilityScore" id="intScore" min="1" max="30" value="10"
+            </ability-box__content>
+          </label>
+
+          <label class="ability-box" for="intScore">
+            <ability-box__modifier--wrapper>
+              <ability-box__modifier>+0</ability-box__modifier>
+            </ability-box__modifier--wrapper>
+            
+            <ability-box__content>
+              <ability-box__content__name>Intelligence</ability-box__content__name>
+              <input type="number" class="ability-box__content__input" id="intScore" min="1" max="30" value="10"
                 onchange="UpdateAbility(this, 'int')">
-            </div>
-          </div>
-          <div class="abilityBox">
-            <h1 class="modifierValue">+0</h1>
-            <div class="abilityInfo">
-              <label for="wisScore" class="abilityName">Wisdom (WIS)</label>
-              <input type="number" class="abilityScore" id="wisScore" min="1" max="30" value="10"
+            </ability-box__content>
+          </label>
+
+          <label class="ability-box" for="wisScore">
+            <ability-box__modifier--wrapper>
+              <ability-box__modifier>+0</ability-box__modifier>
+            </ability-box__modifier--wrapper>
+            
+            <ability-box__content>
+              <ability-box__content__name>Wisdom</ability-box__content__name>
+              <input type="number" class="ability-box__content__input" id="wisScore" min="1" max="30" value="10"
                 onchange="UpdateAbility(this, 'wis')">
-            </div>
-          </div>
-          <div class="abilityBox">
-            <h1 class="modifierValue">+0</h1>
-            <div class="abilityInfo">
-              <label for="chaScore" class="abilityName">Charisma (CHA)</label>
-              <input type="number" class="abilityScore" id="chaScore" min="1" max="30" value="10"
+            </ability-box__content>
+          </label>
+
+          <label class="ability-box" for="chaScore">
+            <ability-box__modifier--wrapper>
+              <ability-box__modifier>+0</ability-box__modifier>
+            </ability-box__modifier--wrapper>
+            
+            <ability-box__content>
+              <ability-box__content__name>Charisma</ability-box__content__name>
+              <input type="number" class="ability-box__content__input" id="chaScore" min="1" max="30" value="10"
                 onchange="UpdateAbility(this, 'cha')">
-            </div>
-          </div>
+            </ability-box__content>
+          </label>
+          
         </sheet-section>
         <sheet-section id="character-skills">
           
@@ -1782,98 +1804,6 @@
               <modifier-proficiency__output>+0</modifier-proficiency__output>
             </modifier-proficiency__output--wrapper>
           </button>
-
-        </sheet-section>
-        <sheet-section id="character-inventory">
-
-          <div class="equipment">
-            <div class="equipmentTitle">
-              <div class="equipmentTitleText" id="equipmentTitle" data-after-content="(0)">Equipment</div>
-              <div class="buttonWrapper">
-                <input type="checkbox" id="showNotes" onchange="ToggleEquipmentNotes(this.checked)">
-                <label type="button" for="showNotes">
-                  <img src="icons/journal.svg" alt="Journal Icon">
-                  <div class="buttonText">Notes</div>
-                </label>
-                <button type="button" aria-label="Settings" onclick="AddEquipment()">
-                  <img src="icons/plus.svg" alt="Plus Icon">
-                </button>
-              </div>
-            </div>
-            <ul id="equipmentList">
-
-              <li>
-                <div class="horizontalRegion">
-                  <input type="number" class="input-field" name="equipmentCount" min="0" value="1"
-                    aria-label="Equipment Count" onchange="UpdateEquipment(this.parentElement.parentElement)">
-                  <input type="text" class="input-field" name="equipmentName" placeholder="Equipment Name"
-                    aria-label="Equipment Name" onchange="UpdateEquipment(this.parentElement.parentElement)">
-                </div>
-
-                <textarea type="text" name="equipmentNotes" placeholder="Notes" aria-label="Equpment Notes"
-                  onchange="UpdateEquipment(this.parentElement)" data-disabled="true" disabled></textarea>
-              </li>
-
-            </ul>
-          </div>
-
-          <div class="coinsWrapper">
-
-            <label class="input-field--container" for="copper">
-              <div class="input-field__label">Copper</div>
-              <input type="number" class="input-field" id="copper" min="0" value="0"
-                onchange="UpdateCoin(this)">
-            </label>
-
-            <label class="input-field--container" for="silver">
-              <div class="input-field__label">Silver</div>
-              <input type="number" class="input-field" id="silver" min="0" value="0"
-                onchange="UpdateCoin(this)">
-            </label>
-
-            <label class="input-field--container" for="electrum">
-              <div class="input-field__label">Electrum</div>
-              <input type="number" class="input-field" id="electrum" min="0" value="0"
-                onchange="UpdateCoin(this)">
-            </label>
-
-            <label class="input-field--container" for="gold">
-              <div class="input-field__label">Gold</div>
-              <input type="number" class="input-field" id="gold" min="0" value="0"
-                onchange="UpdateCoin(this)">
-            </label>
-
-            <label class="input-field--container" for="platinum">
-              <div class="input-field__label">Platinum</div>
-              <input type="number" class="input-field" id="platinum" min="0" value="0"
-                onchange="UpdateCoin(this)">
-            </label>
-          </div>
-        </sheet-section>
-        <sheet-section id="character-proficiencies">
-          <label class="input-field--container" for="proficiencyBonus">
-            <div class="input-field__label">Proficiency Bonus</div>
-            <input type="text" class="clickable modifier-input input-field" id="proficiencyBonus" min="2" max="6"
-              value="+2" onchange="UpdateProficiencyBonus()">
-          </label>
-
-          <div class="proficiencyListWrapper">
-
-            <button role="button" type="button" class="addButton" onclick="AddProficiency()">
-              <img src="icons/plus.svg" alt="Plus">
-              <div>Add Proficiency</div>
-            </button>
-
-            <ul class="proficiencyList" id="proficiencyList">
-              <li>
-                <input type="text" class="input-field" name="proficiencyName" placeholder="Name"
-                  aria-label="Proficiency Name" onchange="UpdateProficiency(this.parentElement)">
-                <button type="button" class="circle-icon-button" onclick="RemoveProficiency(this.parentElement)">
-                  <img src="icons/x.svg" alt="Close Icon">
-                </button>
-              </li>
-            </ul>
-          </div>
         </sheet-section>
       </sheet>
 
@@ -1893,37 +1823,38 @@
 
   <main>
     <header>
-      <section id="navigation-area">
-
-        <button id="settings-button" class="circle-icon-button" type="button" aria-label="Settings"
-          onclick="OpenSettings()">
-          <img src="icons/gear.svg" alt="Gear Icon">
+      <section id="tabs--area">
+        
+        <div class="horizontal-buttons">
+        <button class="tabs__action-button circle-icon-button" type="button" aria-label="Tab Options" onclick="NotImplemented()">
+          <img src="icons/chevron-expand.svg" alt="Expand Icon">
         </button>
+        <input id="quickSettingsToggle" type="checkbox" aria-label="Open Quick Settings" class="tabs__action-button-input" onchange="ToggleQuickSettings(this.checked)">
+        <label class="tabs__action-button circle-icon-button clickable" aria-label="Quick Settings" for="quickSettingsToggle">
+          <img src="icons/list.svg" alt="More Icon">
+        </label>
+      </div>
+        <tabs>
 
-        <nav id="tabs--container">
-          <div id="tab-counter">1</div>
-          <div id="tabs">
+          <tab onclick="SelectTab(this)">
+            <input tabindex="0" type="text" aria-label="Character Name" class="tab-name"
+              value="Dungeon Master" placeholder="Name Here" autocomplete="off" autocorrect="off" spellcheck="false"
+              oninput="Profile.ActiveProfile.name = this.value; UpdateSheets()" name="tabNameInput">
 
-            <div class="tab clickable" onclick="SelectTab(this)">
-              <input tabindex="0" type="text" aria-label="Character Name" class="tab-name clickable"
-                value="Dungeon Master" placeholder="Name Here" autocomplete="off" autocorrect="off" spellcheck="false"
-                oninput="Profile.ActiveProfile.name = this.value; UpdateSheets()" name="tabNameInput">
+            <button class="close-tab circle-icon-button" type="button" aria-label="Close Tab"
+              onmousedown="RequestDeleteTab(this.parentElement)" onclick="RequestDeleteTab(this.parentElement)">
+              <img src="icons/x.svg" alt="Close Icon">
+            </button>
+          </tab>
 
-              <button class="close-tab circle-icon-button" type="button" aria-label="Close Tab"
-                onmousedown="RequestDeleteTab(this.parentElement)" onclick="RequestDeleteTab(this.parentElement)">
-                <img src="icons/x.svg" alt="Close Icon">
-              </button>
-            </div>
+        </tabs>
 
-          </div>
-
-          <button id="new-tab" class="circle-icon-button" type="button" aria-label="New Tab" onclick="NewTab()">
-            <img src="icons/plus.svg" alt="Plus Icon">
-          </button>
-        </nav>
-
+        <button class="tabs__action-button circle-icon-button" type="button" aria-label="New Tab" onclick="NewTab()">
+          <img src="icons/plus.svg" alt="Plus Icon">
+        </button>
       </section>
-      <section id="character-info">
+
+      <section id="actions--area">
 
         <input autocomplete="off" autocorrect="off" spellcheck="false"
           oninput="Profile.ActiveProfile.name = this.value; UpdateSheets()" class="clickable" type="text"
@@ -1937,9 +1868,14 @@
             onclick="RequestUploadActiveProfile()">
             <img src="icons/upload.svg" alt="Upload Icon">
           </button>
-          <button class="circle-icon-button" type="button" aria-label="Open Sheet" onclick="OpenSheet()">
-            <img src="icons/layout-sidebar-inset-reverse.svg" alt="Open Icon">
-          </button>
+          
+        <button id="settings-button" class="circle-icon-button" type="button" aria-label="Settings"
+        onclick="OpenSettings()">
+        <img src="icons/gear.svg" alt="Gear Icon">
+        <button id="sheets-button" class="circle-icon-button" type="button" aria-label="Open Sheets" onclick="OpenSheet()">
+          <img src="icons/clipboard.svg" alt="Clipboard Icon">
+        </button>
+      </button>
         </div>
 
       </section>
@@ -1948,7 +1884,6 @@
     <section id="workspace">
       <section id="history-area">
         <div id="history__title">
-          <img src="icons/bank.svg" alt="Archive Icon">
           <h1>History</h1>
         </div>
 

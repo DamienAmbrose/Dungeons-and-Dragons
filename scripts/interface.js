@@ -85,15 +85,6 @@ class Profile {
         "stealth": 0,
         "survival": 0
     };
-    coins = {
-        "copper": 0,
-        "silver": 0,
-        "electrum": 0,
-        "gold": 0,
-        "platinum": 0
-    };
-    equipment = [];
-    proficiencies = ['Common'];
 }
 
 Profile.list.push(new Profile("Dungeon Master"));
@@ -153,7 +144,7 @@ function NormalizeModifier(inputElement) {
 //#endregion
 
 //#region  Audio
-const hoverableElements = document.querySelectorAll('input, button, .clickable, .tab, label');
+const hoverableElements = document.querySelectorAll('input, button, .clickable, tab, label');
 let hoverVolume = 0.01;
 let clickVolume = 0.07;
 let interact = false;
@@ -216,12 +207,12 @@ window.addEventListener("load", function () {
     SelectActiveTab();
     DisableChildren(settingsMenu);
     DisableChildren(sheetMenu);
+    ToggleQuickSettings(quickSettingsState.checked);
 });
 //#endregion
 
 //#region Tabs
-var tabContainer = document.querySelector('#tabs');
-var tabCounter = document.querySelector('#tab-counter');
+var tabContainer = document.querySelector('tabs');
 var tabUI = tabContainer.firstElementChild.outerHTML;
 var tabRenamer = document.querySelector('#character-name');
 var sheetRenamer = document.querySelector('#character-type__name-info__name-input');
@@ -251,8 +242,6 @@ function SelectActiveTab() {
         profile.Tab.classList.remove('active');
     });
     Profile.ActiveProfile.Tab.classList.add('active');
-
-    tabCounter.innerHTML = Profile.Count;
 }
 
 function SelectTab(tab) {
@@ -351,8 +340,6 @@ function HandleUpload(event) {
             Profile.ActiveProfile.savingThrowMultipliers = parseResult.savingThrowMultipliers;
             Profile.ActiveProfile.skillMultipliers = parseResult.skillMultipliers;
             Profile.ActiveProfile.abilityScores = parseResult.abilityScores;
-            Profile.ActiveProfile.coins = parseResult.coins;
-            Profile.ActiveProfile.equipment = parseResult.equipment;
             Profile.ActiveProfile.proficiencies = parseResult.proficiencies;
 
             UpdateHistory();
@@ -405,9 +392,23 @@ function HidePopUp() {
 //#endregion
 
 //#region Settings UI
+var quickSettingsState = document.querySelector('#quickSettingsToggle');
+var quickSettingsMenu = document.querySelector('#actions--area');
+function ToggleQuickSettings(state) {
+    if (state) {
+        quickSettingsMenu.classList.add('active');
+        EnableChildren(quickSettingsMenu);
+    } else {
+        quickSettingsMenu.classList.remove('active');
+        DisableChildren(quickSettingsMenu);
+    }
+}
+
+var settingsButton = document.querySelector('#settings-button');
 var settingsMenu = document.querySelector('#settings-panel');
 function OpenSettings() {
-    settingsMenu.style.transform = 'translateX(0%)';
+    settingsMenu.style.transform = 'translateX(1em)';
+    settingsButton.classList.add('active');
 
     DisableChildren(main);
     EnableChildren(settingsMenu);
@@ -415,6 +416,7 @@ function OpenSettings() {
 
 function CloseSettings() {
     settingsMenu.style.transform = 'translateX(-110%)';
+    settingsButton.classList.remove('active');
 
     EnableChildren(main);
     DisableChildren(settingsMenu);
@@ -434,9 +436,11 @@ function ToggleSettingGroup(group, arrow) {
 //#endregion
 
 //#region Sheets UI
+var sheetsButton = document.querySelector('#sheets-button');
 var sheetMenu = document.querySelector('#sheets-panel');
 function OpenSheet() {
     sheetMenu.style.transform = 'translateX(calc(100vw - 100% - 1em))';
+    sheetsButton.classList.add('active');
 
     DisableChildren(main);
     EnableChildren(sheetMenu);
@@ -444,6 +448,7 @@ function OpenSheet() {
 
 function CloseSheet() {
     sheetMenu.style.transform = 'translateX(100vw)';
+    sheetsButton.classList.remove('active');
 
     EnableChildren(main);
     DisableChildren(sheetMenu);
@@ -457,12 +462,6 @@ function SwitchSheet(indexToSelect) {
         if (index == indexToSelect) sheet.classList.add('active');
         else sheet.classList.remove('active');
     }
-}
-
-let equipmentNotesInput = document.getElementById("showNotes");
-function ToggleEquipmentNotes(state) {
-    for (const textarea of equipmentList.querySelectorAll('textarea'))
-        textarea.disabled = !state;
 }
 //#endregion
 
@@ -478,6 +477,8 @@ function DisableChildren(element) {
 
     element.querySelectorAll('button, [href], input, select, textarea, [tabindex]').forEach(item => {
         item.disabled = true;
+        if (item.tabIndex >= 0) 
+            item.tabIndex = -1;
     });
 }
 
@@ -489,6 +490,8 @@ function EnableChildren(element) {
 
     element.querySelectorAll('button:not([data-disabled="true"]), [href]:not([data-disabled="true"]), input:not([data-disabled="true"]), select:not([data-disabled="true"]), textarea:not([data-disabled="true"]), [tabindex]:not([data-disabled="true"])').forEach(item => {
         item.disabled = false;
+        if (item.tabIndex < 0) 
+            item.tabIndex = 0;
     });
 }
 //#endregion
@@ -628,17 +631,6 @@ let backgroundField = document.getElementById("backgroundField");
 let alignmentDropdown = document.getElementById("alignmentDropdown");
 let xpField = document.getElementById("xpField");
 
-let proficiencyBonusInput = document.getElementById("proficiencyBonus");
-
-let equipmentTitle = document.getElementById("equipmentTitle");
-let equipmentList = document.getElementById("equipmentList");
-let equipmentBox = equipmentList.firstElementChild;
-
-let proficienciesList = document.getElementById("proficiencyList");
-let proficiencyBox = proficienciesList.firstElementChild;
-
-equipmentList.innerHTML = "";
-
 let savingThrowProficiencies = {
     'str': document.querySelector("#str-savingThrowBox"),
     'dex': document.querySelector("#dex-savingThrowBox"),
@@ -678,14 +670,6 @@ let abilityScoreInputs = {
     'cha': document.getElementById("chaScore")
 }
 
-let coinInputs = {
-    "copper": document.getElementById("copper"),
-    "silver": document.getElementById("silver"),
-    "electrum": document.getElementById("electrum"),
-    "gold": document.getElementById("gold"),
-    "platinum": document.getElementById("platinum")
-}
-
 function UpdateSheets() {
     for (const tab of Profile.TabList) {
         const index = Profile.TabList.indexOf(tab);
@@ -705,18 +689,12 @@ function UpdateSheets() {
     DropdownSelectFromString(raceDropdown, Profile.ActiveProfile.race);
     DropdownSelectFromString(alignmentDropdown, Profile.ActiveProfile.alignment);
 
-    for (const coinType of Array.from(Object.keys(coinInputs))) {
-        coinInputs[coinType].value = Profile.ActiveProfile.coins[coinType];
-    }
-
     UpdateAllModifiers();
     UpdateAllSkills();
-    UpdateAllEquipment();
-    UpdateAllProficiencies();
 }
 
 function UpdateAbility(inputElement, modifier) {
-    var textElement = inputElement.parentElement.parentElement.firstElementChild;
+    var textElement = inputElement.parentElement.parentElement.firstElementChild.firstElementChild;
 
     NormalizeInput(inputElement);
     Profile.ActiveProfile.abilityScores[modifier] = Number(inputElement.value);
@@ -759,51 +737,6 @@ function UpdateAllSkills() {
         UpdateSkillProficiency(skillProficiencies[skillName], skillName, PROFICIENCY_MULTIPLIER_TO_INDEX[Profile.ActiveProfile.skillMultipliers[skillName]]);
 }
 
-function UpdateCoin(inputElement) {
-    Profile.ActiveProfile.coins[inputElement.id] = inputElement.value;
-}
-
-function AddEquipment() {
-    Profile.ActiveProfile.equipment.push({ "count": 1, "name": '', "notes": ''});
-    UpdateAllEquipment();
-}
-
-function UpdateEquipment(listElement) {
-    var countInput = listElement.querySelector('input[type="number"]');
-    var nameInput = listElement.querySelector('input[type="text"]');
-    var notesInput = listElement.querySelector('textarea');
-    var index = Array.from(equipmentList.children).indexOf(listElement);
-
-    if (countInput.value <= 0)
-        Profile.ActiveProfile.equipment.splice(index, 1);
-    else
-        Profile.ActiveProfile.equipment[index] = { "count": countInput.value, "name": nameInput.value, "notes": notesInput.value };
-
-    UpdateAllEquipment();
-}
-
-function UpdateAllEquipment() {
-    equipmentList.innerHTML = '';
-    for (let index = 0; index < Profile.ActiveProfile.equipment.length; index++)
-        equipmentList.innerHTML = equipmentList.innerHTML + equipmentBox.outerHTML;
-
-
-    for (const listItem of equipmentList.children) {
-        var entry = Profile.ActiveProfile.equipment[Array.from(equipmentList.children).indexOf(listItem)];
-
-        listItem.querySelector('input[type="number"]').value = entry.count;
-        listItem.querySelector('input[type="text"]').value = entry.name;
-        listItem.querySelector('textarea').innerHTML = entry.notes;
-    }
-
-    equipmentTitle.setAttribute("data-after-content", '(' + Profile.ActiveProfile.equipment.length + ')');
-
-    ToggleEquipmentNotes(equipmentNotesInput.checked);
-    
-    if (!equipmentTitle.parentElement.querySelector('button').disabled)
-        EnableChildren(equipmentList);
-}
-
 function UpdateAllModifiers() {
     for (const modifierName of ABILITY_NAMES) {
         abilityScoreInputs[modifierName].value = Profile.ActiveProfile.abilityScores[modifierName];
@@ -811,48 +744,6 @@ function UpdateAllModifiers() {
         UpdateSavingThrowProficiency(savingThrowProficiencies[modifierName], modifierName, PROFICIENCY_MULTIPLIER_TO_INDEX[Profile.ActiveProfile.savingThrowMultipliers[modifierName]]);
         UpdateAbility(abilityScoreInputs[modifierName], modifierName)
     }
-}
-
-function AddProficiency() {
-    Profile.ActiveProfile.proficiencies.push('');
-    UpdateAllProficiencies();
-}
-
-function RemoveProficiency(listElement) {
-    Profile.ActiveProfile.proficiencies.splice(Array.from(proficienciesList.children).indexOf(listElement), 1);
-    UpdateAllProficiencies();
-}
-
-function UpdateProficiency(listElement) {
-    var nameInput = listElement.querySelector('input[type="text"]');
-    var index = Array.from(proficienciesList.children).indexOf(listElement);
-    Profile.ActiveProfile.proficiencies[index] = nameInput.value;
-
-    UpdateAllProficiencies();
-}
-
-function UpdateAllProficiencies() {
-    proficienciesList.innerHTML = '';
-    for (let index = 0; index < Profile.ActiveProfile.proficiencies.length; index++)
-        proficienciesList.innerHTML = proficienciesList.innerHTML + proficiencyBox.outerHTML;
-
-
-    for (const listItem of proficienciesList.children) {
-        var entry = Profile.ActiveProfile.proficiencies[Array.from(proficienciesList.children).indexOf(listItem)];
-
-        listItem.querySelector('input[type="text"]').value = entry;
-    }
-
-    ToggleEquipmentNotes(equipmentNotesInput.checked);
-    
-    if (!equipmentTitle.parentElement.querySelector('button').disabled)
-        EnableChildren(equipmentList);
-}
-
-function UpdateProficiencyBonus() {
-    NormalizeModifier(proficiencyBonusInput);
-    Profile.ActiveProfile.proficiencyBonus = Number(proficiencyBonusInput.value);
-    UpdateAllModifiers();
 }
 //#endregion
 

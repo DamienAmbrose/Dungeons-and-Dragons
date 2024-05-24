@@ -22,15 +22,16 @@ body * {
 }
 
 *::selection {
-    background-color: grey;
+    background-color: #2c2c2c;
     color: white;
 }
 
 body {
     display: flex;
-    height: calc(100vh - 16px);
+    height: 100vh;
     overflow: hidden;
     border-radius: 0;
+    margin: 0;
 }
 
 img {
@@ -39,8 +40,8 @@ img {
 
 main {
     background: var(--white-4);
-    border-radius: 15px;
-    width: calc(100vw);
+    border-radius: 0px;
+    width: 100vw;
     padding: 1em;
     display: flex;
     flex-direction: column;
@@ -75,13 +76,17 @@ button,
 .clickable, 
 input {
     border-width: 0px;
-    cursor: pointer;
 }
 
 button:hover,
 .clickable:hover,
 input:hover {
     transform: scale(1.05);
+}
+
+button:hover,
+.clickable:hover {
+    cursor: pointer;
 }
 
 button:active,
@@ -105,6 +110,10 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
+}
+
+input[type="button"] {
+    cursor: pointer;
 }
 
 textarea {
@@ -156,48 +165,21 @@ textarea {
     gap: 1em;
 }
 
-#settings-button:hover {
-    transform: scale(1.3) rotate(180deg);
+#settings-button:hover img, 
+#settings-button:focus-visible img {
+    transform: rotate(180deg);
 }
 
-#settings-button:active {
-    transform: scale(0.8);
-}
-
-#new-tab:hover {
-    transform: scale(1.3) rotate(90deg);
-}
-
-#new-tab:active {
-    transform: scale(0.8) rotate(90deg);
-}
-
-#new-tab img {
-    width: 1.5em;
-}
-
-#navigation-area {
-    height: 3em;
-    background: #2c2c2c;
-    display: flex;
-    padding: 1em;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
-
-#tabs--container {
-    background: #434343;
-    height: calc(100% - 14px);
-    width: 100%;
-    margin-left: 8px;
-    padding: 7px 7px;
+#tabs--area {
+    background: var(--white-3);
+    padding: 0.5em;
     border-radius: 75px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#tabs {
+tabs {
     display: flex;
     justify-content: space-between;
     margin: 0px;
@@ -207,74 +189,86 @@ textarea {
     max-width: calc(98.98vw - 265px);
 }
 
-#tabs .tab {
-    background: grey;
-    color: rgb(69, 69, 69);
+tab {
+    background: var(--white-4);
     width: 100%;
     min-width: 17.5%;
-    padding: 5px 5px;
-    padding-left: 20px;
+    padding: 0.66em;
     display: flex;
     justify-content: space-between;
-    opacity: 0.7;
     transform: scale(0.95);
     transition-duration: 0.3s;
-    box-sizing: unset;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
-#tabs .tab.active {
-    background: lightgrey;
-    border-bottom: 4px solid rgba(0, 0, 0, 0.45);
+tab.active {
+    background: var(--white-5);
+    border-bottom: 4px solid var(--white-1);
 }
 
-#tabs .tab.active input {
+tab.active input {
     font-family: 'Poppins Bold', sans-serif;
 }
 
-#tabs .tab:hover {
+tab:hover {
     transform: scale(0.975);
     opacity: 1;
 }
 
-#tabs .tab:active {
+tab:active {
     transform: scale(0.95);
 }
 
-#tabs .tab-name {
+.tabs__action-button  {
+    padding: 1rem;
+    background: var(--white-4);
+}
+
+.tabs__action-button:hover,
+.tabs__action-button:focus-visible,
+input[type="checkbox"]:focus-visible + .tabs__action-button {
+    background: var(--white-5);
+    transform: scale(1.2);
+}
+
+.tabs__action-button:active {
+    transform: scale(0.8);
+}
+
+.tabs__action-button img {
+    width: 1.25rem;
+}
+
+#tabs--area .horizontal-buttons {
+    position: relative;
+    gap: 0.5rem;
+}
+
+.tabs__action-button-input {
+    position: absolute;
+    opacity: 0;
+}
+
+.tabs__action-button-input:checked + .tabs__action-button {
+    background: #2c2c2c;
+}
+
+.tabs__action-button-input:checked:focus-visible + .tabs__action-button,
+.tabs__action-button-input:checked + .tabs__action-button:hover {
+    background: #1c1c1c;
+}
+
+.tabs__action-button-input:checked + .tabs__action-button img {
+    filter: invert(1);
+}
+
+.tab-name {
     border: none;
     padding: 0px 10px;
     background: transparent;
     min-width: 0px;
-}
-
-#tabs .tab-name {
     transform: scale(1) !important;
-}
-
-#tab-counter {
-    font-size: 1.4em;
-    margin-right: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-family: 'Poppins Bold', sans-serif;
-    background: lightgrey;
-    text-align: center;
-    min-width: 35px;
-    max-width: 35px;
-}
-
-.close-tab {
-    background-color: transparent;
-    margin-left: 10px;
-}
-
-.close-tab:hover {
-    background-color: darkgrey;
-    transform: scale(1.5);
-}
-
-.close-tab img {
-    width: 1em;
 }
 
 .circle-icon-button {
@@ -285,7 +279,8 @@ textarea {
     aspect-ratio: 1;
 }
 
-.circle-icon-button:hover {
+.circle-icon-button:hover, 
+.circle-icon-button:focus-visible {
     transform: scale(1.2);
 }
 
@@ -297,18 +292,53 @@ textarea {
     border-radius: 0px;
 }
 
-#character-info {
-    background-color: grey;
+.circle-icon-button.active {
+    background: #2c2c2c !important;
+}
+
+.circle-icon-button.active img {
+    filter: invert(1);
+}
+
+.close-tab {
+    background-color: transparent;
+    transform: scale(1.4);
+}
+
+.close-tab:hover,
+.close-tab:focus-visible {
+    background-color: var(--white-3);
+    transform: scale(1.7);
+}
+
+.close-tab img {
+    width: 1em;
+}
+
+#actions--area {
+    background-color: var(--white-3);
     padding: 1em;
     padding-right: 2em;
     display: flex;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    margin-top: 1em;
+}
+
+#actions--area:not(.active) {
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    transform: scale(0.95);
+}
+
+#actions--area:not(.active) * {
+    opacity: 0;
+    cursor: auto;
 }
 
 #character-name {
     width: 100%;
-    background: var(--grey-9);
+    background: var(--white-4);
     border: none;
     font-size: 1.5em;
     font-family: 'Poppins Bold', sans-serif;
@@ -319,7 +349,7 @@ textarea {
 
 #character-name:hover {
     transform: scale(1.0125);
-    background: var(--white-1);
+    background: var(--white-5);
 }
 
 #character-name:active {
@@ -327,7 +357,7 @@ textarea {
 }
 
 #character-name:focus-visible {
-    background-color: lightgrey;
+    background-color: var(--white-5);
 }
 
 #character-actions {
@@ -338,8 +368,15 @@ textarea {
 
 #character-actions .circle-icon-button {
     height: 4em;
+    background: var(--white-4);
 }
 
+
+#character-actions .circle-icon-button:hover, 
+#character-actions .circle-icon-button:focus-visible {
+    height: 4em;
+    background: var(--white-5);
+}
 pop-up {
     background: white;
 
@@ -389,8 +426,9 @@ panel {
     background: var(--white-4);
 
     position: absolute;
-    padding: 2em;
-    height: calc(100% - 5em);
+    padding: 1em;
+    height: calc(100% - 4em);
+    top: 1em;
     z-index: 4;
 
     display: flex;
@@ -418,13 +456,14 @@ panel-title {
     gap: 0.5em;
     width: 100%;
     padding: 0;
+    margin-top: 1em;
 }
 
 panel-title h1 {
     font-family: 'Poppins Bold', sans-serif;
     font-size: 2em;
     margin: 0;
-    text-align: left;
+    text-align: center;
 }
 
 panel-content {
@@ -836,10 +875,8 @@ loader__circle:nth-child(3) {
 
 #workspace>* {
     background: var(--white-3);
-    height: calc(100% - 4em);
     width: 100%;
-    padding: 2em;
-    padding-top: 1.5em;
+    padding: 1em;
 }
 
 #history-area {
@@ -856,15 +893,11 @@ loader__circle:nth-child(3) {
     gap: 0.5em;
 }
 
-#history__title img {
-    aspect-ratio: 1;
-    width: 1.25em;
-}
-
 #history__title h1 {
     font-family: 'Poppins Bold', sans-serif;
     margin: 0;
     font-size: 1.75em;
+    text-align: center;
 }
 
 #history__list {
@@ -926,6 +959,9 @@ loader__circle:nth-child(3) {
     left: calc(100% - 3em);
     height: 100%;
     transition-duration: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #history__list li button:hover,
@@ -949,7 +985,6 @@ loader__circle:nth-child(3) {
     gap: 1em;
     overflow-x: scroll;
     padding: 1em;
-    min-height: 4em;
 }
 
 .sheet-tab {
@@ -958,8 +993,9 @@ loader__circle:nth-child(3) {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1em;
+    padding: 1.75em;
     gap: 0.5em;
+    cursor: pointer;
 }
 
 .sheet-tab__text {
@@ -1019,8 +1055,7 @@ sheet.active {
     grid-template-areas:
         "type type type"
         "saving-throws abilities abilities"
-        "skills skills skills"
-        "inventory inventory proficiencies";
+        "skills skills skills";
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1em;
 }
@@ -1046,14 +1081,6 @@ sheet-section#character-abilities {
 
 sheet-section#character-skills {
     grid-area: skills;
-}
-
-sheet-section#character-inventory {
-    grid-area: inventory;
-}
-
-sheet-section#character-proficiencies {
-    grid-area: proficiencies;
 }
 
 #character-type__name-info {
@@ -1128,6 +1155,11 @@ sheet-section#character-proficiencies {
     font-family: 'Poppins Bold', sans-serif;
 }
 
+.input-field[type="number"] {
+    width: 100%;
+    text-align: center;
+}
+
 .input-field:placeholder-shown {
     font-family: 'Poppins Medium', sans-serif;
 }
@@ -1142,7 +1174,7 @@ sheet-section#character-proficiencies {
     transform: scale(0.95);
 }
 
-.input-field__label {
+input-field__label {
     padding-left: 1em;
     color: #757575;
     font-size: 0.85em;
@@ -1388,6 +1420,7 @@ dropdown__searchbar {
     gap: 0.5em;
     padding: 0.5em;
     position: relative;
+    cursor: pointer;
 }
 
 .modifier-proficiency-box:hover,
@@ -1489,10 +1522,11 @@ modifier-proficiency__output {
 #character-abilities {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 1em;
 }
 
-#character-sheet #character-abilities .abilityBox {
+.ability-box {
     background: var(--white-3);
     display: flex;
     flex-direction: column;
@@ -1500,299 +1534,85 @@ modifier-proficiency__output {
     justify-content: space-between;
 }
 
-#character-sheet #character-abilities .abilityBox .modifierValue {
-    padding: 0.75em;
-    padding-top: 1.5em;
-    margin: 0;
-    font-family: 'Poppins Bold', sans-serif;
+.ability-box:hover, .ability-box:focus-within {
+    transform: scale(1.05);
+    background: var(--white-4);
 }
 
-#character-sheet #character-abilities .abilityBox .abilityInfo {
+.ability-box:active {
+    transform: scale(0.95);
+}
+
+ability-box__modifier--wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+ability-box__modifier {
+    padding: 0.5em;
+    padding-top: 0.75em;
+    margin: 0;
+    font-family: 'Poppins Bold', sans-serif;
+    font-size: 1.75em;
+}
+
+.ability-box:focus-within ability-box__modifier {
+    font-size: 1.25em;
+}
+
+ability-box__content {
     padding: 1em;
     background: var(--white-4);
     align-self: stretch;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1em;
 }
 
-#character-sheet #character-abilities .abilityBox .abilityInfo .abilityName {
+ability-box__content:focus-within {
+    background: var(--white-5);
+}
+
+ability-box__content__name {
     color: #757575;
     font-size: 0.85em;
     text-align: center;
 }
 
-#character-sheet #character-abilities .abilityBox .abilityInfo .abilityScore {
+.ability-box:focus-within ability-box__content__name {
+    font-family: 'Poppins Bold', sans-serif;
+}
+
+.ability-box__content__input {
     border: none;
-    padding: 1em;
-    background: var(--white-5);
+    background: white;
     font-family: 'Poppins Bold', sans-serif;
     text-align: center;
     width: 5em;
     margin: 0;
+    height: 0;
+    padding: 0;
+    opacity: 0;
 }
 
-#character-sheet #character-abilities .abilityBox .abilityInfo .abilityScore:hover,
-#character-sheet #character-abilities .abilityBox .abilityInfo .abilityScore:focus-visible {
-    background: white;
+.ability-box__content__input:hover {
     transform: scale(1.05);
 }
 
-#character-sheet #character-abilities .abilityBox .abilityInfo .abilityScore:active {
+.ability-box__content__input:active {
     transform: scale(0.95);
 }
 
-#character-sheet #character-skills {
+.ability-box__content__input:focus {
+    height: auto;
+    padding: 1em;
+    opacity: 1;
+    margin-top: 1em;
+}
+
+#character-skills {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-#character-sheet #character-inventory {
-    display: flex;
-    gap: 1em;
-    max-height: 31em;
-}
-
-#character-sheet #character-inventory .coinsWrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    width: 35%;
-}
-
-#character-sheet #character-inventory .equipment {
-    padding: 1em;
-    background: var(--white-1);
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    width: 100%;
-}
-
-#character-sheet #character-inventory .equipmentTitle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 0.5em;
-    position: relative;
-}
-
-#character-sheet #character-inventory .equipmentTitle .buttonWrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 0.5em;
-}
-
-#character-sheet #character-inventory .equipmentTitle .equipmentTitleText {
-    font-family: 'Poppins Bold', sans-serif;
-}
-
-#character-sheet #character-inventory .equipmentTitle .equipmentTitleText::after {
-    content: attr(data-after-content);
-    margin: 0 0.25em;
-    font-family: 'Poppins Medium';
-}
-
-#character-sheet #character-inventory .equipmentTitle *[type=button] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5em;
-    padding: 0.5em 1.5em;
-    border-radius: 75px;
-    background: var(--white-3);
-    cursor: pointer;
-}
-
-#character-sheet #character-inventory .equipmentTitle *[type=button]:hover,
-#character-sheet #character-inventory .equipmentTitle *[type=button]:focus-visible,
-#character-sheet #character-inventory .equipmentTitle input[type=checkbox]:focus+*[type=button] {
-    background: var(--white-5);
-    transform: scale(1.1);
-}
-
-#character-sheet #character-inventory .equipmentTitle *[type=button]:active {
-    transform: scale(0.9);
-}
-
-#character-sheet #character-inventory .equipmentTitle *[type=button] {
-    font-size: 0.85em;
-}
-
-#character-sheet #character-inventory .equipmentTitle *[type=button]:focus .buttonText {
-    font-family: 'Poppins Bold', sans-serif;
-}
-
-#character-sheet #character-inventory .equipmentTitle input[type=checkbox] {
-    opacity: 0;
-    position: absolute;
-}
-
-#character-sheet #character-inventory .equipmentTitle input[type=checkbox]:checked+label {
-    background: #2c2c2c !important;
-    color: white;
-}
-
-#character-sheet #character-inventory .equipmentTitle input[type=checkbox]:checked+label img {
-    filter: invert(1);
-}
-
-#character-sheet #character-inventory ul {
-    padding: 0;
-    height: 100%;
-    margin: 0;
-    overflow-y: scroll;
-}
-
-#character-sheet #character-inventory ul li {
-    list-style-type: none;
-    margin: 0;
-    margin-top: 0.5em;
-    background: var(--white-0);
-    padding: 0.5em;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-}
-
-#character-sheet #character-inventory ul li:first-child {
-    margin-top: 0;
-}
-
-#character-sheet #character-inventory ul li textarea {
-    background: var(--white-3);
-    padding: 1em;
-    border: none;
-    height: 50px;
-    resize: vertical;
-    cursor: text;
-    min-height: 50px;
-    max-height: 130px;
-}
-
-#character-sheet #character-inventory ul li textarea:disabled {
-    min-height: 4px;
-    max-height: 4px;
-    padding: 0;
-    border-width: 0;
-    width: 50%;
-    background: var(--grey-8);
-    align-self: center;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: auto;
-}
-
-#character-sheet #character-inventory ul li textarea:not([disabled]):hover {
-    background: white;
-}
-
-#character-sheet #character-inventory ul li textarea:not([disabled]):active,
-#character-sheet #character-inventory ul li textarea:not([disabled]):focus-visible {
-    transform: scale(1);
-    border-bottom: 5px solid darkgrey;
-}
-
-#character-sheet #character-inventory ul li .horizontalRegion {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.25em;
-}
-
-#character-sheet #character-inventory ul li input {
-    padding-top: 0.75em;
-    padding-bottom: 0.75em;
-}
-
-#character-sheet #character-inventory ul li input[type="number"] {
-    width: 20%;
-    background: var(--white-3);
-}
-
-#character-sheet #character-inventory ul li input[type="number"]:hover,
-#character-sheet #character-inventory ul li input[type="number"]:focus-visible {
-    transform: scale(1.1);
-    background: var(--white-4);
-}
-
-#character-sheet #character-proficiencies {
-    display: flex;
-    flex-direction: column;
-    max-height: 31em;
-}
-
-#character-sheet #character-proficiencies .input-field--container {
-    background: var(--white-4);
-}
-
-#character-sheet #character-proficiencies .input-field--container input {
-    background: var(--white-5);
-}
-
-#character-sheet #character-proficiencies .proficiencyListWrapper {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1em;
-    background: var(--white-1);
-    padding: 1em;
-    overflow-y: scroll;
-}
-
-#character-sheet #character-proficiencies ul {
-    padding: 0.75em;
-    margin: 0;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.725em;
-    overflow-y: scroll;
-    background: var(--white-0);
-    height: 100%;
-}
-
-#character-sheet #character-proficiencies ul li {
-    margin: 0;
-    background: var(--white-3);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5em;
-}
-
-#character-sheet #character-proficiencies ul li button:hover, #character-sheet #character-proficiencies ul li button:focus-visible {
-    transform: scale(1.3) rotate(180deg);
-    background: var(--white-5);
-}
-
-#character-sheet #character-proficiencies .proficiencyListWrapper .addButton {
-    background: var(--white-3);
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.25em;
-}
-
-#character-sheet #character-proficiencies .proficiencyListWrapper .addButton:hover {
-    background: var(--white-4);
-}
-
-#character-sheet #character-proficiencies ul li input {
-    padding: 0.75em 1em;
-}
-
-#character-sheet #character-proficiencies ul li button.circle-icon-button {
-    aspect-ratio: 1;
-    height: calc(100% - 0.5em);
-    margin: 0.25em;
-}
-
-#character-sheet #character-proficiencies ul li button.circle-icon-button:hover {
-    background: var(--white-5);
-    transform: scale(1.3) rotate(180deg);
 }
